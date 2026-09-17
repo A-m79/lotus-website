@@ -121,9 +121,11 @@ position: sticky; top: env(safe-area-inset-top, 0px);
 z-index: 50;
 display: flex; align-items: center; justify-content: space-between;
 padding-block: 18px;
+margin-inline: -24px;
+padding-inline: 24px;
 background: color-mix(in srgb, var(--bg) 78%, transparent);
 backdrop-filter: blur(10px);
-transition: border-color .25s ease, box-shadow .25s ease;
+transition: border-color .25s ease, box-shadow .25s ease, background-color .25s ease;
 border-bottom: 1px solid transparent;
 }
 nav.scrolled { border-bottom-color: var(--border); box-shadow: var(--shadow); }
@@ -266,6 +268,29 @@ padding: 3px 8px; border-radius: 6px; margin-bottom: 10px;
 .plan-list li.dim svg { color: var(--text-dim); opacity: .5; }
 .plan-foot { margin-top: 24px; }
 .badge-soon { display: inline-flex; align-items: center; gap: 6px; font-family: 'JetBrains Mono', monospace; font-size: 11.5px; font-weight: 700; letter-spacing: .04em; color: var(--accent-2); background: color-mix(in srgb, var(--accent-2) 12%, transparent); padding: 10px 16px; border-radius: 100px; width: 100%; justify-content: center; }
+.compare-link { display: inline-flex; align-items: center; gap: 7px; margin-top: 18px; font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 600; color: var(--accent); background: none; border: none; cursor: pointer; padding: 0; }
+.compare-link svg { width: 15px; height: 15px; }
+.compare-link:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+/* ---------- compare modal ---------- */
+.compare-modal { border: 1px solid var(--border); border-radius: 22px; background: var(--surface); color: var(--text); padding: 0; width: min(680px, calc(100% - 48px)); max-height: min(720px, calc(100% - 64px)); box-shadow: var(--shadow); }
+.compare-modal::backdrop { background: color-mix(in srgb, #0a0912 60%, transparent); backdrop-filter: blur(6px); }
+.compare-modal[open] { animation: compareIn .25s ease; }
+@keyframes compareIn { from { opacity: 0; transform: translateY(10px) scale(.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
+.compare-head { display: flex; align-items: center; justify-content: space-between; padding: 22px 26px; border-bottom: 1px solid var(--border); position: sticky; top: 0; background: var(--surface); border-radius: 22px 22px 0 0; }
+.compare-head h3 { font-size: 19px; font-weight: 800; }
+.compare-close { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 100px; border: 1px solid var(--border); background: var(--surface-2); color: var(--text-dim); cursor: pointer; font-size: 15px; transition: color .15s ease, border-color .15s ease; }
+.compare-close:hover { color: var(--text); border-color: var(--accent); }
+.compare-table-wrap { overflow-y: auto; max-height: 480px; padding: 6px 26px; }
+.compare-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.compare-table th { text-align: left; font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--text-dim); padding: 14px 10px; position: sticky; top: 0; background: var(--surface); }
+.compare-table th:not(:first-child), .compare-table td:not(:first-child) { text-align: center; width: 92px; }
+.compare-table td { padding: 12px 10px; border-top: 1px solid var(--border); }
+.compare-table td:first-child { color: var(--text); }
+.compare-table .yes { color: var(--success); }
+.compare-table .no { color: var(--text-dim); opacity: .45; }
+.compare-table tr:hover td { background: color-mix(in srgb, var(--accent) 5%, transparent); }
+.compare-foot { display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap; padding: 20px 26px 26px; border-top: 1px solid var(--border); }
 
 /* ---------- FAQ ---------- */
 .faq-list { display: flex; flex-direction: column; gap: 12px; max-width: 780px; }
@@ -342,7 +367,6 @@ opacity: 0; transition: opacity .3s ease;
 .hero-grid > div:last-child { perspective: 1000px; }
 .embed-shell { transition: transform .25s ease; transform-style: preserve-3d; }
 
-@media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
 </style>
 </head>
 <body>
@@ -514,6 +538,7 @@ opacity: 0; transition: opacity .3s ease;
 <span class="eyebrow">Pricing</span>
 <h2>Solid protection for free. The full detection stack for servers that want it all.</h2>
 <p>Free covers real, always-on protection — not a crippled trial. Premium adds the deeper detection and forensic layers.</p>
+<button type="button" class="compare-link" id="compare-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 3v18h18M7 15l4-5 3 3 5-7"/></svg>Compare every feature side by side</button>
 </div>
 
 <div class="pricing-grid">
@@ -551,6 +576,37 @@ opacity: 0; transition: opacity .3s ease;
 <div class="plan-foot"><span class="badge-soon">🪷 In development</span></div>
 </div>
 </div>
+
+<dialog class="compare-modal" id="compare-modal">
+<div class="compare-head">
+<h3>Free vs Premium, feature by feature</h3>
+<button type="button" class="compare-close" id="compare-close" aria-label="Close">✕</button>
+</div>
+<div class="compare-table-wrap">
+<table class="compare-table">
+<thead><tr><th>Feature</th><th>Free</th><th>Premium</th></tr></thead>
+<tbody>
+<tr><td>Anti-Nuke protection</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+<tr><td>Anti-Raid lockdown</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+<tr><td>Anti-Spam shield</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+<tr><td>Verification gate</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+<tr><td>Manual moderation suite</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+<tr><td>Logs &amp; alerts channel</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+<tr><td>Alt &amp; new account detection</td><td class="no">–</td><td class="yes">✓</td></tr>
+<tr><td>Phishing link detection</td><td class="no">–</td><td class="yes">✓</td></tr>
+<tr><td>Dangerous permission watch</td><td class="no">–</td><td class="yes">✓</td></tr>
+<tr><td>Activity logs &amp; case history</td><td class="no">–</td><td class="yes">✓</td></tr>
+<tr><td>Automated backups &amp; 1-click restore</td><td class="no">–</td><td class="yes">✓</td></tr>
+<tr><td>Custom threshold tuning</td><td class="no">–</td><td class="yes">✓</td></tr>
+<tr><td>Priority support</td><td class="no">–</td><td class="yes">✓</td></tr>
+</tbody>
+</table>
+</div>
+<div class="compare-foot">
+<a href="#" class="btn btn-ghost btn-sm" id="invite-compare">Add for free</a>
+<span class="badge-soon" style="width:auto;">🪷 Premium in development</span>
+</div>
+</dialog>
 </section>
 
 <section id="faq">
@@ -626,7 +682,7 @@ nav.classList.toggle('scrolled', window.scrollY > 8);
 document.getElementById('year-line').textContent = '© ' + new Date().getFullYear() + ' Lotus Security';
 
 const inviteUrl = 'https://discord.com/oauth2/authorize?client_id=1537134333322858497&scope=bot%20applications.commands&permissions=8';
-['invite-top', 'invite-hero', 'invite-cta'].forEach((id) => {
+['invite-top', 'invite-hero', 'invite-cta', 'invite-compare'].forEach((id) => {
 const el = document.getElementById(id);
 if (el) el.setAttribute('href', inviteUrl);
 });
@@ -678,15 +734,12 @@ card.style.opacity = 1;
 
 let idx = 0;
 render(0);
-const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-if (!reduceMotion) {
 setInterval(() => { idx = (idx + 1) % slides.length; render(idx); }, 3600);
-}
 
 // Subtle mouse-parallax tilt on the hero embed card
 const shell = document.querySelector('.embed-shell');
 const heroVisual = document.querySelector('.hero-grid > div:last-child');
-if (shell && heroVisual && !reduceMotion) {
+if (shell && heroVisual) {
 heroVisual.addEventListener('mousemove', (e) => {
 const r = heroVisual.getBoundingClientRect();
 const px = (e.clientX - r.left) / r.width - 0.5;
@@ -705,9 +758,21 @@ card.style.setProperty('--y', (e.clientY - r.top) + 'px');
 });
 });
 
+// Free vs Premium comparison modal
+const compareModal = document.getElementById('compare-modal');
+const compareBtn = document.getElementById('compare-btn');
+const compareClose = document.getElementById('compare-close');
+if (compareModal && compareBtn && typeof compareModal.showModal === 'function') {
+compareBtn.addEventListener('click', () => compareModal.showModal());
+compareClose.addEventListener('click', () => compareModal.close());
+compareModal.addEventListener('click', (e) => { if (e.target === compareModal) compareModal.close(); });
+} else if (compareBtn) {
+compareBtn.style.display = 'none';
+}
+
 // Scroll reveal for below-the-fold sections (progressive enhancement)
 const revealTargets = document.querySelectorAll('.feature-card, .plan, .cmd-menu, .cta-band, .faq-item');
-if ('IntersectionObserver' in window && !reduceMotion) {
+if ('IntersectionObserver' in window) {
 revealTargets.forEach((el) => el.classList.add('reveal-init'));
 const io = new IntersectionObserver((entries) => {
 entries.forEach((entry) => {
