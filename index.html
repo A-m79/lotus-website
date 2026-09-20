@@ -15,410 +15,7 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Lotus Security — Automated Discord Security">
 <meta name="twitter:description" content="Your server, defended before the damage happens.">
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800;900&family=Familjen+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
-
-:root {
---bg: #f8f6fc;
---surface: #ffffff;
---surface-2: #f1ecfa;
---border: #e3dbf3;
---text: #1c1730;
---text-dim: #5c527a;
---accent: #7b3fe4;
---accent-2: #d1237a;
---danger: #d63838;
---success: #1c8f5c;
---shadow: 0 1px 2px rgba(30, 15, 60, .04), 0 12px 32px -16px rgba(60, 20, 120, .18);
---radius: 18px;
---pearl-a: #ffc9ec;
---pearl-b: #cdb6ff;
---pearl-c: #fff6fb;
---glass: rgba(255, 255, 255, .58);
-}
-
-@media (prefers-color-scheme: dark) {
-:root:not([data-theme="light"]) {
---bg: #0a0912;
---surface: #14111f;
---surface-2: #1b1729;
---border: #2b2540;
---text: #f1eefc;
---text-dim: #a79fc4;
---accent: #9a6bff;
---accent-2: #ff5fac;
---danger: #ff6b6b;
---success: #3fd48c;
---shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 20px 48px -20px rgba(120, 60, 220, .35);
---pearl-a: #6d2f88;
---pearl-b: #37205f;
---pearl-c: #ffd9f1;
---glass: rgba(20, 17, 31, .5);
-}
-}
-:root[data-theme="dark"] {
---bg: #0a0912;
---surface: #14111f;
---surface-2: #1b1729;
---border: #2b2540;
---text: #f1eefc;
---text-dim: #a79fc4;
---accent: #9a6bff;
---accent-2: #ff5fac;
---danger: #ff6b6b;
---success: #3fd48c;
---shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 20px 48px -20px rgba(120, 60, 220, .35);
---pearl-a: #6d2f88;
---pearl-b: #37205f;
---pearl-c: #ffd9f1;
---glass: rgba(20, 17, 31, .5);
-}
-
-* { box-sizing: border-box; }
-body {
-margin: 0;
-background: var(--bg);
-color: var(--text);
-font-family: 'Familjen Grotesk', system-ui, sans-serif;
--webkit-font-smoothing: antialiased;
-padding-inline: 24px;
-overflow-x: hidden;
-}
-h1, h2, h3, .display {
-font-family: 'Unbounded', system-ui, sans-serif;
-text-wrap: balance;
-margin: 0;
-letter-spacing: -0.01em;
-}
-.mono { font-family: 'JetBrains Mono', ui-monospace, monospace; }
-p { color: var(--text-dim); line-height: 1.65; margin: 0; }
-a { color: inherit; text-decoration: none; }
-.wrap { max-width: 1120px; margin-inline: auto; }
-section { padding-block: 96px; }
-@media (max-width: 720px) { section { padding-block: 64px; } }
-
-.eyebrow {
-font-family: 'JetBrains Mono', monospace;
-font-size: 12.5px;
-font-weight: 600;
-letter-spacing: .14em;
-text-transform: uppercase;
-color: var(--accent);
-display: inline-flex;
-align-items: center;
-gap: 8px;
-}
-.eyebrow::before {
-content: "";
-width: 7px; height: 7px; border-radius: 50%;
-background: var(--accent);
-box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 20%, transparent);
-}
-
-/* ---------- nav ---------- */
-nav {
-position: sticky; top: env(safe-area-inset-top, 0px);
-z-index: 50;
-display: flex; align-items: center; justify-content: space-between;
-padding-block: 18px;
-margin-inline: -24px;
-padding-inline: 24px;
-background: color-mix(in srgb, var(--bg) 78%, transparent);
-backdrop-filter: blur(10px);
-transition: border-color .25s ease, box-shadow .25s ease, background-color .25s ease;
-border-bottom: 1px solid transparent;
-}
-nav.scrolled { border-bottom-color: var(--border); box-shadow: var(--shadow); }
-.brand { display: flex; align-items: center; gap: 9px; font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: 19px; }
-.brand .mark { width: 29px; height: auto; flex: none; filter: drop-shadow(0 2px 10px color-mix(in srgb, var(--accent-2) 45%, transparent)); }
-.nav-links { display: flex; align-items: center; gap: 30px; }
-.nav-links a:not(.btn) { color: var(--text-dim); font-size: 14.5px; font-weight: 500; transition: color .15s ease; }
-.nav-links a:not(.btn):hover { color: var(--text); }
-@media (max-width: 720px) { .nav-links a:not(.btn) { display: none; } }
-
-.btn {
-display: inline-flex; align-items: center; gap: 8px;
-font-family: 'Familjen Grotesk', sans-serif;
-font-weight: 700; font-size: 14.5px;
-padding: 12px 22px; border-radius: 100px;
-border: 1px solid transparent;
-cursor: pointer;
-transition: transform .15s ease, box-shadow .15s ease, opacity .15s ease;
-}
-.btn:active { transform: scale(.97); }
-.btn-primary {
-background: linear-gradient(135deg, var(--accent), var(--accent-2));
-color: #fff;
-box-shadow: 0 10px 24px -10px color-mix(in srgb, var(--accent) 65%, transparent);
-}
-.btn-primary:hover { box-shadow: 0 14px 30px -10px color-mix(in srgb, var(--accent) 75%, transparent); }
-.btn-ghost { background: var(--surface); border-color: var(--border); color: var(--text); }
-.btn-ghost:hover { border-color: var(--accent); }
-.btn-sm { padding: 9px 16px; font-size: 13.5px; }
-
-/* ---------- hero ---------- */
-.hero { padding-top: 72px; padding-bottom: 40px; }
-.hero-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 56px; align-items: center; }
-@media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr; } }
-.hero h1 { font-size: clamp(34px, 5.4vw, 58px); font-weight: 800; line-height: 1.05; margin-block: 18px 20px; }
-.hero h1 em { font-style: normal; background: linear-gradient(100deg, var(--accent), var(--accent-2)); -webkit-background-clip: text; background-clip: text; color: transparent; }
-.hero p.lead { font-size: 17.5px; max-width: 46ch; }
-.hero-cta { display: flex; align-items: center; gap: 16px; margin-top: 30px; flex-wrap: wrap; }
-.invite-note { font-size: 12.5px; color: var(--text-dim); }
-
-/* fake discord embed card */
-.embed-shell {
-background: var(--surface);
-border: 1px solid var(--border);
-border-radius: var(--radius);
-box-shadow: var(--shadow);
-padding: 20px;
-position: relative;
-overflow: hidden;
-}
-.embed-shell::before {
-content: "";
-position: absolute; inset: 0 auto 0 0; width: 4px;
-background: linear-gradient(var(--accent), var(--accent-2));
-}
-.embed-top { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--text-dim); margin-bottom: 14px; }
-.embed-top .dots { display: flex; gap: 5px; margin-right: 4px; }
-.embed-top .dots span { width: 8px; height: 8px; border-radius: 50%; background: var(--border); }
-.embed-card { min-height: 210px; }
-.embed-author { display: flex; align-items: center; gap: 8px; font-family: 'JetBrains Mono', monospace; font-size: 11.5px; font-weight: 700; letter-spacing: .06em; color: var(--accent); margin-bottom: 10px; }
-.embed-author .sq { width: 18px; height: 18px; border-radius: 5px; background: linear-gradient(135deg, var(--accent), var(--accent-2)); display: grid; place-items: center; font-size: 11px; }
-.embed-title { font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: 16px; margin-bottom: 12px; }
-.embed-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 20px; font-size: 13px; }
-.embed-fields .f-label { font-size: 10.5px; text-transform: uppercase; letter-spacing: .06em; color: var(--text-dim); font-weight: 700; margin-bottom: 2px; }
-.embed-fields .f-val { font-weight: 600; }
-.embed-footer { margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--border); font-size: 11px; color: var(--text-dim); display: flex; justify-content: space-between; }
-.embed-dots-nav { display: flex; gap: 6px; justify-content: center; margin-top: 14px; }
-.embed-dots-nav span { width: 6px; height: 6px; border-radius: 50%; background: var(--border); transition: background .2s ease, width .2s ease; }
-.embed-dots-nav span.active { background: var(--accent); width: 18px; border-radius: 4px; }
-
-/* ---------- stats ---------- */
-.stats { padding-block: 20px 90px; }
-.stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
-@media (max-width: 720px) { .stats-row { grid-template-columns: 1fr; } }
-.stat { background: var(--surface); padding: 26px 24px; }
-.stat .num { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 26px; }
-.stat .lbl { font-size: 13px; color: var(--text-dim); margin-top: 4px; }
-
-/* ---------- section headers ---------- */
-.sec-head { max-width: 640px; margin-bottom: 48px; }
-.sec-head h2 { font-size: clamp(26px, 3.4vw, 36px); font-weight: 800; margin-top: 12px; }
-.sec-head p { margin-top: 12px; font-size: 15.5px; }
-
-/* ---------- features ---------- */
-.feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
-@media (max-width: 900px) { .feature-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 600px) { .feature-grid { grid-template-columns: 1fr; } }
-.feature-card {
-background: var(--surface);
-border: 1px solid var(--border);
-border-radius: var(--radius);
-padding: 24px;
-transition: border-color .2s ease, transform .2s ease;
-}
-.feature-card:hover { border-color: color-mix(in srgb, var(--accent) 50%, var(--border)); transform: translateY(-2px); }
-.f-icon { width: 40px; height: 40px; border-radius: 11px; background: var(--surface-2); display: grid; place-items: center; margin-bottom: 16px; color: var(--accent); }
-.f-icon svg { width: 20px; height: 20px; }
-.feature-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
-.feature-card p { font-size: 13.8px; }
-.tag-premium {
-display: inline-flex; align-items: center; gap: 5px;
-font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase;
-color: var(--accent-2); background: color-mix(in srgb, var(--accent-2) 12%, transparent);
-padding: 3px 8px; border-radius: 6px; margin-bottom: 10px;
-}
-
-/* ---------- setup section ---------- */
-.setup { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
-@media (max-width: 860px) { .setup { grid-template-columns: 1fr; } }
-.cmd-line { display: flex; align-items: center; gap: 10px; background: var(--surface-2); border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; font-family: 'JetBrains Mono', monospace; font-size: 14px; margin-top: 22px; }
-.cmd-line .prompt { color: var(--accent); }
-.step-list { display: flex; flex-direction: column; gap: 16px; margin-top: 24px; }
-.step { display: flex; gap: 14px; }
-.step .n { flex: none; width: 26px; height: 26px; border-radius: 50%; background: var(--surface-2); border: 1px solid var(--border); display: grid; place-items: center; font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 700; color: var(--accent); }
-.step strong { display: block; font-size: 14.5px; margin-bottom: 2px; }
-.step p { font-size: 13.5px; }
-
-.cmd-menu { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; }
-.cmd-menu .head { padding: 14px 18px; font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color: var(--text-dim); border-bottom: 1px solid var(--border); }
-.cmd-row { display: flex; align-items: flex-start; gap: 12px; padding: 13px 18px; border-bottom: 1px solid var(--border); }
-.cmd-row:last-child { border-bottom: none; }
-.cmd-row .mk { flex: none; width: 26px; height: 26px; border-radius: 7px; background: linear-gradient(135deg, var(--accent), var(--accent-2)); display: grid; place-items: center; font-size: 13px; }
-.cmd-row strong { font-family: 'JetBrains Mono', monospace; font-size: 13.5px; font-weight: 600; display: block; }
-.cmd-row span { font-size: 12.5px; color: var(--text-dim); }
-
-/* ---------- commands reference ---------- */
-.cmd-groups { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: start; }
-.cmd-groups.full { grid-template-columns: 1fr; }
-@media (max-width: 860px) { .cmd-groups { grid-template-columns: 1fr; } }
-.cmd-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; }
-.cmd-card .head { padding: 14px 18px; font-size: 13.5px; font-weight: 700; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; gap: 10px; }
-.badge-premium-sm { font-family: 'JetBrains Mono', monospace; font-size: 9.5px; font-weight: 800; letter-spacing: .04em; color: var(--accent-2); background: color-mix(in srgb, var(--accent-2) 14%, transparent); padding: 3px 8px; border-radius: 100px; text-transform: uppercase; }
-.cmd-detail-row { display: flex; align-items: flex-start; gap: 12px; padding: 12px 18px; border-bottom: 1px solid var(--border); }
-.cmd-detail-row .mk { flex: none; width: 26px; height: 26px; border-radius: 7px; background: linear-gradient(135deg, var(--accent), var(--accent-2)); display: grid; place-items: center; font-size: 12px; margin-top: 1px; }
-.cmd-detail-row .body { flex: 1; min-width: 0; }
-.cmd-detail-row strong { font-family: 'JetBrains Mono', monospace; font-size: 12.8px; font-weight: 600; display: block; word-break: break-word; }
-.cmd-detail-row span { font-size: 12.5px; color: var(--text-dim); display: block; margin-top: 2px; }
-.cmd-detail-row .perm { flex: none; font-family: 'JetBrains Mono', monospace; font-size: 9.5px; font-weight: 700; letter-spacing: .03em; color: var(--text-dim); background: var(--surface-2); border: 1px solid var(--border); padding: 4px 8px; border-radius: 100px; white-space: nowrap; margin-top: 2px; }
-
-/* ---------- pricing ---------- */
-.pricing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
-@media (max-width: 780px) { .pricing-grid { grid-template-columns: 1fr; } }
-.plan { background: var(--surface); border: 1px solid var(--border); border-radius: 22px; padding: 32px; display: flex; flex-direction: column; }
-.plan.pro { border-color: color-mix(in srgb, var(--accent) 45%, var(--border)); position: relative; box-shadow: var(--shadow); }
-.plan.pro::before { content: "MOST PROTECTION"; position: absolute; top: -12px; right: 28px; font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700; letter-spacing: .07em; background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #fff; padding: 5px 10px; border-radius: 7px; }
-.plan-name { font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: 19px; }
-.plan-price { font-family: 'JetBrains Mono', monospace; font-size: 34px; font-weight: 700; margin-top: 10px; }
-.plan-price sup { font-size: 14px; color: var(--text-dim); font-weight: 500; }
-.plan-desc { font-size: 13.5px; margin-top: 8px; margin-bottom: 22px; }
-.plan-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 11px; flex: 1; }
-.plan-list li { display: flex; gap: 10px; align-items: flex-start; font-size: 13.8px; }
-.plan-list li svg { flex: none; width: 16px; height: 16px; margin-top: 2px; color: var(--success); }
-.plan-list li.dim { color: var(--text-dim); }
-.plan-list li.dim svg { color: var(--text-dim); opacity: .5; }
-.plan-foot { margin-top: 24px; }
-.badge-soon { display: inline-flex; align-items: center; gap: 6px; font-family: 'JetBrains Mono', monospace; font-size: 11.5px; font-weight: 700; letter-spacing: .04em; color: var(--accent-2); background: color-mix(in srgb, var(--accent-2) 12%, transparent); padding: 10px 16px; border-radius: 100px; width: 100%; justify-content: center; }
-.compare-link { display: inline-flex; align-items: center; gap: 7px; margin-top: 18px; font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 600; color: var(--accent); background: none; border: none; cursor: pointer; padding: 0; }
-.compare-link svg { width: 15px; height: 15px; }
-.compare-link:hover { text-decoration: underline; text-underline-offset: 3px; }
-
-/* ---------- compare modal ---------- */
-.compare-modal { border: 1px solid var(--border); border-radius: 22px; background: var(--surface); color: var(--text); padding: 0; width: min(680px, calc(100% - 48px)); max-height: min(720px, calc(100% - 64px)); box-shadow: var(--shadow); }
-.compare-modal::backdrop { background: color-mix(in srgb, #0a0912 60%, transparent); backdrop-filter: blur(6px); }
-.compare-modal[open] { animation: compareIn .25s ease; }
-@keyframes compareIn { from { opacity: 0; transform: translateY(10px) scale(.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
-.compare-head { display: flex; align-items: center; justify-content: space-between; padding: 22px 26px; border-bottom: 1px solid var(--border); position: sticky; top: 0; background: var(--surface); border-radius: 22px 22px 0 0; }
-.compare-head h3 { font-size: 19px; font-weight: 800; }
-.compare-close { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 100px; border: 1px solid var(--border); background: var(--surface-2); color: var(--text-dim); cursor: pointer; font-size: 15px; transition: color .15s ease, border-color .15s ease; }
-.compare-close:hover { color: var(--text); border-color: var(--accent); }
-.compare-table-wrap { overflow-y: auto; max-height: 480px; padding: 6px 26px; }
-.compare-table { width: 100%; border-collapse: collapse; font-size: 14px; }
-.compare-table th { text-align: left; font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--text-dim); padding: 14px 10px; position: sticky; top: 0; background: var(--surface); }
-.compare-table th:not(:first-child), .compare-table td:not(:first-child) { text-align: center; width: 92px; }
-.compare-table td { padding: 12px 10px; border-top: 1px solid var(--border); }
-.compare-table td:first-child { color: var(--text); }
-.compare-table .yes { color: var(--success); }
-.compare-table .no { color: var(--text-dim); opacity: .45; }
-.compare-table tr:hover td { background: color-mix(in srgb, var(--accent) 5%, transparent); }
-.compare-foot { display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap; padding: 20px 26px 26px; border-top: 1px solid var(--border); }
-
-/* ---------- vs-bots comparison ---------- */
-.compare-wide { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); padding: 32px 28px 28px; overflow-x: auto; }
-.compare-wide .compare-table { min-width: 660px; border-spacing: 0; }
-.compare-wide .compare-table th { position: static; padding: 0 12px 16px; vertical-align: bottom; text-transform: none; }
-.compare-wide .compare-table th:not(:first-child), .compare-wide .compare-table td:not(:first-child) { width: 114px; }
-.compare-wide .compare-table th:first-child { font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--text-dim); font-weight: 600; text-align: left; padding-bottom: 14px; }
-.compare-wide .compare-table td:first-child { text-align: left; padding-left: 10px; }
-.compare-wide .compare-table .brand-name { display: inline-flex; align-items: center; gap: 6px; font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: 14px; color: var(--text-dim); }
-.compare-wide .compare-table th.brand-lotus .brand-name { color: var(--accent); font-size: 16.5px; font-weight: 800; }
-.compare-wide .th-sub { display: inline-flex; margin-top: 9px; font-family: 'JetBrains Mono', monospace; font-size: 9.5px; font-weight: 700; letter-spacing: .05em; color: #fff; background: linear-gradient(135deg, var(--accent), var(--accent-2)); padding: 4px 11px; border-radius: 100px; box-shadow: 0 6px 16px -8px color-mix(in srgb, var(--accent) 80%, transparent); }
-
-.compare-wide .compare-table th:nth-child(2), .compare-wide .compare-table td:nth-child(2) { background: linear-gradient(180deg, color-mix(in srgb, var(--accent) 14%, transparent), color-mix(in srgb, var(--accent) 6%, transparent)); border-left: 1.5px solid color-mix(in srgb, var(--accent) 50%, transparent); border-right: 1.5px solid color-mix(in srgb, var(--accent) 50%, transparent); }
-.compare-wide .compare-table th:nth-child(2) { border-top: 1.5px solid color-mix(in srgb, var(--accent) 50%, transparent); border-radius: 16px 16px 0 0; padding-top: 18px; box-shadow: 0 -10px 26px -16px color-mix(in srgb, var(--accent) 65%, transparent); }
-.compare-wide .compare-table tbody tr:first-child td:nth-child(2) { border-top: 1.5px solid color-mix(in srgb, var(--accent) 50%, transparent); }
-.compare-wide .compare-table tr:last-child td:nth-child(2) { border-bottom: 1.5px solid color-mix(in srgb, var(--accent) 50%, transparent); border-radius: 0 0 16px 16px; }
-
-.compare-wide .compare-table td { padding: 14px 10px; border-top: 1px solid var(--border); }
-
-.compare-wide .feat { display: flex; align-items: center; gap: 10px; font-size: 13.5px; font-weight: 600; color: var(--text); white-space: nowrap; }
-.compare-wide .fi { flex: none; width: 26px; height: 26px; border-radius: 8px; background: var(--surface-2); display: grid; place-items: center; font-size: 12px; }
-
-.compare-wide .chk { display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 50%; font-weight: 800; font-size: 13px; }
-.compare-wide .chk.yes { background: color-mix(in srgb, var(--success) 16%, transparent); color: var(--success); }
-.compare-wide .chk.no { color: var(--text-dim); opacity: .5; font-weight: 700; }
-.compare-wide td:nth-child(2) .chk.yes { background: color-mix(in srgb, var(--success) 26%, transparent); box-shadow: 0 0 0 2px color-mix(in srgb, var(--success) 30%, transparent) inset; }
-
-.compare-wide .pill-paid { display: inline-block; color: var(--accent-2); font-size: 10.5px; font-weight: 800; text-transform: uppercase; letter-spacing: .04em; background: color-mix(in srgb, var(--accent-2) 14%, transparent); padding: 5px 10px; border-radius: 100px; }
-.compare-wide .pill-partial { display: inline-block; font-size: 10.5px; font-weight: 600; color: var(--text-dim); border: 1px solid var(--border); padding: 4px 9px; border-radius: 100px; }
-
-.compare-verdict { margin-top: 20px; font-size: 14.5px; font-weight: 600; }
-.compare-verdict span { color: var(--accent); }
-.compare-note { margin-top: 8px; font-size: 12.5px; color: var(--text-dim); }
-.compare-callout { margin-top: 22px; display: flex; gap: 16px; align-items: flex-start; background: var(--surface-2); border: 1px solid color-mix(in srgb, var(--accent) 35%, var(--border)); border-radius: 14px; padding: 18px 20px; }
-.compare-callout .ic { flex: none; width: 34px; height: 34px; border-radius: 10px; background: linear-gradient(135deg, var(--accent), var(--accent-2)); display: grid; place-items: center; font-size: 16px; }
-.compare-callout strong { display: block; font-size: 14px; margin-bottom: 3px; }
-.compare-callout p { font-size: 13.5px; margin: 0; }
-
-/* ---------- FAQ ---------- */
-.faq-list { display: flex; flex-direction: column; gap: 12px; max-width: 780px; }
-.faq-item { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
-.faq-item summary { list-style: none; cursor: pointer; padding: 20px 24px; font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: 14.5px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
-.faq-item summary::-webkit-details-marker { display: none; }
-.faq-item summary::after { content: "+"; font-family: 'JetBrains Mono', monospace; font-size: 20px; color: var(--accent); flex: none; transition: transform .2s ease; }
-.faq-item[open] summary::after { transform: rotate(45deg); }
-.faq-item .faq-a { padding: 0 24px 22px; font-size: 14px; }
-
-/* ---------- cta band ---------- */
-.cta-band { background: linear-gradient(135deg, color-mix(in srgb, var(--accent) 92%, black), color-mix(in srgb, var(--accent-2) 88%, black)); border-radius: 28px; padding: 60px 40px; text-align: center; }
-.cta-band h2 { color: #fff; font-size: clamp(24px, 3.6vw, 34px); }
-.cta-band p { color: color-mix(in srgb, white 82%, transparent); margin-top: 12px; max-width: 46ch; margin-inline: auto; }
-.cta-band .hero-cta { justify-content: center; margin-top: 28px; }
-.cta-band .btn-ghost { background: transparent; border-color: color-mix(in srgb, white 35%, transparent); color: #fff; }
-
-/* ---------- footer ---------- */
-footer { padding-block: 56px 40px; border-top: 1px solid var(--border); margin-top: 20px; }
-.foot-row { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 18px; }
-.foot-links { display: flex; gap: 24px; flex-wrap: wrap; }
-.foot-links a { font-size: 13.5px; color: var(--text-dim); }
-.foot-links a:hover { color: var(--text); }
-.foot-legal { margin-top: 18px; }
-.foot-bottom { margin-top: 30px; font-size: 12.5px; color: var(--text-dim); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
-
-/* ---------- pearl aurora background ---------- */
-.aurora { position: fixed; inset: 0; z-index: -1; overflow: hidden; background: var(--bg); }
-.aurora .blob { position: absolute; border-radius: 50%; filter: blur(70px); will-change: transform; }
-.aurora .b1 { width: 56vw; height: 56vw; top: -22%; left: -14%; background: radial-gradient(circle, var(--pearl-a), transparent 70%); opacity: .55; animation: drift1 28s ease-in-out infinite; }
-.aurora .b2 { width: 48vw; height: 48vw; bottom: -20%; right: -12%; background: radial-gradient(circle, var(--pearl-b), transparent 70%); opacity: .5; animation: drift2 34s ease-in-out infinite; }
-.aurora .b3 { width: 34vw; height: 34vw; top: 28%; left: 54%; background: radial-gradient(circle, var(--pearl-c), transparent 72%); opacity: .4; mix-blend-mode: overlay; animation: drift3 22s ease-in-out infinite; }
-.aurora .grain {
-position: absolute; inset: -10%;
-opacity: .05; mix-blend-mode: overlay;
-background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
-}
-@keyframes drift1 { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(7%, 9%) scale(1.08); } }
-@keyframes drift2 { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(-8%, -6%) scale(1.1); } }
-@keyframes drift3 { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(-10%, 8%) scale(1.15); } }
-
-/* pearl shimmer sweep on the highlighted hero word */
-.hero h1 em {
-background-size: 220% auto;
-animation: shimmer 5s ease-in-out infinite;
-}
-@keyframes shimmer { 0%,100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
-
-/* glass surfaces — let the pearl aurora read through key cards */
-.embed-shell, .plan.pro {
-background: var(--glass);
-backdrop-filter: blur(18px) saturate(150%);
--webkit-backdrop-filter: blur(18px) saturate(150%);
-}
-
-/* scroll reveal (progressive enhancement — JS adds .reveal-init, page is fully visible without it) */
-.reveal-init { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
-.reveal-in { opacity: 1; transform: translateY(0); }
-
-/* cursor spotlight on interactive cards (own border-radius so it clips
-to the rounded card without needing overflow:hidden on .plan, which
-would otherwise cut off the "MOST PROTECTION" badge above it) */
-.feature-card, .plan { position: relative; }
-.feature-card { overflow: hidden; }
-.feature-card::after, .plan::after {
-content: ""; position: absolute; inset: 0; pointer-events: none;
-background: radial-gradient(260px circle at var(--x, 50%) var(--y, 50%), color-mix(in srgb, var(--accent) 18%, transparent), transparent 72%);
-opacity: 0; transition: opacity .3s ease;
-}
-.plan::after { border-radius: 22px; }
-.feature-card:hover::after, .plan:hover::after { opacity: 1; }
-
-/* mouse-parallax hero embed card */
-.hero-grid > div:last-child { perspective: 1000px; }
-.embed-shell { transition: transform .25s ease; transform-style: preserve-3d; }
-
-</style>
+<link rel="stylesheet" href="/assets/style.css">
 </head>
 <body>
 
@@ -447,16 +44,21 @@ opacity: 0; transition: opacity .3s ease;
 </div>
 
 <nav id="nav">
-<div class="wrap" style="width:100%; display:flex; align-items:center; justify-content:space-between;">
+<div class="wrap" style="width:100%; display:flex; align-items:center; justify-content:space-between; gap:10px;">
 <div class="brand"><svg class="mark" viewBox="105 205 815 480"><g fill="url(#logoBackGrad)" opacity="0.96"><path d="M 0,0 C -144,-131.2 -79.2,-336.2 0,-410 C 79.2,-336.2 144,-131.2 0,0 Z" transform="translate(512,634.88) rotate(-72)"/><path d="M 0,0 C -144,-131.2 -79.2,-336.2 0,-410 C 79.2,-336.2 144,-131.2 0,0 Z" transform="translate(512,634.88) rotate(-38)"/><path d="M 0,0 C -144,-131.2 -79.2,-336.2 0,-410 C 79.2,-336.2 144,-131.2 0,0 Z" transform="translate(512,634.88) rotate(0)"/><path d="M 0,0 C -144,-131.2 -79.2,-336.2 0,-410 C 79.2,-336.2 144,-131.2 0,0 Z" transform="translate(512,634.88) rotate(38)"/><path d="M 0,0 C -144,-131.2 -79.2,-336.2 0,-410 C 79.2,-336.2 144,-131.2 0,0 Z" transform="translate(512,634.88) rotate(72)"/></g><g fill="url(#logoFrontGrad)"><path d="M 0,0 C -116,-101.12 -63.8,-259.12 0,-316 C 63.8,-259.12 116,-101.12 0,0 Z" transform="translate(512,634.88) rotate(-26)"/><path d="M 0,0 C -116,-101.12 -63.8,-259.12 0,-316 C 63.8,-259.12 116,-101.12 0,0 Z" transform="translate(512,634.88) rotate(0)"/><path d="M 0,0 C -116,-101.12 -63.8,-259.12 0,-316 C 63.8,-259.12 116,-101.12 0,0 Z" transform="translate(512,634.88) rotate(26)"/></g><circle cx="512" cy="634.88" r="20" fill="url(#logoCenterGrad)"/></svg>Lotus</div>
-<div class="nav-links">
+<button type="button" class="nav-burger" id="navBurger" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navLinks">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+</button>
+<div class="nav-links" id="navLinks">
 <a href="#features">Features</a>
+<a href="#action">Demo</a>
 <a href="#setup">Setup</a>
-<a href="#commands">Commands</a>
+<a href="/commands.html">Commands</a>
 <a href="#pricing">Pricing</a>
-<a href="#compare-bots">Compare</a>
-<a class="btn btn-primary btn-sm" href="#" id="invite-top">Add to Discord</a>
+<a href="/compare.html">Compare</a>
+<a href="#faq">FAQ</a>
 </div>
+<a class="btn btn-primary btn-sm" href="#" id="invite-top">Add to Discord</a>
 </div>
 </nav>
 
@@ -465,6 +67,7 @@ opacity: 0; transition: opacity .3s ease;
 <section class="hero">
 <div class="hero-grid">
 <div>
+<span class="version-badge"><span class="dot" aria-hidden="true"></span>Lotus Security System &middot; Active protection</span>
 <span class="eyebrow">Automated Discord Security</span>
 <h1>Your server,<br>defended <em>before</em><br>the damage happens.</h1>
 <p class="lead">Lotus watches every channel deletion, role edit, and mass ban as it happens — and reacts in seconds, not after your server's already gone.</p>
@@ -560,6 +163,108 @@ opacity: 0; transition: opacity .3s ease;
 </div>
 </section>
 
+<section id="action">
+<div class="sec-head">
+<span class="eyebrow">See it work</span>
+<h2>See Lotus in Action</h2>
+<p>A security bot should show what it does, not just list it. These are the exact flows Lotus runs when something happens on your server — real videos are coming, these are illustrations of the same alert format Lotus actually posts.</p>
+</div>
+<div class="action-grid">
+<div class="action-card">
+<div class="action-visual">
+<div class="play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>
+<span class="soon-label">Demo coming soon</span>
+<span class="soon-sub">Real capture from a live server will replace this placeholder.</span>
+</div>
+<div class="action-body">
+<span class="action-tag">Free &middot; Anti-Nuke</span>
+<h3>Anti-Nuke</h3>
+<ul class="action-flow">
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>Attacker deletes channels in a fast burst</li>
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>Lotus identifies the executor from the audit log</li>
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>Default punishment (quarantine) applied instantly</li>
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>Alert posted to #lotus-alerts with a case ID</li>
+</ul>
+<div class="action-mini-embed">
+<div class="lbl">Illustration — Lotus alert style</div>
+<div class="title">🛡️ AntiNuke — Mass Channel Deletion</div>
+<div class="fields"><div><div class="fl">Executor</div><div>@corrupted-admin</div></div><div><div class="fl">Action</div><div>channelDelete ×7</div></div><div><div class="fl">Punishment</div><div>quarantine</div></div><div><div class="fl">Case</div><div>#A7F92</div></div></div>
+<p class="illustration-note">Illustration of a real Lotus alert format, not an actual incident capture.</p>
+</div>
+</div>
+</div>
+<div class="action-card">
+<div class="action-visual">
+<div class="play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>
+<span class="soon-label">Demo coming soon</span>
+<span class="soon-sub">Real capture from a live server will replace this placeholder.</span>
+</div>
+<div class="action-body">
+<span class="action-tag">Premium &middot; Dangerous Permission Watch</span>
+<h3>Dangerous Permission Watch</h3>
+<ul class="action-flow">
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>Administrator permission added to a role</li>
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>Lotus catches the role edit as it happens</li>
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>The dangerous permission is reverted instantly</li>
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>Security staff alerted with who made the change</li>
+</ul>
+<div class="action-mini-embed">
+<div class="lbl">Illustration — Lotus alert style</div>
+<div class="title">⚠️ Dangerous Permission Watch</div>
+<div class="fields"><div><div class="fl">Role edited</div><div>@Moderator</div></div><div><div class="fl">Permission added</div><div>Administrator</div></div><div><div class="fl">Response</div><div>Reverted instantly</div></div><div><div class="fl">Case</div><div>#B3E01</div></div></div>
+<p class="illustration-note">Illustration of a real Lotus alert format, not an actual incident capture.</p>
+</div>
+</div>
+</div>
+<div class="action-card">
+<div class="action-visual">
+<div class="play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>
+<span class="soon-label">Demo coming soon</span>
+<span class="soon-sub">Real capture from a live server will replace this placeholder.</span>
+</div>
+<div class="action-body">
+<span class="action-tag">Free &middot; Anti-Raid</span>
+<h3>Anti-Raid Lockdown</h3>
+<ul class="action-flow">
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>Sudden wave of new joins in a short window</li>
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>Lotus recognizes raid-like join behavior</li>
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>Server protection activates automatically</li>
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>Staff notified in #lotus-alerts</li>
+</ul>
+<div class="action-mini-embed">
+<div class="lbl">Illustration — Lotus alert style</div>
+<div class="title">🚪 Anti-Raid Lockdown Triggered</div>
+<div class="fields"><div><div class="fl">New joins</div><div>14 in 12s</div></div><div><div class="fl">Avg. account age</div><div>&lt; 1 day</div></div><div><div class="fl">Response</div><div>Server locked</div></div><div><div class="fl">Auto-unlock</div><div>in 60 min</div></div></div>
+<p class="illustration-note">Illustration of a real Lotus alert format, not an actual incident capture.</p>
+</div>
+</div>
+</div>
+<div class="action-card">
+<div class="action-visual">
+<div class="play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>
+<span class="soon-label">Demo coming soon</span>
+<span class="soon-sub">Real capture from a live server will replace this placeholder.</span>
+</div>
+<div class="action-body">
+<span class="action-tag">Free &middot; Panic Mode</span>
+<h3>Panic Mode</h3>
+<ul class="action-flow">
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>Admin runs <span class="mono">/lotus panic on</span></li>
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>Verification level raised, @everyone messaging blocked</li>
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>Server-wide restrictions applied in seconds</li>
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>Auto-unlock after the configured duration, or manual /lotus panic off</li>
+</ul>
+<div class="action-mini-embed">
+<div class="lbl">Illustration — Lotus alert style</div>
+<div class="title">🔒 Panic Mode — Lockdown Enabled</div>
+<div class="fields"><div><div class="fl">Triggered by</div><div>@admin</div></div><div><div class="fl">Scope</div><div>All text channels</div></div><div><div class="fl">Verification level</div><div>Very High</div></div><div><div class="fl">Auto-unlock</div><div>60 min</div></div></div>
+<p class="illustration-note">Illustration of a real Lotus alert format, not an actual incident capture.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+
 <section id="setup">
 <div class="setup">
 <div>
@@ -568,7 +273,7 @@ opacity: 0; transition: opacity .3s ease;
 <p>Every Lotus command lives under a single, organized <span class="mono">/lotus</span> — no hunting through ten different slash commands to find the one you need.</p>
 <div class="cmd-line"><span class="prompt">›</span> /lotus setup</div>
 <div class="step-list">
-<div class="step"><div class="n">1</div><div><strong>Add Lotus with Administrator</strong><p>Required so it can actually act on threats — quarantine, revert, lock down. Every Lotus command still checks its own, stricter permission on top — see <a href="#commands" style="color:var(--accent); text-decoration:underline;">the full command list</a>.</p></div></div>
+<div class="step"><div class="n">1</div><div><strong>Add Lotus with Administrator</strong><p>Required so it can actually act on threats — quarantine, revert, lock down. Every Lotus command still checks its own, stricter permission on top — see <a href="/commands.html" style="color:var(--accent); text-decoration:underline;">the full command list</a>.</p></div></div>
 <div class="step"><div class="n">2</div><div><strong>Run /lotus setup</strong><p>Creates the <span class="mono">LOTUS SECURITY</span> category with your logs, alerts and quarantine channels, plus a join-gate role and verification channel. Already have your own join gate? Run <span class="mono">/lotus setup verification:false</span> to skip that part.</p></div></div>
 <div class="step"><div class="n">3</div><div><strong>Tune it to your server</strong><p>Set your default punishment with <span class="mono">/lotus config punishment</span>, exempt trusted members or roles with <span class="mono">/lotus whitelist add</span>, and check everything at a glance with <span class="mono">/lotus config status</span> — or just leave the defaults.</p></div></div>
 </div>
@@ -576,105 +281,44 @@ opacity: 0; transition: opacity .3s ease;
 
 <div class="cmd-menu">
 <div class="head">Popular /lotus commands</div>
-<div class="cmd-row"><div class="mk">🪷</div><div><strong>/lotus mod ban</strong><span>Bans a member</span></div></div>
-<div class="cmd-row"><div class="mk">🪷</div><div><strong>/lotus mod timeout</strong><span>Times out a member</span></div></div>
+<div class="cmd-row"><div class="mk">🪷</div><div><strong>/lotus setup</strong><span>Configures Lotus's whole security infrastructure</span></div></div>
+<div class="cmd-row"><div class="mk">🪷</div><div><strong>/lotus help</strong><span>Shows what Lotus can do and how commands are organized</span></div></div>
 <div class="cmd-row"><div class="mk">🪷</div><div><strong>/lotus config status</strong><span>Displays Lotus's current configuration</span></div></div>
 <div class="cmd-row"><div class="mk">🪷</div><div><strong>/lotus panic</strong><span>Enables or disables panic mode (full server lockdown)</span></div></div>
 <div class="cmd-row"><div class="mk">🪷</div><div><strong>/lotus backup create</strong><span>Backs up the current structure</span></div></div>
-<div class="cmd-row" style="border-bottom:none;"><div class="mk">🪷</div><div><strong>/lotus case</strong><span>Displays details of a Lotus sanction via its case number</span></div></div>
-<div style="padding:12px 18px 16px; border-top:1px solid var(--border);"><a href="#commands" class="compare-link" style="margin-top:0;">See every command <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+<div class="cmd-row" style="border-bottom:none;"><div class="mk">🪷</div><div><strong>/lotus mod ban</strong><span>Bans a member</span></div></div>
+<div style="padding:12px 18px 16px; border-top:1px solid var(--border);"><a href="/commands.html" class="compare-link" style="margin-top:0;">See every command <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
 </div>
 </div>
 </section>
 
-<section id="commands">
+<section id="why">
 <div class="sec-head">
-<span class="eyebrow">Commands</span>
-<h2>Every /lotus command, and who can run it.</h2>
-<p>Pulled straight from Lotus's own command definitions, not a curated highlight reel. Discord only shows <span class="mono">/lotus</span> to members who already have at least <span class="mono">Moderate Members</span> — the badge on each row below is the extra permission that specific action needs on top of that.</p>
+<span class="eyebrow">Why Lotus</span>
+<h2>Why Lotus?</h2>
 </div>
-
-<div class="cmd-groups full">
-<div class="cmd-card">
-<div class="head">🚀 Getting started</div>
-<div class="cmd-detail-row"><div class="mk">🪷</div><div class="body"><strong>/lotus setup</strong><span>Analyzes and automatically configures/repairs Lotus's security infrastructure — category, logs/alerts/quarantine channels, and the verification gate.</span></div><div class="perm">Administrator</div></div>
+<div class="why-grid">
+<div class="why-card">
+<div class="f-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2 3 14h7l-1 8 11-14h-7l1-6Z"/></svg></div>
+<h3>Automated Protection</h3>
+<p>Lotus reacts before moderators have to — detection and response run on their own, in seconds.</p>
 </div>
+<div class="why-card">
+<div class="f-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 3 6v6c0 5 3.8 8.7 9 10 5.2-1.3 9-5 9-10V6l-9-4Z"/></svg></div>
+<h3>Security First</h3>
+<p>Designed around preventing destructive actions, not just logging them after the fact.</p>
 </div>
-
-<div class="cmd-groups" style="margin-top:20px;">
-<div class="cmd-card">
-<div class="head">⚙️ Server config</div>
-<div class="cmd-detail-row"><div class="mk">🪷</div><div class="body"><strong>/lotus config logs</strong><span>Sets the security logs channel</span></div><div class="perm">Administrator</div></div>
-<div class="cmd-detail-row"><div class="mk">🪷</div><div class="body"><strong>/lotus config alerts</strong><span>Sets the critical alerts channel (nuke/raid detected)</span></div><div class="perm">Administrator</div></div>
-<div class="cmd-detail-row"><div class="mk">🪷</div><div class="body"><strong>/lotus config punishment</strong><span>Sets the punishment applied upon detection</span></div><div class="perm">Administrator</div></div>
-<div class="cmd-detail-row"><div class="mk">🪷</div><div class="body"><strong>/lotus config status</strong><span>Displays Lotus's current configuration</span></div><div class="perm">Administrator</div></div>
-<div class="cmd-detail-row"><div class="mk">🪷</div><div class="body"><strong>/lotus config activitylogs</strong><span>Enable/disable message edit/delete + join/leave logging to the logs channel</span></div><div class="perm">Administrator</div></div>
-<div class="cmd-detail-row" style="border-bottom:none;"><div class="mk">🪷</div><div class="body"><strong>/lotus config changelogchannel</strong><span>Sets the channel where Lotus posts its own update announcements</span></div><div class="perm">Administrator</div></div>
+<div class="why-card">
+<div class="f-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5Z"/></svg></div>
+<h3>Simple Setup</h3>
+<p>One command configures the core security infrastructure — no manual channel or role wiring.</p>
 </div>
-
-<div class="cmd-card">
-<div class="head">🎯 Thresholds <span class="badge-premium-sm">Premium</span></div>
-<div class="cmd-detail-row"><div class="mk">🪷</div><div class="body"><strong>/lotus thresholds view</strong><span>Displays all current thresholds (default or custom)</span></div><div class="perm">Administrator</div></div>
-<div class="cmd-detail-row"><div class="mk">🪷</div><div class="body"><strong>/lotus thresholds set</strong><span>Sets a custom threshold for this server</span></div><div class="perm">Administrator</div></div>
-<div class="cmd-detail-row"><div class="mk">🪷</div><div class="body"><strong>/lotus thresholds reset</strong><span>Removes the custom threshold and reverts to the default value</span></div><div class="perm">Administrator</div></div>
-<div class="cmd-detail-row" style="border-bottom:none;"><div class="mk">🪷</div><div class="body"><strong>/lotus thresholds toggle</strong><span>Fully enables/disables one specific security check for this server</span></div><div class="perm">Administrator</div></div>
-</div>
-
-<div class="cmd-card">
-<div class="head">✅ Whitelist</div>
-<div class="cmd-detail-row"><div class="mk">🪷</div><div class="body"><strong>/lotus whitelist add</strong><span>Adds a member or role to the whitelist</span></div><div class="perm">Administrator</div></div>
-<div class="cmd-detail-row"><div class="mk">🪷</div><div class="body"><strong>/lotus whitelist remove</strong><span>Removes a member or role from the whitelist</span></div><div class="perm">Administrator</div></div>
-<div class="cmd-detail-row" style="border-bottom:none;"><div class="mk">🪷</div><div class="body"><strong>/lotus whitelist list</strong><span>Displays the current whitelist</span></div><div class="perm">Administrator</div></div>
-</div>
-
-<div class="cmd-card">
-<div class="head">📯 Ping security</div>
-<div class="cmd-detail-row"><div class="mk">🪷</div><div class="body"><strong>/lotus pingsecurity status</strong><span>Shows the current ping security configuration</span></div><div class="perm">Administrator</div></div>
-<div class="cmd-detail-row"><div class="mk">🪷</div><div class="body"><strong>/lotus pingsecurity toggle</strong><span>Enables or disables mass-mention protection entirely</span></div><div class="perm">Administrator</div></div>
-<div class="cmd-detail-row"><div class="mk">🪷</div><div class="body"><strong>/lotus pingsecurity add</strong><span>Adds a role or a person: mentioning it is treated as a mass mention</span></div><div class="perm">Administrator</div></div>
-<div class="cmd-detail-row" style="border-bottom:none;"><div class="mk">🪷</div><div class="body"><strong>/lotus pingsecurity remove</strong><span>Removes a role or a person from the protected mentions list</span></div><div class="perm">Administrator</div></div>
-</div>
-
-<div class="cmd-card">
-<div class="head">💾 Backups <span class="badge-premium-sm">Premium</span></div>
-<div class="cmd-detail-row"><div class="mk">🪷</div><div class="body"><strong>/lotus backup create</strong><span>Back up the current structure (roles, positions, channels)</span></div><div class="perm">Administrator</div></div>
-<div class="cmd-detail-row"><div class="mk">🪷</div><div class="body"><strong>/lotus backup restore</strong><span>Restores the hierarchy and missing elements</span></div><div class="perm">Administrator</div></div>
-<div class="cmd-detail-row" style="border-bottom:none;"><div class="mk">🪷</div><div class="body"><strong>/lotus backup info</strong><span>Displays details of the last saved backup</span></div><div class="perm">Administrator</div></div>
+<div class="why-card">
+<div class="f-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg></div>
+<h3>Transparent</h3>
+<p>Security logs, alerts and a searchable case ID for every sanction Lotus has ever issued.</p>
 </div>
 </div>
-
-<div class="cmd-groups" style="margin-top:20px;">
-<div class="cmd-card">
-<div class="head">🚨 Incident response</div>
-<div class="cmd-detail-row"><div class="mk">🪷</div><div class="body"><strong>/lotus panic</strong><span>Enables or disables panic mode (full server lockdown)</span></div><div class="perm">Administrator</div></div>
-<div class="cmd-detail-row"><div class="mk">🪷</div><div class="body"><strong>/lotus release</strong><span>Releases a member from quarantine and restores their previous roles</span></div><div class="perm">Moderate Members</div></div>
-<div class="cmd-detail-row" style="border-bottom:none;"><div class="mk">🪷</div><div class="body"><strong>/lotus case</strong><span>Displays details of a Lotus sanction via its case number</span></div><div class="perm">Administrator</div></div>
-</div>
-
-<div class="cmd-card">
-<div class="head">🔨 Manual moderation</div>
-<div class="cmd-detail-row"><div class="mk">🪷</div><div class="body"><strong>/lotus mod ban</strong><span>Bans a member</span></div><div class="perm">Ban Members</div></div>
-<div class="cmd-detail-row"><div class="mk">🪷</div><div class="body"><strong>/lotus mod kick</strong><span>Kicks a member</span></div><div class="perm">Kick Members</div></div>
-<div class="cmd-detail-row"><div class="mk">🪷</div><div class="body"><strong>/lotus mod timeout</strong><span>Times out a member</span></div><div class="perm">Moderate Members</div></div>
-<div class="cmd-detail-row"><div class="mk">🪷</div><div class="body"><strong>/lotus mod warn</strong><span>Issues a warning to a member</span></div><div class="perm">Moderate Members</div></div>
-<div class="cmd-detail-row"><div class="mk">🪷</div><div class="body"><strong>/lotus mod warnings</strong><span>Lists a member's active warnings</span></div><div class="perm">Moderate Members</div></div>
-<div class="cmd-detail-row"><div class="mk">🪷</div><div class="body"><strong>/lotus mod unwarn</strong><span>Revokes a member's most recent active warning</span></div><div class="perm">Moderate Members</div></div>
-<div class="cmd-detail-row"><div class="mk">🪷</div><div class="body"><strong>/lotus mod clear</strong><span>Bulk-deletes recent messages in this channel</span></div><div class="perm">Manage Messages</div></div>
-<div class="cmd-detail-row" style="border-bottom:none;"><div class="mk">🪷</div><div class="body"><strong>/lotus mod slowmode</strong><span>Sets this channel's slowmode</span></div><div class="perm">Manage Channels</div></div>
-</div>
-</div>
-
-<div class="cmd-groups full" style="margin-top:20px;">
-<div class="cmd-card">
-<div class="head">📊 Overview &amp; updates</div>
-<div class="cmd-detail-row"><div class="mk">🪷</div><div class="body"><strong>/lotus stats</strong><span>Displays a summary of Lotus's recent activity on this server</span></div><div class="perm">Moderate Members</div></div>
-<div class="cmd-detail-row"><div class="mk">🪷</div><div class="body"><strong>/lotus help</strong><span>Shows what Lotus can do and how its commands are organized</span></div><div class="perm">Moderate Members</div></div>
-<div class="cmd-detail-row"><div class="mk">🪷</div><div class="body"><strong>/lotus changelog latest</strong><span>Shows the latest Lotus update</span></div><div class="perm">Moderate Members</div></div>
-<div class="cmd-detail-row" style="border-bottom:none;"><div class="mk">🪷</div><div class="body"><strong>/lotus premium status</strong><span>Shows whether this server has Lotus Premium</span></div><div class="perm">Moderate Members</div></div>
-</div>
-</div>
-
-<p class="compare-note" style="margin-top:18px;">A few commands reserved for the Lotus team (granting Premium, broadcasting changelogs) aren't listed here — they're not something you'd ever need to run on your own server.</p>
 </section>
 
 <section id="pricing">
@@ -754,38 +398,15 @@ opacity: 0; transition: opacity .3s ease;
 <section id="compare-bots">
 <div class="sec-head">
 <span class="eyebrow">Comparison</span>
-<h2>A free tier that isn't just a taste of the real thing.</h2>
-<p>A lot of Discord security bots put moderation, logging, or half their anti-nuke coverage behind a paywall and call what's left "free." Here's how Lotus's free plan holds up against the other bots people compare it to — pulled from each bot's own public feature and pricing pages, not ours.</p>
+<h2>How Lotus's free plan compares</h2>
+<p>Based on publicly documented features. We checked Lotus's free plan against a few other Discord security bots people compare it to — see the full breakdown, row by row.</p>
 </div>
-
-<div class="compare-wide">
-<table class="compare-table">
-<thead><tr>
-<th>Free plan includes</th>
-<th class="brand-lotus"><span class="brand-name">🪷 Lotus</span><span class="th-sub">6/6 free</span></th>
-<th><span class="brand-name">Wick</span></th>
-<th><span class="brand-name">Beemo</span></th>
-<th><span class="brand-name">Security Bot</span></th>
-</tr></thead>
-<tbody>
-<tr><td><span class="feat"><span class="fi">🛡️</span>Anti-Nuke protection</span></td><td><span class="chk yes">✓</span></td><td><span class="chk yes">✓</span></td><td><span class="chk no">–</span></td><td><span class="chk yes">✓</span></td></tr>
-<tr><td><span class="feat"><span class="fi">🚧</span>Anti-Raid lockdown</span></td><td><span class="chk yes">✓</span></td><td><span class="chk yes">✓</span></td><td><span class="chk yes">✓</span></td><td><span class="chk yes">✓</span></td></tr>
-<tr><td><span class="feat"><span class="fi">🚫</span>Anti-Spam shield</span></td><td><span class="chk yes">✓</span></td><td><span class="chk yes">✓</span></td><td><span class="chk no">–</span></td><td><span class="pill-paid">Premium</span></td></tr>
-<tr><td><span class="feat"><span class="fi">🔐</span>Verification gate</span></td><td><span class="chk yes">✓</span></td><td><span class="chk yes">✓</span></td><td><span class="chk no">–</span></td><td><span class="chk yes">✓</span></td></tr>
-<tr><td><span class="feat"><span class="fi">🛠️</span>Full manual moderation suite</span></td><td><span class="chk yes">✓</span></td><td><span class="chk yes">✓</span></td><td><span class="pill-paid">Premium</span></td><td><span class="chk yes">✓</span></td></tr>
-<tr><td><span class="feat"><span class="fi">⏱️</span>No feature timer — real protection, not a trial</span></td><td><span class="chk yes">✓</span></td><td><span class="pill-partial">Partial</span></td><td><span class="pill-partial">Raid-only</span></td><td><span class="pill-partial">Partial</span></td></tr>
-</tbody>
-</table>
-<p class="compare-verdict">Lotus is the only one of the four with a checkmark on <span>every single row</span> above.</p>
-<p class="compare-note">Based on each bot's own public feature and pricing pages as of September 2026. Bots change their plans often, so it's always worth double-checking directly before you decide — this table isn't here to trash-talk anyone, just to show our work.</p>
-
-<div class="compare-callout">
-<div class="ic">🪷</div>
-<div>
-<strong>One thing nobody else lists — free or paid</strong>
-<p>None of Wick, Beemo or Security Bot's public feature pages mention catching a quiet permission escalation (a role edit that silently grants Administrator or ban/kick power) and reverting it automatically. Lotus does — it's the <a href="#features" style="color:var(--accent); text-decoration:underline;">Dangerous Permission Watch</a> module, included in Premium.</p>
+<div class="compare-preview-row">
+<div class="cp-left">
+<span class="cp-stat">6/6</span>
+<span class="cp-label">core protections included free, based on each bot's own public feature and pricing pages as of September 2026.</span>
 </div>
-</div>
+<a href="/compare.html" class="btn btn-ghost btn-sm">View full comparison &nbsp;→</a>
 </div>
 </section>
 
@@ -834,8 +455,9 @@ opacity: 0; transition: opacity .3s ease;
 <div class="brand"><svg class="mark" viewBox="105 205 815 480"><g fill="url(#logoBackGrad)" opacity="0.96"><path d="M 0,0 C -144,-131.2 -79.2,-336.2 0,-410 C 79.2,-336.2 144,-131.2 0,0 Z" transform="translate(512,634.88) rotate(-72)"/><path d="M 0,0 C -144,-131.2 -79.2,-336.2 0,-410 C 79.2,-336.2 144,-131.2 0,0 Z" transform="translate(512,634.88) rotate(-38)"/><path d="M 0,0 C -144,-131.2 -79.2,-336.2 0,-410 C 79.2,-336.2 144,-131.2 0,0 Z" transform="translate(512,634.88) rotate(0)"/><path d="M 0,0 C -144,-131.2 -79.2,-336.2 0,-410 C 79.2,-336.2 144,-131.2 0,0 Z" transform="translate(512,634.88) rotate(38)"/><path d="M 0,0 C -144,-131.2 -79.2,-336.2 0,-410 C 79.2,-336.2 144,-131.2 0,0 Z" transform="translate(512,634.88) rotate(72)"/></g><g fill="url(#logoFrontGrad)"><path d="M 0,0 C -116,-101.12 -63.8,-259.12 0,-316 C 63.8,-259.12 116,-101.12 0,0 Z" transform="translate(512,634.88) rotate(-26)"/><path d="M 0,0 C -116,-101.12 -63.8,-259.12 0,-316 C 63.8,-259.12 116,-101.12 0,0 Z" transform="translate(512,634.88) rotate(0)"/><path d="M 0,0 C -116,-101.12 -63.8,-259.12 0,-316 C 63.8,-259.12 116,-101.12 0,0 Z" transform="translate(512,634.88) rotate(26)"/></g><circle cx="512" cy="634.88" r="20" fill="url(#logoCenterGrad)"/></svg>Lotus</div>
 <div class="foot-links">
 <a href="#features">Features</a>
+<a href="/commands.html">Commands</a>
+<a href="/compare.html">Compare</a>
 <a href="#pricing">Pricing</a>
-<a href="#setup">Commands</a>
 <a href="https://discord.gg/vrPCuHBRjM" target="_blank" rel="noopener">Support</a>
 </div>
 </div>
@@ -859,6 +481,28 @@ window.addEventListener('scroll', () => {
 nav.classList.toggle('scrolled', window.scrollY > 8);
 }, { passive: true });
 
+// Mobile nav burger menu
+const navBurger = document.getElementById('navBurger');
+const navLinks = document.getElementById('navLinks');
+if (navBurger && navLinks) {
+navBurger.addEventListener('click', () => {
+const open = navLinks.classList.toggle('open');
+navBurger.setAttribute('aria-expanded', open ? 'true' : 'false');
+});
+navLinks.querySelectorAll('a').forEach((a) => {
+a.addEventListener('click', () => {
+navLinks.classList.remove('open');
+navBurger.setAttribute('aria-expanded', 'false');
+});
+});
+document.addEventListener('click', (e) => {
+if (!navLinks.classList.contains('open')) return;
+if (nav.contains(e.target)) return;
+navLinks.classList.remove('open');
+navBurger.setAttribute('aria-expanded', 'false');
+});
+}
+
 document.getElementById('year-line').textContent = '© ' + new Date().getFullYear() + ' Lotus Security';
 
 const inviteUrl = 'https://discord.com/oauth2/authorize?client_id=1537134333322858497&scope=bot%20applications.commands&permissions=8';
@@ -870,7 +514,7 @@ if (el) el.setAttribute('href', inviteUrl);
 // Rotating "live" embed card, mirrors Lotus's real Discord alert style
 const slides = [
 {
-title: '🛡️ AntiNuke Pro — Mass Channel Deletion',
+title: '🛡️ AntiNuke — Mass Channel Deletion',
 fields: [['Executor', '@corrupted-admin'], ['Action', 'channelDelete ×7'], ['Punishment', 'quarantine'], ['Case', '#A7F92']],
 },
 {
@@ -951,7 +595,7 @@ compareBtn.style.display = 'none';
 }
 
 // Scroll reveal for below-the-fold sections (progressive enhancement)
-const revealTargets = document.querySelectorAll('.feature-card, .plan, .cmd-menu, .cta-band, .faq-item');
+const revealTargets = document.querySelectorAll('.feature-card, .plan, .cmd-menu, .cta-band, .faq-item, .action-card, .why-card, .compare-preview-row');
 if ('IntersectionObserver' in window) {
 revealTargets.forEach((el) => el.classList.add('reveal-init'));
 const io = new IntersectionObserver((entries) => {

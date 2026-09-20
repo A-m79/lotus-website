@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Compare — Lotus Security</title>
+<meta name="description" content="How Lotus's free plan compares to other Discord security bots, based on publicly documented features.">
+<link rel="canonical" href="https://lotus-security-tau.vercel.app/compare.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='1' x2='0' y2='0'%3E%3Cstop offset='0' stop-color='%237b3fe4'/%3E%3Cstop offset='1' stop-color='%23ff5fac'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='16' cy='16' r='15' fill='url(%23g)'/%3E%3Ctext x='16' y='22' font-size='18' text-anchor='middle'%3E%F0%9F%AA%B7%3C/text%3E%3C/svg%3E">
+<meta name="theme-color" content="#7b3fe4">
+<meta property="og:title" content="Compare — Lotus Security">
+<meta property="og:description" content="How Lotus's free plan compares to other Discord security bots, based on publicly documented features.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://lotus-security-tau.vercel.app/compare.html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Compare — Lotus Security">
+<meta name="twitter:description" content="How Lotus's free plan compares to other Discord security bots, based on publicly documented features.">
+<link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<defs>
+<linearGradient id="logoBackGrad" x1="0%" y1="100%" x2="0%" y2="0%">
+<stop offset="0%" stop-color="#7b3fe4"/>
+<stop offset="100%" stop-color="#c22e8f"/>
+</linearGradient>
+<linearGradient id="logoFrontGrad" x1="0%" y1="100%" x2="0%" y2="0%">
+<stop offset="0%" stop-color="#9a6bff"/>
+<stop offset="100%" stop-color="#ff5fac"/>
+</linearGradient>
+<radialGradient id="logoCenterGrad" cx="50%" cy="50%" r="50%">
+<stop offset="0%" stop-color="#fff6fb"/>
+<stop offset="100%" stop-color="#ffd9ef"/>
+</radialGradient>
+</defs>
+</svg>
+
+<div class="aurora" aria-hidden="true">
+<div class="blob b1"></div>
+<div class="blob b2"></div>
+<div class="blob b3"></div>
+<div class="grain"></div>
+</div>
+
+
+<nav id="nav">
+<div class="wrap" style="width:100%; display:flex; align-items:center; justify-content:space-between; gap:10px;">
+<div class="brand"><svg class="mark" viewBox="105 205 815 480"><g fill="url(#logoBackGrad)" opacity="0.96"><path d="M 0,0 C -144,-131.2 -79.2,-336.2 0,-410 C 79.2,-336.2 144,-131.2 0,0 Z" transform="translate(512,634.88) rotate(-72)"/><path d="M 0,0 C -144,-131.2 -79.2,-336.2 0,-410 C 79.2,-336.2 144,-131.2 0,0 Z" transform="translate(512,634.88) rotate(-38)"/><path d="M 0,0 C -144,-131.2 -79.2,-336.2 0,-410 C 79.2,-336.2 144,-131.2 0,0 Z" transform="translate(512,634.88) rotate(0)"/><path d="M 0,0 C -144,-131.2 -79.2,-336.2 0,-410 C 79.2,-336.2 144,-131.2 0,0 Z" transform="translate(512,634.88) rotate(38)"/><path d="M 0,0 C -144,-131.2 -79.2,-336.2 0,-410 C 79.2,-336.2 144,-131.2 0,0 Z" transform="translate(512,634.88) rotate(72)"/></g><g fill="url(#logoFrontGrad)"><path d="M 0,0 C -116,-101.12 -63.8,-259.12 0,-316 C 63.8,-259.12 116,-101.12 0,0 Z" transform="translate(512,634.88) rotate(-26)"/><path d="M 0,0 C -116,-101.12 -63.8,-259.12 0,-316 C 63.8,-259.12 116,-101.12 0,0 Z" transform="translate(512,634.88) rotate(0)"/><path d="M 0,0 C -116,-101.12 -63.8,-259.12 0,-316 C 63.8,-259.12 116,-101.12 0,0 Z" transform="translate(512,634.88) rotate(26)"/></g><circle cx="512" cy="634.88" r="20" fill="url(#logoCenterGrad)"/></svg>Lotus</div>
+<button type="button" class="nav-burger" id="navBurger" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navLinks">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+</button>
+<div class="nav-links" id="navLinks">
+<a href="/index.html#features">Features</a>
+<a href="/index.html#action">Demo</a>
+<a href="/index.html#setup">Setup</a>
+<a href="/commands.html">Commands</a>
+<a href="/index.html#pricing">Pricing</a>
+<a href="/compare.html">Compare</a>
+<a href="/index.html#faq">FAQ</a>
+</div>
+<a class="btn btn-primary btn-sm" href="#" id="invite-top">Add to Discord</a>
+</div>
+</nav>
+
+<div class="wrap">
+
+<section class="hero" style="padding-bottom:8px;">
+<div class="sec-head" style="margin-bottom:0;">
+<span class="eyebrow">Comparison</span>
+<h1 style="font-size:clamp(28px,4vw,42px); font-weight:800; margin-top:12px;">A free tier that isn't just a taste of the real thing.</h1>
+<p class="lead" style="margin-top:12px;">Based on publicly documented features. A lot of Discord security bots put moderation, logging, or half their anti-nuke coverage behind a paywall and call what's left "free." Here's how Lotus's free plan holds up against a few other bots people compare it to.</p>
+</div>
+</section>
+
+<section id="compare-bots">
+<p class="compare-scroll-hint">Swipe sideways to see Lotus, Wick, Beemo and Security Bot side by side &rarr;</p>
+<div class="compare-wide">
+<table class="compare-table">
+<thead><tr>
+<th>Free plan includes</th>
+<th class="brand-lotus"><span class="brand-name">🪷 Lotus</span><span class="th-sub">6/6 free</span></th>
+<th><span class="brand-name">Wick</span></th>
+<th><span class="brand-name">Beemo</span></th>
+<th><span class="brand-name">Security Bot</span></th>
+</tr></thead>
+<tbody>
+<tr><td><span class="feat"><span class="fi">🛡️</span>Anti-Nuke protection</span></td><td><span class="chk yes">✓</span></td><td><span class="chk yes">✓</span></td><td><span class="pill-partial">Unknown</span></td><td><span class="chk yes">✓</span></td></tr>
+<tr><td><span class="feat"><span class="fi">🚧</span>Anti-Raid lockdown</span></td><td><span class="chk yes">✓</span></td><td><span class="chk yes">✓</span></td><td><span class="chk yes">✓</span></td><td><span class="chk yes">✓</span></td></tr>
+<tr><td><span class="feat"><span class="fi">🚫</span>Anti-Spam shield</span></td><td><span class="chk yes">✓</span></td><td><span class="chk yes">✓</span></td><td><span class="pill-partial">Unknown</span></td><td><span class="pill-partial">Unknown</span></td></tr>
+<tr><td><span class="feat"><span class="fi">🔐</span>Verification gate</span></td><td><span class="chk yes">✓</span></td><td><span class="chk yes">✓</span></td><td><span class="pill-partial">Unknown</span></td><td><span class="chk yes">✓</span></td></tr>
+<tr><td><span class="feat"><span class="fi">🛠️</span>Full manual moderation suite</span></td><td><span class="chk yes">✓</span></td><td><span class="chk yes">✓</span></td><td><span class="pill-paid">Premium</span></td><td><span class="chk yes">✓</span></td></tr>
+<tr><td><span class="feat"><span class="fi">⏱️</span>No feature timer — real protection, not a trial</span></td><td><span class="chk yes">✓</span></td><td><span class="pill-partial">Partial</span></td><td><span class="pill-partial">Raid-only</span></td><td><span class="pill-partial">Partial</span></td></tr>
+</tbody>
+</table>
+<p class="compare-verdict">Based on publicly documented features, Lotus is the only one of the four checked on <span>every row</span> above.</p>
+<p class="compare-note">Feature information based on publicly available documentation and may change over time. Checked directly against each bot's own website and docs in September 2026 — always worth double-checking before you decide. Where a bot's own pages didn't clearly state whether a feature is free or paid, that cell is marked "Unknown" rather than guessed at.</p>
+
+<div class="compare-callout">
+<div class="ic">🪷</div>
+<div>
+<strong>Something we didn't find in their public docs</strong>
+<p>We couldn't find a mention, in Wick, Beemo or Security Bot's own public feature pages, of catching a quiet permission escalation (a role edit that silently grants Administrator or ban/kick power) and reverting it automatically — it may exist and simply not be documented publicly. Lotus does document this — it's the <a href="/index.html#features" style="color:var(--accent); text-decoration:underline;">Dangerous Permission Watch</a> module, included in Premium.</p>
+</div>
+</div>
+</div>
+</section>
+
+
+</div>
+
+<footer>
+<div class="wrap">
+<div class="foot-row">
+<div class="brand"><svg class="mark" viewBox="105 205 815 480"><g fill="url(#logoBackGrad)" opacity="0.96"><path d="M 0,0 C -144,-131.2 -79.2,-336.2 0,-410 C 79.2,-336.2 144,-131.2 0,0 Z" transform="translate(512,634.88) rotate(-72)"/><path d="M 0,0 C -144,-131.2 -79.2,-336.2 0,-410 C 79.2,-336.2 144,-131.2 0,0 Z" transform="translate(512,634.88) rotate(-38)"/><path d="M 0,0 C -144,-131.2 -79.2,-336.2 0,-410 C 79.2,-336.2 144,-131.2 0,0 Z" transform="translate(512,634.88) rotate(0)"/><path d="M 0,0 C -144,-131.2 -79.2,-336.2 0,-410 C 79.2,-336.2 144,-131.2 0,0 Z" transform="translate(512,634.88) rotate(38)"/><path d="M 0,0 C -144,-131.2 -79.2,-336.2 0,-410 C 79.2,-336.2 144,-131.2 0,0 Z" transform="translate(512,634.88) rotate(72)"/></g><g fill="url(#logoFrontGrad)"><path d="M 0,0 C -116,-101.12 -63.8,-259.12 0,-316 C 63.8,-259.12 116,-101.12 0,0 Z" transform="translate(512,634.88) rotate(-26)"/><path d="M 0,0 C -116,-101.12 -63.8,-259.12 0,-316 C 63.8,-259.12 116,-101.12 0,0 Z" transform="translate(512,634.88) rotate(0)"/><path d="M 0,0 C -116,-101.12 -63.8,-259.12 0,-316 C 63.8,-259.12 116,-101.12 0,0 Z" transform="translate(512,634.88) rotate(26)"/></g><circle cx="512" cy="634.88" r="20" fill="url(#logoCenterGrad)"/></svg>Lotus</div>
+<div class="foot-links">
+<a href="/index.html#features">Features</a>
+<a href="/commands.html">Commands</a>
+<a href="/compare.html">Compare</a>
+<a href="/index.html#pricing">Pricing</a>
+<a href="https://discord.gg/vrPCuHBRjM" target="_blank" rel="noopener">Support</a>
+</div>
+</div>
+<div class="foot-links foot-legal">
+<a href="/legal-notice">Legal notice</a>
+<a href="/terms">Terms of use</a>
+<a href="/privacy">Privacy policy</a>
+</div>
+<div class="foot-bottom">
+<span>Built for communities that take security seriously.</span>
+<span id="year-line"></span>
+</div>
+</div>
+</footer>
+
+
+<script>
+try {
+// Nav shadow on scroll
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+nav.classList.toggle('scrolled', window.scrollY > 8);
+}, { passive: true });
+
+// Mobile nav burger menu
+const navBurger = document.getElementById('navBurger');
+const navLinks = document.getElementById('navLinks');
+if (navBurger && navLinks) {
+navBurger.addEventListener('click', () => {
+const open = navLinks.classList.toggle('open');
+navBurger.setAttribute('aria-expanded', open ? 'true' : 'false');
+});
+navLinks.querySelectorAll('a').forEach((a) => {
+a.addEventListener('click', () => {
+navLinks.classList.remove('open');
+navBurger.setAttribute('aria-expanded', 'false');
+});
+});
+document.addEventListener('click', (e) => {
+if (!navLinks.classList.contains('open')) return;
+if (nav.contains(e.target)) return;
+navLinks.classList.remove('open');
+navBurger.setAttribute('aria-expanded', 'false');
+});
+}
+
+document.getElementById('year-line').textContent = '\u00a9 ' + new Date().getFullYear() + ' Lotus Security';
+
+const inviteUrl = 'https://discord.com/oauth2/authorize?client_id=1537134333322858497&scope=bot%20applications.commands&permissions=8';
+['invite-top', 'invite-hero', 'invite-cta', 'invite-compare'].forEach((id) => {
+const el = document.getElementById(id);
+if (el) el.setAttribute('href', inviteUrl);
+});
+
+} catch (e) { /* page still renders fine without JS */ }
+</script>
+</body>
+</html>
