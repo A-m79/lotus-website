@@ -195,11 +195,45 @@ background: linear-gradient(var(--accent), var(--accent-2));
 
 /* ---------- stats ---------- */
 .stats { padding-block: 20px 90px; }
-.stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+.stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: var(--radius); }
 @media (max-width: 720px) { .stats-row { grid-template-columns: 1fr; } }
 .stat { background: var(--surface); padding: 26px 24px; }
+/* Rounded corners are applied per-cell (instead of clipping the row with
+   overflow:hidden) so the response-time tooltip can pop out of the row. */
+.stat:first-child { border-radius: var(--radius) 0 0 var(--radius); }
+.stat:last-child { border-radius: 0 var(--radius) var(--radius) 0; }
+@media (max-width: 720px) {
+  .stat:first-child { border-radius: var(--radius) var(--radius) 0 0; }
+  .stat:last-child { border-radius: 0 0 var(--radius) var(--radius); }
+}
 .stat .num { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 26px; }
 .stat .lbl { font-size: 13px; color: var(--text-dim); margin-top: 4px; }
+.stat-info { position: relative; display: inline-flex; vertical-align: middle; }
+.stat-info .info-dot {
+all: unset; cursor: help; color: var(--text-dim); font-size: 11px; line-height: 1;
+border-bottom: 1px dotted var(--text-dim); padding: 2px;
+}
+.stat-info .info-dot:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 3px; }
+.stat-info .info-tip {
+position: absolute; left: 50%; bottom: 100%; margin-bottom: 9px;
+transform: translateX(-50%) translateY(4px);
+width: max-content; max-width: min(240px, calc(100vw - 48px));
+background: var(--surface-2); border: 1px solid var(--border); border-radius: 8px;
+box-shadow: var(--shadow); padding: 9px 11px;
+font-size: 11.5px; line-height: 1.45; font-weight: 400; color: var(--text); text-align: left;
+text-transform: none; letter-spacing: normal;
+opacity: 0; visibility: hidden; pointer-events: none; z-index: 20;
+transition: opacity .15s ease, transform .15s ease;
+}
+.stat-info:hover .info-tip,
+.stat-info .info-dot:focus-visible + .info-tip,
+.stat-info.tip-open .info-tip {
+opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); pointer-events: auto;
+}
+@media (max-width: 720px) {
+  .stat-info .info-tip { left: auto; right: -12px; transform: translateY(4px); }
+  .stat-info:hover .info-tip, .stat-info .info-dot:focus-visible + .info-tip, .stat-info.tip-open .info-tip { transform: translateY(0); }
+}
 
 /* ---------- section headers ---------- */
 .sec-head { max-width: 640px; margin-bottom: 48px; }
@@ -455,11 +489,18 @@ a:focus-visible, button:focus-visible, summary:focus-visible, .compare-link:focu
 .action-flow { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
 .action-flow li { display: flex; align-items: flex-start; gap: 10px; font-size: 13.2px; color: var(--text-dim); }
 .action-flow li svg { flex: none; width: 14px; height: 14px; margin-top: 3px; color: var(--accent); }
-.action-mini-embed { margin-top: auto; background: var(--surface-2); border: 1px solid var(--border); border-radius: 12px; padding: 12px 14px; }
-.action-mini-embed .lbl { font-family: 'JetBrains Mono', monospace; font-size: 9.5px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 6px; }
-.action-mini-embed .title { font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: 13px; margin-bottom: 6px; }
-.action-mini-embed .fields { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 14px; font-size: 11.5px; }
-.action-mini-embed .fields .fl { color: var(--text-dim); font-size: 9.5px; text-transform: uppercase; letter-spacing: .04em; }
+.action-mini-embed { margin-top: auto; }
+.action-mini-embed .lbl { display: inline-flex; align-items: center; gap: 6px; font-family: 'JetBrains Mono', monospace; font-size: 9.5px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 8px; }
+.action-mini-embed .lbl::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: var(--accent); opacity: .55; flex: none; }
+.action-mini-embed .mini-card { position: relative; overflow: hidden; background: var(--surface-2); border: 1px solid var(--border); border-radius: 10px; padding: 13px 15px 12px; }
+.action-mini-embed .mini-card::before { content: ""; position: absolute; inset: 0 auto 0 0; width: 3px; background: linear-gradient(var(--accent), var(--accent-2)); }
+.action-mini-embed .mini-author { display: flex; align-items: center; gap: 7px; font-family: 'JetBrains Mono', monospace; font-size: 9.5px; font-weight: 700; letter-spacing: .05em; color: var(--accent); margin-bottom: 8px; }
+.action-mini-embed .mini-author .sq { width: 15px; height: 15px; border-radius: 4px; background: linear-gradient(135deg, var(--accent), var(--accent-2)); display: grid; place-items: center; font-size: 9px; flex: none; }
+.action-mini-embed .title { font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: 13px; margin-bottom: 10px; }
+.action-mini-embed .fields { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 14px; font-size: 11.5px; }
+.action-mini-embed .fields .fl { color: var(--text-dim); font-size: 9px; text-transform: uppercase; letter-spacing: .04em; margin-bottom: 1px; }
+.action-mini-embed .fields .fv { font-weight: 600; }
+.action-mini-embed .mini-footer { margin-top: 10px; padding-top: 8px; border-top: 1px solid var(--border); font-size: 9.5px; color: var(--text-dim); display: flex; justify-content: space-between; }
 .action-mini-embed .illustration-note { margin-top: 8px; font-size: 10.5px; color: var(--text-dim); font-style: italic; }
 
 /* ---------- Why Lotus ---------- */
