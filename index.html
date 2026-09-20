@@ -17,7 +17,7 @@
 <meta name="twitter:description" content="Your server, defended before the damage happens.">
 <link rel="stylesheet" href="/assets/style.css">
 </head>
-<body>
+<body id="top">
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
 <defs>
@@ -45,7 +45,7 @@
 
 <nav id="nav">
 <div class="wrap" style="width:100%; display:flex; align-items:center; justify-content:space-between; gap:10px;">
-<div class="brand"><svg class="mark" viewBox="105 205 815 480"><g fill="url(#logoBackGrad)" opacity="0.96"><path d="M 0,0 C -144,-131.2 -79.2,-336.2 0,-410 C 79.2,-336.2 144,-131.2 0,0 Z" transform="translate(512,634.88) rotate(-72)"/><path d="M 0,0 C -144,-131.2 -79.2,-336.2 0,-410 C 79.2,-336.2 144,-131.2 0,0 Z" transform="translate(512,634.88) rotate(-38)"/><path d="M 0,0 C -144,-131.2 -79.2,-336.2 0,-410 C 79.2,-336.2 144,-131.2 0,0 Z" transform="translate(512,634.88) rotate(0)"/><path d="M 0,0 C -144,-131.2 -79.2,-336.2 0,-410 C 79.2,-336.2 144,-131.2 0,0 Z" transform="translate(512,634.88) rotate(38)"/><path d="M 0,0 C -144,-131.2 -79.2,-336.2 0,-410 C 79.2,-336.2 144,-131.2 0,0 Z" transform="translate(512,634.88) rotate(72)"/></g><g fill="url(#logoFrontGrad)"><path d="M 0,0 C -116,-101.12 -63.8,-259.12 0,-316 C 63.8,-259.12 116,-101.12 0,0 Z" transform="translate(512,634.88) rotate(-26)"/><path d="M 0,0 C -116,-101.12 -63.8,-259.12 0,-316 C 63.8,-259.12 116,-101.12 0,0 Z" transform="translate(512,634.88) rotate(0)"/><path d="M 0,0 C -116,-101.12 -63.8,-259.12 0,-316 C 63.8,-259.12 116,-101.12 0,0 Z" transform="translate(512,634.88) rotate(26)"/></g><circle cx="512" cy="634.88" r="20" fill="url(#logoCenterGrad)"/></svg>Lotus</div>
+<a href="#top" class="brand" aria-label="Lotus Security — back to top"><svg class="mark" viewBox="105 205 815 480"><g fill="url(#logoBackGrad)" opacity="0.96"><path d="M 0,0 C -144,-131.2 -79.2,-336.2 0,-410 C 79.2,-336.2 144,-131.2 0,0 Z" transform="translate(512,634.88) rotate(-72)"/><path d="M 0,0 C -144,-131.2 -79.2,-336.2 0,-410 C 79.2,-336.2 144,-131.2 0,0 Z" transform="translate(512,634.88) rotate(-38)"/><path d="M 0,0 C -144,-131.2 -79.2,-336.2 0,-410 C 79.2,-336.2 144,-131.2 0,0 Z" transform="translate(512,634.88) rotate(0)"/><path d="M 0,0 C -144,-131.2 -79.2,-336.2 0,-410 C 79.2,-336.2 144,-131.2 0,0 Z" transform="translate(512,634.88) rotate(38)"/><path d="M 0,0 C -144,-131.2 -79.2,-336.2 0,-410 C 79.2,-336.2 144,-131.2 0,0 Z" transform="translate(512,634.88) rotate(72)"/></g><g fill="url(#logoFrontGrad)"><path d="M 0,0 C -116,-101.12 -63.8,-259.12 0,-316 C 63.8,-259.12 116,-101.12 0,0 Z" transform="translate(512,634.88) rotate(-26)"/><path d="M 0,0 C -116,-101.12 -63.8,-259.12 0,-316 C 63.8,-259.12 116,-101.12 0,0 Z" transform="translate(512,634.88) rotate(0)"/><path d="M 0,0 C -116,-101.12 -63.8,-259.12 0,-316 C 63.8,-259.12 116,-101.12 0,0 Z" transform="translate(512,634.88) rotate(26)"/></g><circle cx="512" cy="634.88" r="20" fill="url(#logoCenterGrad)"/></svg>Lotus</a>
 <button type="button" class="nav-burger" id="navBurger" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navLinks">
 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
 </button>
@@ -89,7 +89,7 @@
 <section class="stats">
 <div class="stats-row">
 <div class="stat"><div class="num" data-count="12" data-suffix="+">12+</div><div class="lbl">security &amp; moderation systems</div></div>
-<div class="stat"><div class="num" data-count="6" data-suffix="h">6h</div><div class="lbl">phishing list refresh interval</div></div>
+<div class="stat"><div class="num">Real-time</div><div class="lbl">event-driven detection &amp; response <span class="stat-info"><button type="button" class="info-dot" aria-label="How Lotus's detection and response speed is measured" aria-describedby="stat-response-tip">ⓘ</button><span class="info-tip" id="stat-response-tip" role="tooltip">Lotus continuously watches server events. Protective actions are triggered as soon as a dangerous event is detected, subject to Discord API availability and rate limits.</span></span></div></div>
 <div class="stat"><div class="num">24/7</div><div class="lbl">unattended detection &amp; response</div></div>
 </div>
 </section>
@@ -187,8 +187,12 @@
 </ul>
 <div class="action-mini-embed">
 <div class="lbl">Illustration — Lotus alert style</div>
+<div class="mini-card">
+<div class="mini-author"><span class="sq">🪷</span>LOTUS SECURITY SYSTEM</div>
 <div class="title">🛡️ AntiNuke — Mass Channel Deletion</div>
-<div class="fields"><div><div class="fl">Executor</div><div>@corrupted-admin</div></div><div><div class="fl">Action</div><div>channelDelete ×7</div></div><div><div class="fl">Punishment</div><div>quarantine</div></div><div><div class="fl">Case</div><div>#A7F92</div></div></div>
+<div class="fields"><div><div class="fl">Executor</div><div class="fv">@corrupted-admin</div></div><div><div class="fl">Action</div><div class="fv">channelDelete ×7</div></div><div><div class="fl">Punishment</div><div class="fv">quarantine</div></div><div><div class="fl">Case</div><div class="fv">#A7F92</div></div></div>
+<div class="mini-footer"><span>Lotus Security System</span><span>illustration</span></div>
+</div>
 <p class="illustration-note">Illustration of a real Lotus alert format, not an actual incident capture.</p>
 </div>
 </div>
@@ -210,8 +214,12 @@
 </ul>
 <div class="action-mini-embed">
 <div class="lbl">Illustration — Lotus alert style</div>
+<div class="mini-card">
+<div class="mini-author"><span class="sq">🪷</span>LOTUS SECURITY SYSTEM</div>
 <div class="title">⚠️ Dangerous Permission Watch</div>
-<div class="fields"><div><div class="fl">Role edited</div><div>@Moderator</div></div><div><div class="fl">Permission added</div><div>Administrator</div></div><div><div class="fl">Response</div><div>Reverted instantly</div></div><div><div class="fl">Case</div><div>#B3E01</div></div></div>
+<div class="fields"><div><div class="fl">Role edited</div><div class="fv">@Moderator</div></div><div><div class="fl">Permission added</div><div class="fv">Administrator</div></div><div><div class="fl">Response</div><div class="fv">Reverted instantly</div></div><div><div class="fl">Case</div><div class="fv">#B3E01</div></div></div>
+<div class="mini-footer"><span>Lotus Security System</span><span>illustration</span></div>
+</div>
 <p class="illustration-note">Illustration of a real Lotus alert format, not an actual incident capture.</p>
 </div>
 </div>
@@ -233,8 +241,12 @@
 </ul>
 <div class="action-mini-embed">
 <div class="lbl">Illustration — Lotus alert style</div>
+<div class="mini-card">
+<div class="mini-author"><span class="sq">🪷</span>LOTUS SECURITY SYSTEM</div>
 <div class="title">🚪 Anti-Raid Lockdown Triggered</div>
-<div class="fields"><div><div class="fl">New joins</div><div>14 in 12s</div></div><div><div class="fl">Avg. account age</div><div>&lt; 1 day</div></div><div><div class="fl">Response</div><div>Server locked</div></div><div><div class="fl">Auto-unlock</div><div>in 60 min</div></div></div>
+<div class="fields"><div><div class="fl">New joins</div><div class="fv">14 in 12s</div></div><div><div class="fl">Avg. account age</div><div class="fv">&lt; 1 day</div></div><div><div class="fl">Response</div><div class="fv">Server locked</div></div><div><div class="fl">Auto-unlock</div><div class="fv">in 60 min</div></div></div>
+<div class="mini-footer"><span>Lotus Security System</span><span>illustration</span></div>
+</div>
 <p class="illustration-note">Illustration of a real Lotus alert format, not an actual incident capture.</p>
 </div>
 </div>
@@ -256,8 +268,12 @@
 </ul>
 <div class="action-mini-embed">
 <div class="lbl">Illustration — Lotus alert style</div>
+<div class="mini-card">
+<div class="mini-author"><span class="sq">🪷</span>LOTUS SECURITY SYSTEM</div>
 <div class="title">🔒 Panic Mode — Lockdown Enabled</div>
-<div class="fields"><div><div class="fl">Triggered by</div><div>@admin</div></div><div><div class="fl">Scope</div><div>All text channels</div></div><div><div class="fl">Verification level</div><div>Very High</div></div><div><div class="fl">Auto-unlock</div><div>60 min</div></div></div>
+<div class="fields"><div><div class="fl">Triggered by</div><div class="fv">@admin</div></div><div><div class="fl">Scope</div><div class="fv">All text channels</div></div><div><div class="fl">Verification level</div><div class="fv">Very High</div></div><div><div class="fl">Auto-unlock</div><div class="fv">60 min</div></div></div>
+<div class="mini-footer"><span>Lotus Security System</span><span>illustration</span></div>
+</div>
 <p class="illustration-note">Illustration of a real Lotus alert format, not an actual incident capture.</p>
 </div>
 </div>
@@ -632,6 +648,22 @@ io2.observe(el);
 } else {
 el.textContent = target.toLocaleString('en-US') + suffix;
 }
+});
+
+// Stat info tooltip: tap-to-toggle for touch devices (hover/keyboard focus
+// already reveal it via CSS). Degrades to touch-only if this script fails.
+document.querySelectorAll('.stat-info').forEach((wrap) => {
+const btn = wrap.querySelector('.info-dot');
+if (!btn) return;
+const close = () => { wrap.classList.remove('tip-open'); btn.setAttribute('aria-expanded', 'false'); };
+btn.setAttribute('aria-expanded', 'false');
+btn.addEventListener('click', (e) => {
+e.stopPropagation();
+const open = wrap.classList.toggle('tip-open');
+btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+});
+document.addEventListener('click', (e) => { if (!wrap.contains(e.target)) close(); });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
 });
 } catch (e) { /* page still renders fine without JS */ }
 </script>
