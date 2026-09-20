@@ -168,7 +168,7 @@ footer { padding-block: 56px 40px; border-top: 1px solid var(--border); margin-t
 
 <h2>5. Retention period</h2>
 <ul>
-<li>Server configuration and security logs: kept for as long as Lotus is present on the server, deleted within a reasonable period after its removal;</li>
+<li>Server configuration and security logs: kept for as long as Lotus is present on the server. Lotus does not currently detect automatically when it is removed from a server, so this data is <strong>not</strong> automatically deleted at that point — it remains stored until a manual deletion request is made (see Contact) or until an automated cleanup process is implemented;</li>
 <li>Optional activity logs: subject to the same rule, and can be disabled at any time;</li>
 <li>Moderation warnings: kept according to the policy set by the server, viewable and deletable by its administrators.</li>
 </ul>

@@ -88,8 +88,8 @@
 
 <section class="stats">
 <div class="stats-row">
-<div class="stat"><div class="num" data-count="12" data-suffix="+">12+</div><div class="lbl">automated protection &amp; moderation modules</div></div>
-<div class="stat"><div class="num" data-count="36748">36,748</div><div class="lbl">known phishing domains tracked live</div></div>
+<div class="stat"><div class="num" data-count="12" data-suffix="+">12+</div><div class="lbl">security &amp; moderation systems</div></div>
+<div class="stat"><div class="num" data-count="6" data-suffix="h">6h</div><div class="lbl">phishing list refresh interval</div></div>
 <div class="stat"><div class="num">24/7</div><div class="lbl">unattended detection &amp; response</div></div>
 </div>
 </section>
@@ -273,15 +273,15 @@
 <p>Every Lotus command lives under a single, organized <span class="mono">/lotus</span> — no hunting through ten different slash commands to find the one you need.</p>
 <div class="cmd-line"><span class="prompt">›</span> /lotus setup</div>
 <div class="step-list">
-<div class="step"><div class="n">1</div><div><strong>Add Lotus with Administrator</strong><p>Required so it can actually act on threats — quarantine, revert, lock down. Every Lotus command still checks its own, stricter permission on top — see <a href="/commands.html" style="color:var(--accent); text-decoration:underline;">the full command list</a>.</p></div></div>
-<div class="step"><div class="n">2</div><div><strong>Run /lotus setup</strong><p>Creates the <span class="mono">LOTUS SECURITY</span> category with your logs, alerts and quarantine channels, plus a join-gate role and verification channel. Already have your own join gate? Run <span class="mono">/lotus setup verification:false</span> to skip that part.</p></div></div>
+<div class="step"><div class="n">1</div><div><strong>Add Lotus with Administrator</strong><p>Lotus is designed to run with Administrator so its protections can act server-wide — quarantine, revert, lock down — without hitting a permission wall mid-response. Every Lotus command still checks its own, stricter permission on top — see <a href="/commands.html" style="color:var(--accent); text-decoration:underline;">the full command list</a>.</p></div></div>
+<div class="step"><div class="n">2</div><div><strong>Run /lotus setup</strong><p>Creates or repairs the <span class="mono">LOTUS SECURITY</span> category with your logs, alerts and quarantine channels, plus a join-gate role and verification channel. Existing Lotus roles and channels are found and reused instead of duplicated, so it's safe to run again any time — to repair a broken setup or after manual changes. Already have your own join gate? Run <span class="mono">/lotus setup verification:false</span> to skip that part.</p></div></div>
 <div class="step"><div class="n">3</div><div><strong>Tune it to your server</strong><p>Set your default punishment with <span class="mono">/lotus config punishment</span>, exempt trusted members or roles with <span class="mono">/lotus whitelist add</span>, and check everything at a glance with <span class="mono">/lotus config status</span> — or just leave the defaults.</p></div></div>
 </div>
 </div>
 
 <div class="cmd-menu">
 <div class="head">Popular /lotus commands</div>
-<div class="cmd-row"><div class="mk">🪷</div><div><strong>/lotus setup</strong><span>Configures Lotus's whole security infrastructure</span></div></div>
+<div class="cmd-row"><div class="mk">🪷</div><div><strong>/lotus setup</strong><span>Configures or repairs Lotus's whole security infrastructure</span></div></div>
 <div class="cmd-row"><div class="mk">🪷</div><div><strong>/lotus help</strong><span>Shows what Lotus can do and how commands are organized</span></div></div>
 <div class="cmd-row"><div class="mk">🪷</div><div><strong>/lotus config status</strong><span>Displays Lotus's current configuration</span></div></div>
 <div class="cmd-row"><div class="mk">🪷</div><div><strong>/lotus panic</strong><span>Enables or disables panic mode (full server lockdown)</span></div></div>
@@ -431,7 +431,7 @@
 </details>
 <details class="faq-item">
 <summary>Can I remove Lotus at any time?</summary>
-<p class="faq-a">Yes, at any time, with no lock-in. Removing Lotus from your server stops all monitoring immediately, and its stored data for your server is deleted within a reasonable delay afterward.</p>
+<p class="faq-a">Yes, at any time, with no lock-in. Removing Lotus from your server stops all monitoring immediately. Data deletion on removal isn't automated yet, so your server's configuration and logs stay stored until you contact us to request deletion — see the <a href="/privacy" class="mono" style="color:var(--accent); text-decoration:underline;">Privacy Policy</a> for details.</p>
 </details>
 </div>
 </section>
@@ -523,7 +523,7 @@ fields: [['Role edited', '@Moderator'], ['Permission added', 'Administrator'], [
 },
 {
 title: '🎣 Phishing Link Blocked',
-fields: [['Channel', '#general'], ['Domain', 'discord-nitro-free.gg'], ['Match', '36,748 known domains'], ['Action', 'Message deleted']],
+fields: [['Channel', '#general'], ['Domain', 'discord-nitro-free.gg'], ['Match', 'Known scam domain'], ['Action', 'Message deleted']],
 },
 {
 title: '🚪 Anti-Raid Lockdown Triggered',
