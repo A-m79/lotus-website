@@ -133,6 +133,14 @@ nav.scrolled { border-bottom-color: var(--border); box-shadow: var(--shadow); }
   .nav-links a:last-child { border-bottom: none; }
 }
 
+/* On very narrow screens, keep only the primary "Add to Discord" CTA visible
+   next to the burger button — the Dashboard link is still always reachable
+   from inside the burger menu (added as the first nav-links item above), so
+   nothing is actually hidden from mobile users, just decluttered. */
+@media (max-width: 480px) {
+  .nav-cta-dashboard.btn { display: none; }
+}
+
 .btn {
 display: inline-flex; align-items: center; gap: 8px;
 font-family: 'Familjen Grotesk', sans-serif;
