@@ -50,17 +50,18 @@
 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
 </button>
 <div class="nav-links" id="navLinks">
-<a href="https://lotus-dashboard-tau.vercel.app/">Dashboard</a>
+<a class="nav-mobile-dashboard" href="https://lotus-dashboard-tau.vercel.app/">Dashboard</a>
 <a href="#features">Features</a>
-<a href="#action">Demo</a>
-<a href="#setup">Setup</a>
 <a href="/commands.html">Commands</a>
 <a href="#pricing">Pricing</a>
 <a href="/compare.html">Compare</a>
 <a href="#faq">FAQ</a>
+<a class="nav-mobile-invite" href="https://discord.com/oauth2/authorize?client_id=1537134333322858497&amp;scope=bot%20applications.commands&amp;permissions=8">Add to Discord</a>
 </div>
+<div class="nav-actions">
 <a class="btn btn-ghost btn-sm nav-cta-dashboard" href="https://lotus-dashboard-tau.vercel.app/">Dashboard</a>
 <a class="btn btn-primary btn-sm" href="#" id="invite-top">Add to Discord</a>
+</div>
 </div>
 </nav>
 
@@ -78,7 +79,7 @@
 <a href="#features" class="btn btn-ghost">See what it does</a>
 </div>
 <p class="invite-note">Free to start · No credit card · 2-minute setup with <span class="mono">/lotus setup</span></p>
-<p class="invite-note">Already using Lotus? <a href="https://lotus-dashboard-tau.vercel.app/">Sign in with Discord →</a></p>
+<p class="invite-note">Already using Lotus? <a href="https://lotus-dashboard-tau.vercel.app/">Open the dashboard →</a></p>
 </div>
 
 <div class="embed-shell">
@@ -170,15 +171,10 @@
 <div class="sec-head">
 <span class="eyebrow">See it work</span>
 <h2>See what happens when a threat hits.</h2>
-<p>Lotus detects the action, identifies the source, responds automatically, and records what happened — without waiting for a moderator to notice. Real videos are coming; these are illustrations of the same alert format Lotus actually posts.</p>
+<p>Follow four example incidents from detection to response. The alerts below illustrate Lotus's format; they are not captures of real incidents.</p>
 </div>
 <div class="action-grid">
 <div class="action-card">
-<div class="action-visual">
-<div class="play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>
-<span class="soon-label">Demo coming soon</span>
-<span class="soon-sub">Real capture from a live server will replace this placeholder.</span>
-</div>
 <div class="action-body">
 <span class="action-tag">Free &middot; Anti-Nuke</span>
 <h3>Anti-Nuke</h3>
@@ -201,11 +197,6 @@
 </div>
 </div>
 <div class="action-card">
-<div class="action-visual">
-<div class="play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>
-<span class="soon-label">Demo coming soon</span>
-<span class="soon-sub">Real capture from a live server will replace this placeholder.</span>
-</div>
 <div class="action-body">
 <span class="action-tag">Premium &middot; Dangerous Permission Watch</span>
 <h3>Dangerous Permission Watch</h3>
@@ -228,11 +219,6 @@
 </div>
 </div>
 <div class="action-card">
-<div class="action-visual">
-<div class="play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>
-<span class="soon-label">Demo coming soon</span>
-<span class="soon-sub">Real capture from a live server will replace this placeholder.</span>
-</div>
 <div class="action-body">
 <span class="action-tag">Free &middot; Anti-Raid</span>
 <h3>Anti-Raid Lockdown</h3>
@@ -255,11 +241,6 @@
 </div>
 </div>
 <div class="action-card">
-<div class="action-visual">
-<div class="play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>
-<span class="soon-label">Demo coming soon</span>
-<span class="soon-sub">Real capture from a live server will replace this placeholder.</span>
-</div>
 <div class="action-body">
 <span class="action-tag">Free &middot; Panic Mode</span>
 <h3>Panic Mode</h3>
@@ -505,6 +486,7 @@
 </div>
 </footer>
 
+<script src="/i18n.js" defer></script>
 <script>
 try {
 // Nav shadow on scroll

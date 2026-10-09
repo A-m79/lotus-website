@@ -51,17 +51,18 @@
 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
 </button>
 <div class="nav-links" id="navLinks">
-<a href="https://lotus-dashboard-tau.vercel.app/">Dashboard</a>
+<a class="nav-mobile-dashboard" href="https://lotus-dashboard-tau.vercel.app/">Dashboard</a>
 <a href="/index.html#features">Features</a>
-<a href="/index.html#action">Demo</a>
-<a href="/index.html#setup">Setup</a>
 <a href="/commands.html">Commands</a>
 <a href="/index.html#pricing">Pricing</a>
 <a href="/compare.html">Compare</a>
 <a href="/index.html#faq">FAQ</a>
+<a class="nav-mobile-invite" href="https://discord.com/oauth2/authorize?client_id=1537134333322858497&amp;scope=bot%20applications.commands&amp;permissions=8">Add to Discord</a>
 </div>
+<div class="nav-actions">
 <a class="btn btn-ghost btn-sm nav-cta-dashboard" href="https://lotus-dashboard-tau.vercel.app/">Dashboard</a>
 <a class="btn btn-primary btn-sm" href="#" id="invite-top">Add to Discord</a>
+</div>
 </div>
 </nav>
 
@@ -137,6 +138,7 @@
 </footer>
 
 
+<script src="/i18n.js" defer></script>
 <script>
 try {
 // Nav shadow on scroll
