@@ -2,7 +2,7 @@
 // No external translation service receives page contents or visitor data.
 (() => {
   const locales = ["en", "fr", "es", "de", "pt"];
-  const names = { en: "🇬🇧 English", fr: "🇫🇷 Français", es: "🇪🇸 Español", de: "🇩🇪 Deutsch", pt: "🇵🇹 Português" };
+  const names = { en: "English", fr: "Français", es: "Español", de: "Deutsch", pt: "Português" };
   const descriptions = {
     en: "Lotus watches destructive actions and reacts in seconds. Free anti-nuke, anti-raid and anti-spam protection for your Discord server.",
     fr: "Lotus détecte les actions destructrices et réagit en quelques secondes. Protection gratuite anti-nuke, anti-raid et anti-spam pour votre serveur Discord.",
@@ -431,26 +431,37 @@
     try { saved = localStorage.getItem("lotus-language") || "en"; } catch {}
     current = locales.includes(params.get("lang")) ? params.get("lang") : locales.includes(saved) ? saved : "en";
     try { localStorage.setItem("lotus-language", current); } catch {}
-    const label = document.createElement("label");
+    const label = document.createElement("details");
     label.className = "lotus-language";
-    label.innerHTML = '<span class="sr-only">Language</span><select aria-label="Language"></select>';
-    const select = label.querySelector("select");
-    for (const locale of locales) select.add(new Option(names[locale], locale));
-    select.value = current;
+    label.innerHTML = `<summary><img class="lotus-flag lotus-current-flag" src="/assets/flags/${current}.svg" alt="" aria-hidden="true"><span class="lotus-language-name"></span></summary><div class="lotus-language-menu">${locales.map((locale) => `<button class="lotus-language-option" type="button" data-locale="${locale}"><img class="lotus-flag" src="/assets/flags/${locale}.svg" alt="" aria-hidden="true">${names[locale]}</button>`).join("")}</div>`;
+    const summary = label.querySelector("summary");
     const languageLabels = { en: "Language", fr: "Langue", es: "Idioma", de: "Sprache", pt: "Idioma" };
     const updateLanguageLabel = () => {
-      label.querySelector(".sr-only").textContent = languageLabels[current];
-      select.setAttribute("aria-label", languageLabels[current]);
+      label.querySelector(".lotus-language-name").textContent = names[current];
+      label.querySelector(".lotus-current-flag").src = `/assets/flags/${current}.svg`;
+      summary.setAttribute("aria-label", `${languageLabels[current]} : ${names[current]}`);
+      for (const option of label.querySelectorAll(".lotus-language-option")) {
+        option.setAttribute("aria-current", option.dataset.locale === current ? "true" : "false");
+      }
     };
     updateLanguageLabel();
-    select.addEventListener("change", () => {
-      current = select.value;
+    label.addEventListener("click", (event) => {
+      const option = event.target.closest(".lotus-language-option");
+      if (!option) return;
+      current = option.dataset.locale;
+      label.open = false;
       updateLanguageLabel();
       try { localStorage.setItem("lotus-language", current); } catch {}
       const url = new URL(location.href);
       url.searchParams.set("lang", current);
       history.replaceState(null, "", url);
       schedule();
+    });
+    label.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && label.open) { label.open = false; summary.focus(); }
+    });
+    document.addEventListener("click", (event) => {
+      if (label.open && !label.contains(event.target)) label.open = false;
     });
     (document.querySelector(".nav-actions") || document.body).prepend(label);
     new MutationObserver(schedule).observe(document.body, { childList: true, characterData: true, subtree: true });

@@ -54,6 +54,11 @@ test("five-language copy covers all marketing and command text", () => {
 });
 
 test("public pages retain language controls, mobile navigation, and working local links", () => {
+  for (const locale of ["en", "fr", "es", "de", "pt"]) {
+    assert.match(read(`assets/flags/${locale}.svg`), /<svg[^>]+viewBox="0 0 24 16"/);
+  }
+  assert.match(read("i18n.js"), /class="lotus-flag lotus-current-flag"/);
+  assert.doesNotMatch(read("i18n.js"), /<select aria-label="Language"/);
   for (const page of pages) {
     const html = read(page);
     assert.match(html, /<script src="\/i18n\.js" defer><\/script>/);
@@ -102,12 +107,18 @@ test("language switch translates content and preserves locale across site and da
   const legal = makeLink("/privacy");
   const dashboard = makeLink("https://lotus-dashboard-tau.vercel.app/");
   const node = { nodeValue: "Features", parentElement: { closest: () => false } };
-  const select = {
-    value: "en", add: () => {}, setAttribute: () => {},
-    addEventListener(name, handler) { if (name === "change") this.change = handler; },
+  const summary = { setAttribute(name, value) { this[name] = value; }, focus() {} };
+  const languageName = { textContent: "" };
+  const currentFlag = { src: "" };
+  const options = ["en", "fr", "es", "de", "pt"].map((locale) => ({
+    dataset: { locale }, setAttribute(name, value) { this[name] = value; },
+  }));
+  const label = {
+    open: false,
+    querySelector(selector) { return ({ summary, ".lotus-language-name": languageName, ".lotus-current-flag": currentFlag })[selector]; },
+    querySelectorAll: () => options,
+    addEventListener(name, handler) { this[name] = handler; },
   };
-  const screenReaderLabel = { textContent: "" };
-  const label = { querySelector: (selector) => selector === "select" ? select : screenReaderLabel };
   const navActions = { prepend: () => {} };
   const premiumPlan = { dataset: { badge: "MOST PROTECTION" } };
   const infoDot = { setAttribute(name, value) { this[name] = value; } };
@@ -115,6 +126,7 @@ test("language switch translates content and preserves locale across site and da
   const document = {
     readyState: "complete", body: {}, documentElement: { lang: "en" },
     createElement: () => label,
+    addEventListener() {},
     createTreeWalker: () => ({ currentNode: null, index: 0, nextNode() { if (this.index++) return false; this.currentNode = node; return true; } }),
     querySelector(selector) {
       if (selector === ".nav-actions") return navActions;
@@ -141,15 +153,16 @@ test("language switch translates content and preserves locale across site and da
   vm.runInNewContext(read("i18n.js"), context);
   assert.equal(node.nodeValue, "Fonctionnalités");
   assert.equal(document.documentElement.lang, "fr");
+  assert.equal(currentFlag.src, "/assets/flags/fr.svg");
   assert.equal(premiumPlan.dataset.badge, "PROTECTION MAXIMALE");
   assert.match(infoDot["aria-label"], /rapidité/);
   assert.match(dashboard.href, /[?&]lang=fr/);
   assert.equal(legal.getAttribute("href"), "/confidentialite?lang=fr");
 
-  select.value = "es";
-  select.change();
+  label.click({ target: { closest: () => options[2] } });
   assert.equal(node.nodeValue, "Funciones");
   assert.equal(document.documentElement.lang, "es");
+  assert.equal(currentFlag.src, "/assets/flags/es.svg");
   assert.equal(premiumPlan.dataset.badge, "MÁXIMA PROTECCIÓN");
   assert.match(dashboard.href, /[?&]lang=es/);
   assert.equal(legal.getAttribute("href"), "/privacy?lang=es");

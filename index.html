@@ -609,9 +609,12 @@ compareBtn.style.display = 'none';
 }
 
 // Scroll reveal for below-the-fold sections (progressive enhancement)
-const revealTargets = document.querySelectorAll('.feature-card, .plan, .cmd-menu, .cta-band, .faq-item, .action-card, .why-card, .compare-preview-row');
-if ('IntersectionObserver' in window) {
-revealTargets.forEach((el) => el.classList.add('reveal-init'));
+const revealTargets = document.querySelectorAll('.stats-row, .sec-head, .feature-card, .plan, .cmd-menu, .cta-band, .faq-item, .action-card, .why-card, .compare-preview-row');
+if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+revealTargets.forEach((el, index) => {
+el.style.setProperty('--reveal-delay', `${(index % 3) * 90}ms`);
+el.classList.add('reveal-init');
+});
 const io = new IntersectionObserver((entries) => {
 entries.forEach((entry) => {
 if (entry.isIntersecting) {
