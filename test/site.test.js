@@ -34,7 +34,7 @@ function isTechnicalText(value) {
   return /^\/lotus(?:\b|$)/.test(value)
     || /^[@#]/.test(value)
     || /^(?:Lotus|Lotus Security|Lotus Security System|LOTUS SECURITY|Premium|Wick|Beemo|Security Bot|🪷 Lotus|6\/6 free)$/.test(value)
-    || /^(?:channelDelete ×7|14 in 12s|< 1 day|60 min|live-log\.gg \/ #lotus-alerts)$/.test(value);
+    || /^(?:channelDelete ×7|60 min|live-log\.gg \/ #lotus-alerts)$/.test(value);
 }
 
 test("five-language copy covers all marketing and command text", () => {
@@ -109,6 +109,8 @@ test("language switch translates content and preserves locale across site and da
   const screenReaderLabel = { textContent: "" };
   const label = { querySelector: (selector) => selector === "select" ? select : screenReaderLabel };
   const navActions = { prepend: () => {} };
+  const premiumPlan = { dataset: { badge: "MOST PROTECTION" } };
+  const infoDot = { setAttribute(name, value) { this[name] = value; } };
   const storage = new Map();
   const document = {
     readyState: "complete", body: {}, documentElement: { lang: "en" },
@@ -116,6 +118,8 @@ test("language switch translates content and preserves locale across site and da
     createTreeWalker: () => ({ currentNode: null, index: 0, nextNode() { if (this.index++) return false; this.currentNode = node; return true; } }),
     querySelector(selector) {
       if (selector === ".nav-actions") return navActions;
+      if (selector === ".plan.pro") return premiumPlan;
+      if (selector === ".stat-info .info-dot") return infoDot;
       if (selector === 'meta[name="description"]') return { content: "" };
       return null;
     },
@@ -137,6 +141,8 @@ test("language switch translates content and preserves locale across site and da
   vm.runInNewContext(read("i18n.js"), context);
   assert.equal(node.nodeValue, "Fonctionnalités");
   assert.equal(document.documentElement.lang, "fr");
+  assert.equal(premiumPlan.dataset.badge, "PROTECTION MAXIMALE");
+  assert.match(infoDot["aria-label"], /rapidité/);
   assert.match(dashboard.href, /[?&]lang=fr/);
   assert.equal(legal.getAttribute("href"), "/confidentialite?lang=fr");
 
@@ -144,6 +150,7 @@ test("language switch translates content and preserves locale across site and da
   select.change();
   assert.equal(node.nodeValue, "Funciones");
   assert.equal(document.documentElement.lang, "es");
+  assert.equal(premiumPlan.dataset.badge, "MÁXIMA PROTECCIÓN");
   assert.match(dashboard.href, /[?&]lang=es/);
   assert.equal(legal.getAttribute("href"), "/privacy?lang=es");
 });

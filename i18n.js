@@ -139,6 +139,8 @@
     ["Server locked", "Serveur verrouillé", "Servidor bloqueado", "Server gesperrt", "Servidor bloqueado"],
     ["Auto-unlock", "Déverrouillage auto", "Desbloqueo automático", "Automatische Entsperrung", "Desbloqueio automático"],
     ["in 60 min", "dans 60 min", "en 60 min", "in 60 Min.", "em 60 min"],
+    ["14 in 12s", "14 en 12 s", "14 en 12 s", "14 in 12 Sek.", "14 em 12 s"],
+    ["< 1 day", "< 1 jour", "< 1 día", "< 1 Tag", "< 1 dia"],
     ["quarantine", "quarantaine", "cuarentena", "Quarantäne", "quarentena"],
     ["Reverting a malicious role edit, quarantining a compromised account, or locking down channels during a raid all require elevated Discord permissions — a bot without Administrator simply can't act fast enough to stop a nuke in progress. You can review and audit everything Lotus does through", "Annuler une modification malveillante de rôle, placer un compte compromis en quarantaine ou verrouiller les salons pendant un raid exige des permissions élevées. Sans la permission Administrateur, le bot ne peut pas intervenir assez vite. Tu peux consulter les actions de Lotus avec", "Revertir un cambio malicioso de rol, aislar una cuenta comprometida o bloquear canales durante un raid requiere permisos elevados. Sin Administrador, el bot no puede actuar lo bastante rápido. Puedes revisar las acciones de Lotus con", "Um bösartige Rollenänderungen rückgängig zu machen, kompromittierte Konten zu isolieren oder Kanäle bei einem Raid zu sperren, sind erhöhte Rechte nötig. Ohne Administrator kann der Bot nicht schnell genug handeln. Lotus-Aktionen kannst du mit", "Reverter alterações maliciosas de cargos, isolar contas comprometidas ou bloquear canais durante um raid exige permissões elevadas. Sem Administrador, o bot não consegue agir suficientemente depressa. Podes consultar as ações do Lotus com"],
     ["and the activity logs channel.", "et le salon du journal d'activité.", "y el canal de registro de actividad.", "und im Aktivitätsprotokoll prüfen.", "e no canal de registo de atividade."],
@@ -388,6 +390,14 @@
     }
     const burger = document.getElementById("navBurger");
     if (burger) burger.setAttribute("aria-label", { en: "Toggle navigation menu", fr: "Ouvrir ou fermer le menu", es: "Abrir o cerrar el menú", de: "Navigationsmenü öffnen oder schließen", pt: "Abrir ou fechar o menu" }[current]);
+    const brand = document.querySelector("header .brand");
+    if (brand) brand.setAttribute("aria-label", { en: "Lotus Security — back to top", fr: "Lotus Security — retour en haut", es: "Lotus Security — volver arriba", de: "Lotus Security — zurück nach oben", pt: "Lotus Security — voltar ao topo" }[current]);
+    const responseInfo = document.querySelector(".stat-info .info-dot");
+    if (responseInfo) responseInfo.setAttribute("aria-label", { en: "How Lotus's detection and response speed is measured", fr: "Comment est mesurée la rapidité de détection et de réaction de Lotus", es: "Cómo se mide la velocidad de detección y respuesta de Lotus", de: "Wie die Erkennungs- und Reaktionsgeschwindigkeit von Lotus gemessen wird", pt: "Como é medida a rapidez de deteção e resposta do Lotus" }[current]);
+    const premiumPlan = document.querySelector(".plan.pro");
+    if (premiumPlan) premiumPlan.dataset.badge = { en: "MOST PROTECTION", fr: "PROTECTION MAXIMALE", es: "MÁXIMA PROTECCIÓN", de: "MAXIMALER SCHUTZ", pt: "PROTEÇÃO MÁXIMA" }[current];
+    const compareClose = document.getElementById("compare-close");
+    if (compareClose) compareClose.setAttribute("aria-label", { en: "Close", fr: "Fermer", es: "Cerrar", de: "Schließen", pt: "Fechar" }[current]);
     for (const link of document.querySelectorAll('a[href^="https://lotus-dashboard-tau.vercel.app/"]')) {
       const url = new URL(link.href);
       url.searchParams.set("lang", current);

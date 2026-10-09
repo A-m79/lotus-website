@@ -319,7 +319,7 @@ padding: 3px 8px; border-radius: 6px; margin-bottom: 10px;
 @media (max-width: 780px) { .pricing-grid { grid-template-columns: 1fr; } }
 .plan { background: var(--surface); border: 1px solid var(--border); border-radius: 22px; padding: 32px; display: flex; flex-direction: column; }
 .plan.pro { border-color: color-mix(in srgb, var(--accent) 45%, var(--border)); position: relative; box-shadow: var(--shadow); }
-.plan.pro::before { content: "MOST PROTECTION"; position: absolute; top: -12px; right: 28px; font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700; letter-spacing: .07em; background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #fff; padding: 5px 10px; border-radius: 7px; }
+.plan.pro::before { content: attr(data-badge); position: absolute; top: -12px; right: 28px; font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700; letter-spacing: .07em; background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #fff; padding: 5px 10px; border-radius: 7px; }
 .plan-name { font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: 19px; }
 .plan-price { font-family: 'JetBrains Mono', monospace; font-size: 34px; font-weight: 700; margin-top: 10px; }
 .plan-price sup { font-size: 14px; color: var(--text-dim); font-weight: 500; }
