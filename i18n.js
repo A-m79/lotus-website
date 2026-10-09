@@ -155,7 +155,7 @@
     ["Lotus Security System · Active protection", "Système de sécurité Lotus · Protection active", "Sistema de seguridad Lotus · Protección activa", "Lotus-Sicherheitssystem · Aktiver Schutz", "Sistema de segurança Lotus · Proteção ativa"],
     ["Lotus watches destructive actions as they happen and automatically responds the moment a threat is detected — so your staff doesn't discover the damage after it's already done.", "Lotus surveille les actions destructrices en temps réel et réagit dès qu'une menace est détectée. Votre équipe n'attend pas de constater les dégâts pour agir.", "Lotus vigila las acciones destructivas en tiempo real y responde en cuanto detecta una amenaza. Tu equipo no tiene que descubrir los daños demasiado tarde.", "Lotus überwacht zerstörerische Aktionen in Echtzeit und reagiert, sobald eine Bedrohung erkannt wird. Dein Team muss den Schaden nicht erst im Nachhinein entdecken.", "O Lotus vigia ações destrutivas em tempo real e reage assim que deteta uma ameaça. A tua equipa não precisa de descobrir os danos tarde demais."],
     ["Already using Lotus?", "Tu utilises déjà Lotus ?", "¿Ya usas Lotus?", "Du nutzt Lotus bereits?", "Já usas o Lotus?"],
-    ["Open the dashboard →", "Ouvrir le dashboard →", "Abrir o painel →", "Dashboard öffnen →", "Abrir o painel →"],
+    ["Open the dashboard →", "Ouvrir le dashboard →", "Abrir el panel →", "Dashboard öffnen →", "Abrir o painel →"],
     ["security & moderation systems", "systèmes de sécurité et de modération", "sistemas de seguridad y moderación", "Sicherheits- und Moderationssysteme", "sistemas de segurança e moderação"],
     ["Real-time", "Temps réel", "Tiempo real", "Echtzeit", "Tempo real"],
     ["event-driven detection & response", "détection et réaction aux événements", "detección y respuesta basadas en eventos", "ereignisgesteuerte Erkennung und Reaktion", "deteção e resposta a eventos"],
@@ -433,7 +433,7 @@
     try { localStorage.setItem("lotus-language", current); } catch {}
     const label = document.createElement("details");
     label.className = "lotus-language";
-    label.innerHTML = `<summary><img class="lotus-flag lotus-current-flag" src="/assets/flags/${current}.svg" alt="" aria-hidden="true"><span class="lotus-language-name"></span></summary><div class="lotus-language-menu">${locales.map((locale) => `<button class="lotus-language-option" type="button" data-locale="${locale}"><img class="lotus-flag" src="/assets/flags/${locale}.svg" alt="" aria-hidden="true">${names[locale]}</button>`).join("")}</div>`;
+    label.innerHTML = `<summary><img class="lotus-flag lotus-current-flag" src="/assets/flags/${current}.svg" alt="" aria-hidden="true"><span class="lotus-language-name"></span></summary><div class="lotus-language-menu">${locales.map((locale) => `<button class="lotus-language-option" type="button" data-locale="${locale}" aria-label="${names[locale]}"><img class="lotus-flag" src="/assets/flags/${locale}.svg" alt="" aria-hidden="true">${names[locale]}</button>`).join("")}</div>`;
     const summary = label.querySelector("summary");
     const languageLabels = { en: "Language", fr: "Langue", es: "Idioma", de: "Sprache", pt: "Idioma" };
     const updateLanguageLabel = () => {
