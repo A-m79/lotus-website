@@ -573,6 +573,7 @@ dotsWrap.appendChild(d);
 
 function render(i) {
 const s = slides[i];
+if (document.documentElement.lang !== 'en') card.setAttribute('data-lotus-locale-pending', '');
 card.style.opacity = 0;
 setTimeout(() => {
 card.innerHTML =

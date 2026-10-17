@@ -114,6 +114,8 @@ test("marketing pages hide untranslated copy only until localization runs", () =
     assert.ok(!attributes.has("data-lotus-locale-pending"));
   }
   assert.match(read("i18n.js"), /removeAttribute\?\.\("data-lotus-locale-pending"\)/);
+  assert.match(read("index.html"), /card\.setAttribute\('data-lotus-locale-pending', ''\)/);
+  assert.match(read("i18n.js"), /getElementById\("embed-card"\)\?\.removeAttribute\("data-lotus-locale-pending"\)/);
 });
 
 test("legal pages disclose the real deletion behavior and keep language fallback", () => {

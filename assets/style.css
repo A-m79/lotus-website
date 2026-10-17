@@ -117,6 +117,7 @@ nav.scrolled { border-bottom-color: var(--border); box-shadow: var(--shadow); }
 .nav-links .nav-mobile-dashboard, .nav-links .nav-mobile-invite { display: none; }
 .nav-actions { display: flex; align-items: center; gap: 10px; flex: none; }
 .lotus-language { position: relative; flex: none; }
+#embed-card[data-lotus-locale-pending] { opacity: 0 !important; }
 .lotus-language summary { display: flex; align-items: center; gap: 7px; min-width: 132px; color: var(--text); background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 9px 10px; font: 600 13px 'Familjen Grotesk', sans-serif; cursor: pointer; list-style: none; user-select: none; transition: border-color .2s ease, background-color .2s ease; }
 .lotus-language summary::-webkit-details-marker { display: none; }
 .lotus-language summary::after { content: ''; width: 6px; height: 6px; margin-left: auto; border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor; transform: translateY(-2px) rotate(45deg); transition: transform .2s ease; }
