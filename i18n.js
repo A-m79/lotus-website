@@ -390,7 +390,7 @@
     }
     const burger = document.getElementById("navBurger");
     if (burger) burger.setAttribute("aria-label", { en: "Toggle navigation menu", fr: "Ouvrir ou fermer le menu", es: "Abrir o cerrar el menú", de: "Navigationsmenü öffnen oder schließen", pt: "Abrir ou fechar o menu" }[current]);
-    const brand = document.querySelector("header .brand");
+    const brand = document.querySelector("nav .brand");
     if (brand) brand.setAttribute("aria-label", { en: "Lotus Security — back to top", fr: "Lotus Security — retour en haut", es: "Lotus Security — volver arriba", de: "Lotus Security — zurück nach oben", pt: "Lotus Security — voltar ao topo" }[current]);
     const responseInfo = document.querySelector(".stat-info .info-dot");
     if (responseInfo) responseInfo.setAttribute("aria-label", { en: "How Lotus's detection and response speed is measured", fr: "Comment est mesurée la rapidité de détection et de réaction de Lotus", es: "Cómo se mide la velocidad de detección y respuesta de Lotus", de: "Wie die Erkennungs- und Reaktionsgeschwindigkeit von Lotus gemessen wird", pt: "Como é medida a rapidez de deteção e resposta do Lotus" }[current]);

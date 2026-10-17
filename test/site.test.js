@@ -154,6 +154,7 @@ test("language switch translates content and preserves locale across site and da
   const navActions = { prepend: () => {} };
   const premiumPlan = { dataset: { badge: "MOST PROTECTION" } };
   const infoDot = { setAttribute(name, value) { this[name] = value; } };
+  const brand = { setAttribute(name, value) { this[name] = value; } };
   const storage = new Map();
   const document = {
     readyState: "complete", body: {}, documentElement: { lang: "en" },
@@ -164,6 +165,7 @@ test("language switch translates content and preserves locale across site and da
       if (selector === ".nav-actions") return navActions;
       if (selector === ".plan.pro") return premiumPlan;
       if (selector === ".stat-info .info-dot") return infoDot;
+      if (selector === "nav .brand") return brand;
       if (selector === 'meta[name="description"]') return { content: "" };
       return null;
     },
@@ -188,6 +190,7 @@ test("language switch translates content and preserves locale across site and da
   assert.equal(currentFlag.src, "/assets/flags/fr.svg");
   assert.equal(premiumPlan.dataset.badge, "PROTECTION MAXIMALE");
   assert.match(infoDot["aria-label"], /rapidité/);
+  assert.match(brand["aria-label"], /retour en haut/);
   assert.match(dashboard.href, /[?&]lang=fr/);
   assert.equal(legal.getAttribute("href"), "/confidentialite?lang=fr");
 
@@ -197,5 +200,6 @@ test("language switch translates content and preserves locale across site and da
   assert.equal(currentFlag.src, "/assets/flags/es.svg");
   assert.equal(premiumPlan.dataset.badge, "MÁXIMA PROTECCIÓN");
   assert.match(dashboard.href, /[?&]lang=es/);
+  assert.match(brand["aria-label"], /volver arriba/);
   assert.equal(legal.getAttribute("href"), "/privacy?lang=es");
 });
