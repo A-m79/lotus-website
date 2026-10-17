@@ -84,6 +84,38 @@ test("all inline page scripts parse", () => {
   }
 });
 
+test("marketing pages hide untranslated copy only until localization runs", () => {
+  for (const page of pages) {
+    const source = read(page);
+    const bootstrap = source.match(/<script>([\s\S]*?)<\/script>/)?.[1];
+    assert.ok(bootstrap, `${page} needs an early locale bootstrap`);
+    assert.match(source, /html\[data-lotus-locale-pending\] body \{ visibility: hidden; \}/);
+    const attributes = new Map();
+    let release;
+    const document = { documentElement: {
+      lang: "en",
+      setAttribute: (key, value) => attributes.set(key, value),
+      removeAttribute: (key) => attributes.delete(key),
+    } };
+    vm.runInNewContext(bootstrap, {
+      document, location: { search: "?lang=es" }, URLSearchParams,
+      localStorage: { getItem: () => "fr" },
+      setTimeout: (callback, ms) => { assert.equal(ms, 8000); release = callback; },
+    });
+    assert.equal(document.documentElement.lang, "es");
+    assert.ok(attributes.has("data-lotus-locale-pending"));
+    release();
+    assert.ok(!attributes.has("data-lotus-locale-pending"));
+    vm.runInNewContext(bootstrap, {
+      document, location: { search: "?lang=en" }, URLSearchParams,
+      localStorage: { getItem: () => "fr" }, setTimeout: () => assert.fail("English must not be gated"),
+    });
+    assert.equal(document.documentElement.lang, "en");
+    assert.ok(!attributes.has("data-lotus-locale-pending"));
+  }
+  assert.match(read("i18n.js"), /removeAttribute\?\.\("data-lotus-locale-pending"\)/);
+});
+
 test("legal pages disclose the real deletion behavior and keep language fallback", () => {
   for (const page of legalPages) assert.match(read(page), /<script src="\/legal-i18n\.js" defer><\/script>/);
   assert.match(read("privacy.html"), /not<\/strong> automatically deleted/);

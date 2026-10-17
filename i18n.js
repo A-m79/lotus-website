@@ -417,6 +417,7 @@
       url.searchParams.set("lang", current);
       link.setAttribute("href", url.pathname + url.search + url.hash);
     }
+    document.documentElement.removeAttribute?.("data-lotus-locale-pending");
   }
 
   function schedule() {

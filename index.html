@@ -3,6 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>
+(() => {
+  const supported = ["en", "fr", "es", "de", "pt"];
+  const requested = new URLSearchParams(location.search).get("lang");
+  let saved = "en";
+  try { saved = localStorage.getItem("lotus-language") || "en"; } catch {}
+  const locale = supported.includes(requested) ? requested : supported.includes(saved) ? saved : "en";
+  document.documentElement.lang = locale;
+  if (locale !== "en") {
+    document.documentElement.setAttribute("data-lotus-locale-pending", "");
+    setTimeout(() => document.documentElement.removeAttribute("data-lotus-locale-pending"), 8000);
+  }
+})();
+</script>
+<style>
+html[data-lotus-locale-pending] body { visibility: hidden; }
+html[data-lotus-locale-pending]::before { content: "🪷 Lotus"; position: fixed; inset: 0; display: grid; place-items: center; z-index: 9999; background: #0a0912; color: #f1eefc; font: 700 20px system-ui, sans-serif; }
+</style>
 <title>Lotus Security</title>
 <meta name="description" content="Lotus watches every channel deletion, role edit, and mass ban as it happens, and reacts in seconds. Free anti-nuke, anti-raid and anti-spam protection for your Discord server.">
 <link rel="canonical" href="https://lotus-security-tau.vercel.app/">
