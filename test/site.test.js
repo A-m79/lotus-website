@@ -120,9 +120,10 @@ test("marketing pages hide untranslated copy only until localization runs", () =
 
 test("legal pages disclose the real deletion behavior and keep language fallback", () => {
   for (const page of legalPages) assert.match(read(page), /<script src="\/legal-i18n\.js" defer><\/script>/);
-  assert.match(read("privacy.html"), /not<\/strong> automatically deleted/);
-  assert.match(read("confidentialite.html"), /pas<\/strong> supprimées/);
-  assert.doesNotMatch(read("confidentialite.html"), /supprimés dans un délai raisonnable après son retrait/);
+  assert.match(read("privacy.html"), /automatically deleted when Discord reports/);
+  assert.match(read("confidentialite.html"), /supprimés automatiquement lorsque Discord signale/);
+  assert.doesNotMatch(read("confidentialite.html"), /pas<\/strong> supprimées|délai raisonnable/);
+  assert.doesNotMatch(read("index.html"), /isn't automated yet/);
   for (const locale of ["es", "de", "pt"]) assert.match(read("legal-i18n.js"), new RegExp(`\\b${locale}:`));
 });
 
