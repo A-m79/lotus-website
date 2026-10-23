@@ -58,7 +58,10 @@
   }
   const control = document.createElement("label");
   control.style.cssText = "position:fixed;z-index:100;top:72px;right:16px;background:var(--surface,#fff);border:1px solid var(--border,#ddd);border-radius:12px;padding:8px;color:var(--text,#222);box-shadow:0 8px 28px #0002";
-  control.innerHTML = '<span style="position:absolute;clip:rect(0,0,0,0)">Language</span><select aria-label="Language" style="border:0;background:transparent;color:inherit;font:inherit;cursor:pointer"></select>';
+  // Tell the browser that this native control supports both colour schemes.
+  // Without it, Chromium on Windows can open a white option list while the
+  // options keep the page's light-on-dark text colour, making them unreadable.
+  control.innerHTML = '<span style="position:absolute;clip:rect(0,0,0,0)">Language</span><select aria-label="Language" style="border:0;background:var(--surface,#fff);color:var(--text,#222);color-scheme:light dark;font:inherit;cursor:pointer"></select>';
   const select = control.querySelector("select");
   for (const [code, name] of Object.entries(names)) select.add(new Option(name, code));
   select.value = locale;

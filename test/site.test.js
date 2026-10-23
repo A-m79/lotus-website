@@ -79,6 +79,13 @@ test("public pages retain language controls, mobile navigation, and working loca
   }
 });
 
+test("legal language options stay readable in light and dark browser menus", () => {
+  const source = read("legal-i18n.js");
+  assert.match(source, /<select aria-label="Language"[^>]*color-scheme:light dark/);
+  assert.match(source, /background:var\(--surface,#fff\)/);
+  assert.match(source, /color:var\(--text,#222\)/);
+});
+
 test("all inline page scripts parse", () => {
   for (const page of [...pages, ...legalPages]) {
     for (const [, script] of read(page).matchAll(/<script(?:\s[^>]*)?>([\s\S]*?)<\/script>/g)) {
