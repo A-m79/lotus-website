@@ -1,17 +1,24 @@
 (() => {
   const names = { en: "🇬🇧 English", fr: "🇫🇷 Français", es: "🇪🇸 Español", de: "🇩🇪 Deutsch", pt: "🇵🇹 Português" };
+  const privacy = { en: "/privacy", fr: "/confidentialite", es: "/privacy-es", de: "/privacy-de", pt: "/privacy-pt" };
+  const terms = { en: "/terms", fr: "/cgu", es: "/terms-es", de: "/terms-de", pt: "/terms-pt" };
+  const legalNotice = { en: "/legal-notice", fr: "/mentions-legales", es: "/legal-notice-es", de: "/legal-notice-de", pt: "/legal-notice-pt" };
   const pairs = {
-    "/privacy": { en: "/privacy", fr: "/confidentialite" },
-    "/confidentialite": { en: "/privacy", fr: "/confidentialite" },
-    "/terms": { en: "/terms", fr: "/cgu" },
-    "/cgu": { en: "/terms", fr: "/cgu" },
-    "/legal-notice": { en: "/legal-notice", fr: "/mentions-legales" },
-    "/mentions-legales": { en: "/legal-notice", fr: "/mentions-legales" },
-  };
-  const notes = {
-    es: "Este documento legal todavía no está traducido al español. Se muestra la versión inglesa; también existe una versión francesa.",
-    de: "Dieses Rechtsdokument ist noch nicht auf Deutsch verfügbar. Die englische Fassung wird angezeigt; eine französische Fassung ist ebenfalls vorhanden.",
-    pt: "Este documento legal ainda não está traduzido para português. É mostrada a versão inglesa; também existe uma versão francesa.",
+    "/privacy": privacy,
+    "/confidentialite": privacy,
+    "/privacy-es": privacy,
+    "/privacy-de": privacy,
+    "/privacy-pt": privacy,
+    "/terms": terms,
+    "/cgu": terms,
+    "/terms-es": terms,
+    "/terms-de": terms,
+    "/terms-pt": terms,
+    "/legal-notice": legalNotice,
+    "/mentions-legales": legalNotice,
+    "/legal-notice-es": legalNotice,
+    "/legal-notice-de": legalNotice,
+    "/legal-notice-pt": legalNotice,
   };
   const common = {
     Features: { fr: "Fonctionnalités", es: "Funciones", de: "Funktionen", pt: "Funcionalidades" },
@@ -33,15 +40,15 @@
   let saved = "en";
   try { saved = localStorage.getItem("lotus-language") || "en"; } catch {}
   const requested = params.get("lang");
-  const frenchPage = ["/confidentialite", "/cgu", "/mentions-legales"].includes(path);
-  const locale = Object.hasOwn(names, requested) ? requested : frenchPage ? "fr" : Object.hasOwn(names, saved) ? saved : "en";
+  const pageLocale = ["/confidentialite", "/cgu", "/mentions-legales"].includes(path) ? "fr" : Object.keys(currentPair).find((code) => code !== "en" && currentPair[code] === path);
+  const locale = Object.hasOwn(names, requested) ? requested : pageLocale || (Object.hasOwn(names, saved) ? saved : "en");
   try { localStorage.setItem("lotus-language", locale); } catch {}
-  const target = locale === "fr" ? currentPair.fr : currentPair.en;
+  const target = currentPair[locale];
   if (path !== target) {
     location.replace(`${target}?lang=${locale}`);
     return;
   }
-  document.documentElement.lang = locale === "fr" ? "fr" : "en";
+  document.documentElement.lang = locale;
   const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
   while (walker.nextNode()) {
     const node = walker.currentNode;
@@ -58,15 +65,9 @@
   select.addEventListener("change", () => {
     const next = select.value;
     try { localStorage.setItem("lotus-language", next); } catch {}
-    location.href = (next === "fr" ? currentPair.fr : currentPair.en) + `?lang=${next}`;
+    location.href = currentPair[next] + `?lang=${next}`;
   });
   document.body.append(control);
-  if (notes[locale]) {
-    const note = document.createElement("p");
-    note.textContent = notes[locale];
-    note.style.cssText = "max-width:900px;margin:18px auto 0;padding:12px 16px;border:1px solid var(--border,#ddd);border-radius:12px;color:var(--text,#222);background:var(--surface,#fff);font-size:14px";
-    document.querySelector("nav")?.after(note);
-  }
   for (const link of document.querySelectorAll('a[href^="/"]')) {
     const original = link.getAttribute("href");
     const url = new URL(original === "/#setup" && link.textContent.trim() === (common.Commands[locale] || "Commands") ? "/commands.html" : original, location.origin);

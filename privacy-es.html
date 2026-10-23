@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Política de privacidad — Lotus Security</title>
+<meta name="description" content="Qué datos trata Lotus Security, por qué, durante cuánto tiempo y cuáles son sus derechos según el RGPD.">
+<link rel="canonical" href="https://lotus-security-tau.vercel.app/privacy-es">
+<meta name="robots" content="noindex, follow">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='1' x2='0' y2='0'%3E%3Cstop offset='0' stop-color='%237b3fe4'/%3E%3Cstop offset='1' stop-color='%23ff5fac'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='16' cy='16' r='15' fill='url(%23g)'/%3E%3Ctext x='16' y='22' font-size='18' text-anchor='middle'%3E%F0%9F%AA%B7%3C/text%3E%3C/svg%3E">
+<meta name="theme-color" content="#7b3fe4">
+<meta property="og:title" content="Política de privacidad — Lotus Security">
+<meta property="og:description" content="Qué datos trata Lotus Security, por qué, durante cuánto tiempo y cuáles son sus derechos según el RGPD.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://lotus-security-tau.vercel.app/privacy-es">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800;900&family=Familjen+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+:root {
+  --bg: #f8f6fc; --surface: #ffffff; --surface-2: #f1ecfa; --border: #e3dbf3;
+  --text: #1c1730; --text-dim: #5c527a; --accent: #7b3fe4; --accent-2: #d1237a;
+  --danger: #d63838; --success: #1c8f5c;
+  --shadow: 0 1px 2px rgba(30,15,60,.04), 0 12px 32px -16px rgba(60,20,120,.18);
+  --radius: 18px; --pearl-a: #ffc9ec; --pearl-b: #cdb6ff; --pearl-c: #fff6fb;
+  --glass: rgba(255,255,255,.58);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0a0912; --surface: #14111f; --surface-2: #1b1729; --border: #2b2540;
+    --text: #f1eefc; --text-dim: #a79fc4; --accent: #9a6bff; --accent-2: #ff5fac;
+    --danger: #ff6b6b; --success: #3fd48c;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 20px 48px -20px rgba(120,60,220,.35);
+    --pearl-a: #6d2f88; --pearl-b: #37205f; --pearl-c: #ffd9f1; --glass: rgba(20,17,31,.5);
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0a0912; --surface: #14111f; --surface-2: #1b1729; --border: #2b2540;
+  --text: #f1eefc; --text-dim: #a79fc4; --accent: #9a6bff; --accent-2: #ff5fac;
+  --danger: #ff6b6b; --success: #3fd48c;
+  --shadow: 0 1px 2px rgba(0,0,0,.3), 0 20px 48px -20px rgba(120,60,220,.35);
+  --pearl-a: #6d2f88; --pearl-b: #37205f; --pearl-c: #ffd9f1; --glass: rgba(20,17,31,.5);
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--text); font-family: 'Familjen Grotesk', system-ui, sans-serif; -webkit-font-smoothing: antialiased; padding-inline: 24px; overflow-x: hidden; }
+h1, h2, h3, .display { font-family: 'Unbounded', system-ui, sans-serif; text-wrap: balance; margin: 0; letter-spacing: -0.01em; }
+.mono { font-family: 'JetBrains Mono', ui-monospace, monospace; }
+p { color: var(--text-dim); line-height: 1.65; margin: 0; }
+a { color: inherit; text-decoration: none; }
+.wrap { max-width: 1120px; margin-inline: auto; }
+section { padding-block: 64px; }
+.eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 12.5px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); display: inline-flex; align-items: center; gap: 8px; }
+.eyebrow::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 20%, transparent); }
+nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 50; display: flex; align-items: center; justify-content: space-between; padding-block: 18px; background: color-mix(in srgb, var(--bg) 78%, transparent); backdrop-filter: blur(10px); transition: border-color .25s ease, box-shadow .25s ease; border-bottom: 1px solid transparent; }
+nav.scrolled { border-bottom-color: var(--border); box-shadow: var(--shadow); }
+.brand { display: flex; align-items: center; gap: 9px; font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: 19px; }
+.brand .mark { width: 29px; height: auto; flex: none; filter: drop-shadow(0 2px 10px color-mix(in srgb, var(--accent-2) 45%, transparent)); }
+.nav-links { display: flex; align-items: center; gap: 30px; }
+.nav-links a:not(.btn) { color: var(--text-dim); font-size: 14.5px; font-weight: 500; transition: color .15s ease; }
+.nav-links a:not(.btn):hover { color: var(--text); }
+@media (max-width: 720px) { .nav-links a:not(.btn) { display: none; } }
+.btn { display: inline-flex; align-items: center; gap: 8px; font-family: 'Familjen Grotesk', sans-serif; font-weight: 700; font-size: 14.5px; padding: 12px 22px; border-radius: 100px; border: 1px solid transparent; cursor: pointer; transition: transform .15s ease, box-shadow .15s ease, opacity .15s ease; }
+.btn:active { transform: scale(.97); }
+.btn-primary { background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #fff; box-shadow: 0 10px 24px -10px color-mix(in srgb, var(--accent) 65%, transparent); }
+.btn-primary:hover { box-shadow: 0 14px 30px -10px color-mix(in srgb, var(--accent) 75%, transparent); }
+.btn-ghost { background: var(--surface); border-color: var(--border); color: var(--text); }
+.btn-ghost:hover { border-color: var(--accent); }
+.btn-sm { padding: 9px 16px; font-size: 13.5px; }
+.aurora { position: fixed; inset: 0; z-index: -1; overflow: hidden; background: var(--bg); }
+.aurora .blob { position: absolute; border-radius: 50%; filter: blur(70px); will-change: transform; }
+.aurora .b1 { width: 56vw; height: 56vw; top: -22%; left: -14%; background: radial-gradient(circle, var(--pearl-a), transparent 70%); opacity: .55; animation: drift1 28s ease-in-out infinite; }
+.aurora .b2 { width: 48vw; height: 48vw; bottom: -20%; right: -12%; background: radial-gradient(circle, var(--pearl-b), transparent 70%); opacity: .5; animation: drift2 34s ease-in-out infinite; }
+.aurora .b3 { width: 34vw; height: 34vw; top: 28%; left: 54%; background: radial-gradient(circle, var(--pearl-c), transparent 72%); opacity: .4; mix-blend-mode: overlay; animation: drift3 22s ease-in-out infinite; }
+.aurora .grain { position: absolute; inset: -10%; opacity: .05; mix-blend-mode: overlay; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>"); }
+@keyframes drift1 { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(7%, 9%) scale(1.08); } }
+@keyframes drift2 { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(-8%, -6%) scale(1.1); } }
+@keyframes drift3 { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(-10%, 8%) scale(1.15); } }
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+footer { padding-block: 56px 40px; border-top: 1px solid var(--border); margin-top: 20px; }
+.foot-row { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 18px; }
+.foot-links { display: flex; gap: 24px; flex-wrap: wrap; }
+.foot-links a { font-size: 13.5px; color: var(--text-dim); }
+.foot-links a:hover { color: var(--text); }
+.foot-bottom { margin-top: 30px; font-size: 12.5px; color: var(--text-dim); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+
+/* ---- legal document prose ---- */
+.legal-hero { padding-top: 56px; padding-bottom: 8px; }
+.legal-hero .eyebrow { margin-bottom: 14px; }
+.legal-hero h1 { font-size: clamp(28px, 4.2vw, 42px); font-weight: 800; }
+.legal-updated { font-family: 'JetBrains Mono', monospace; font-size: 12.5px; color: var(--text-dim); margin-top: 14px; }
+.legal-doc { max-width: 760px; }
+.legal-doc h2 { font-size: 20px; font-weight: 700; margin-top: 40px; margin-bottom: 14px; padding-top: 4px; }
+.legal-doc h2:first-child { margin-top: 0; }
+.legal-doc p { font-size: 15px; margin-bottom: 14px; }
+.legal-doc ul, .legal-doc ol { color: var(--text-dim); font-size: 15px; line-height: 1.65; padding-left: 22px; margin: 0 0 14px; }
+.legal-doc li { margin-bottom: 6px; }
+.legal-doc strong { color: var(--text); }
+.legal-doc a.inline-link { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+.legal-doc table { width: 100%; border-collapse: collapse; margin: 8px 0 22px; font-size: 13.8px; }
+.legal-doc th, .legal-doc td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+.legal-doc th { font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: .05em; color: var(--text-dim); }
+.legal-callout { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 22px; margin: 18px 0 26px; font-size: 14px; color: var(--text-dim); }
+.legal-callout strong { color: var(--text); }
+.legal-note { font-size: 12.5px; color: var(--text-dim); border-top: 1px solid var(--border); margin-top: 44px; padding-top: 20px; }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<linearGradient id="logoBackGrad" x1="0%" y1="100%" x2="0%" y2="0%"><stop offset="0%" stop-color="#7b3fe4"/><stop offset="100%" stop-color="#c22e8f"/></linearGradient>
+<linearGradient id="logoFrontGrad" x1="0%" y1="100%" x2="0%" y2="0%"><stop offset="0%" stop-color="#9a6bff"/><stop offset="100%" stop-color="#ff5fac"/></linearGradient>
+<radialGradient id="logoCenterGrad" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#fff6fb"/><stop offset="100%" stop-color="#ffd9ef"/></radialGradient>
+</defs></svg>
+<div class="aurora" aria-hidden="true"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div><div class="grain"></div></div>
+<nav id="nav">
+<div class="wrap" style="width:100%; display:flex; align-items:center; justify-content:space-between;">
+<div class="brand"><a href="/" style="display:flex; align-items:center; gap:9px; color:inherit;"><svg class="mark" viewBox="105 205 815 480"><g fill="url(#logoBackGrad)" opacity="0.96"><path d="M 0,0 C -144,-131.2 -79.2,-336.2 0,-410 C 79.2,-336.2 144,-131.2 0,0 Z" transform="translate(512,634.88) rotate(-72)"/><path d="M 0,0 C -144,-131.2 -79.2,-336.2 0,-410 C 79.2,-336.2 144,-131.2 0,0 Z" transform="translate(512,634.88) rotate(-38)"/><path d="M 0,0 C -144,-131.2 -79.2,-336.2 0,-410 C 79.2,-336.2 144,-131.2 0,0 Z" transform="translate(512,634.88) rotate(0)"/><path d="M 0,0 C -144,-131.2 -79.2,-336.2 0,-410 C 79.2,-336.2 144,-131.2 0,0 Z" transform="translate(512,634.88) rotate(38)"/><path d="M 0,0 C -144,-131.2 -79.2,-336.2 0,-410 C 79.2,-336.2 144,-131.2 0,0 Z" transform="translate(512,634.88) rotate(72)"/></g><g fill="url(#logoFrontGrad)"><path d="M 0,0 C -116,-101.12 -63.8,-259.12 0,-316 C 63.8,-259.12 116,-101.12 0,0 Z" transform="translate(512,634.88) rotate(-26)"/><path d="M 0,0 C -116,-101.12 -63.8,-259.12 0,-316 C 63.8,-259.12 116,-101.12 0,0 Z" transform="translate(512,634.88) rotate(0)"/><path d="M 0,0 C -116,-101.12 -63.8,-259.12 0,-316 C 63.8,-259.12 116,-101.12 0,0 Z" transform="translate(512,634.88) rotate(26)"/></g><circle cx="512" cy="634.88" r="20" fill="url(#logoCenterGrad)"/></svg>Lotus</a></div>
+<div class="nav-links">
+<a href="/#features">Funciones</a>
+<a href="/#setup">Configuración</a>
+<a href="/#pricing">Precios</a>
+<a class="btn btn-primary btn-sm" href="https://discord.com/oauth2/authorize?client_id=1537134333322858497&scope=bot%20applications.commands&permissions=8">Añadir a Discord</a>
+</div>
+</div>
+</nav>
+<div class="wrap">
+<section class="legal-hero">
+<span class="eyebrow">Legal</span>
+<h1>Política de privacidad</h1>
+<div class="legal-updated">Última actualización: 23 de octubre de 2026</div>
+</section>
+<section style="padding-top:8px;">
+<div class="legal-doc">
+
+<p>Esta política explica qué datos trata Lotus, por qué, durante cuánto tiempo se conservan y cuáles son sus derechos. Se aplica al bot de Discord Lotus y a su sitio web asociado.</p>
+
+<h2>1. Responsable del tratamiento</h2>
+<p>El responsable del tratamiento es Tacos, que actualmente actúa como particular (este estado se actualizará aquí cuando se registre como micro-entreprise). Contacto: <a class="inline-link" href="mailto:lotus.security.bot@gmail.com">lotus.security.bot@gmail.com</a>.</p>
+
+<h2>2. Datos recopilados</h2>
+<table>
+<tr><th>Dato</th><th>Ejemplo</th><th>Motivo</th></tr>
+<tr><td>Identificadores de Discord</td><td>ID de usuario, ID de servidor, nombre de usuario/etiqueta</td><td>Ejecutar comandos y vincular una configuración a un servidor</td></tr>
+<tr><td>Configuración del servidor</td><td>umbrales, canales elegidos, sanción predeterminada, lista de confianza</td><td>Permitir que cada servidor personalice Lotus</td></tr>
+<tr><td>Registros de seguridad</td><td>tipo de acción detectada, ID del autor, marca de tiempo, ID de caso</td><td>Historial de sanciones (<span class="mono">/lotus case</span>), mejora de la detección</td></tr>
+<tr><td>Registros de actividad <em>(opcional)</em></td><td>ediciones/eliminaciones de mensajes, entradas/salidas</td><td>Función <span class="mono">/lotus config activitylogs</span>, desactivada por defecto</td></tr>
+<tr><td>Copias de seguridad de la estructura <em>(Premium)</em></td><td>roles, canales, permisos</td><td>Función <span class="mono">/lotus backup</span></td></tr>
+<tr><td>Advertencias de moderación</td><td>motivo, moderador, fecha</td><td>Función <span class="mono">/lotus mod warn</span></td></tr>
+<tr><td>Datos de facturación <em>(próximamente)</em></td><td>gestionados por el proveedor de pagos</td><td>Facturación de la suscripción Premium</td></tr>
+</table>
+<p>Lotus <strong>no lee ni almacena de forma continua</strong> el contenido de todos los mensajes: los módulos de análisis de contenido (antispam, antiphishing) procesan los mensajes sobre la marcha para detectar una infracción, sin conservar sistemáticamente el texto, salvo cuando se registra una sanción en los registros de seguridad.</p>
+
+<h2>2 bis. Red Premium de casos compartidos</h2>
+<p>Los servidores Premium pueden participar, de forma opcional, en una red de casos compartidos. Es <strong>solo informativa</strong>: nunca aplica ninguna sanción automáticamente.</p>
+<ul>
+<li><strong>Identificación de los miembros:</strong> los ID de Discord de los miembros se almacenan únicamente como hashes con clave, solo para reconocer al mismo miembro entre los servidores participantes.</li>
+<li><strong>Qué es visible:</strong> únicamente la categoría, el tipo de sanción, si fue automática o manual, y el mes. Los motivos, nombres de usuario, mensajes, pruebas, roles, moderadores, advertencias, silenciamientos temporales y la identidad del servidor de origen nunca se comparten.</li>
+<li><strong>Adhesión voluntaria (opt-in):</strong> el propietario del servidor decide por separado si contribuye y si consulta. Cada caso se comparte manualmente.</li>
+<li><strong>Umbral mínimo:</strong> no se revela nada hasta que hayan contribuido al menos 3 servidores Premium distintos que cumplan los requisitos. Los nuevos contribuyentes esperan 7 días antes de que sus casos cuenten.</li>
+<li><strong>Alcance de la consulta:</strong> un servidor solo puede consultar a los miembros que estén presentes en él en ese momento o que se estén uniendo a él.</li>
+<li><strong>Conservación:</strong> los casos compartidos caducan a los 12 meses. Los registros de auditoría de consultas y de comparticiones se conservan 90 días.</li>
+<li><strong>Cese de la contribución:</strong> los registros se ocultan de inmediato y se eliminan en un plazo de 30 días. El propietario del servidor puede activar una purga inmediata desde el panel.</li>
+</ul>
+
+<h2>3. Finalidades y bases jurídicas</h2>
+<ul>
+<li><strong>Prestación del servicio</strong> (ejecución de los comandos y protección automatizada): ejecución del contrato de uso (Condiciones de uso).</li>
+<li><strong>Seguridad y prevención de abusos</strong> (antinuke, antirraid, antispam, antiphishing): interés legítimo del Editor y de los servidores usuarios en mantener segura su comunidad.</li>
+<li><strong>Registros de actividad opcionales</strong>: consentimiento del servidor (activación explícita mediante un comando).</li>
+<li><strong>Facturación Premium</strong> <em>(próximamente)</em>: ejecución del contrato de venta.</li>
+</ul>
+
+<h2>4. Destinatarios y encargados del tratamiento</h2>
+<p>Los datos son alojados y tratados por los siguientes proveedores:</p>
+<ul>
+<li><strong>MongoDB Atlas</strong> (MongoDB, Inc.) — base de datos;</li>
+<li><strong>Oracle Cloud Infrastructure</strong> — alojamiento del bot;</li>
+<li><strong>Discord Inc.</strong> — la plataforma en la que opera Lotus, sujeta a su propia política de privacidad;</li>
+<li><strong>Proveedor de pagos</strong> <em>(próximamente, para el plan Premium)</em>.</li>
+</ul>
+<p>Algunos de estos proveedores están ubicados fuera de la Unión Europea (Estados Unidos). Estas transferencias se rigen por los mecanismos previstos en el RGPD (decisión de adecuación del Marco de Privacidad de Datos UE-EE. UU., o cláusulas contractuales tipo, según el proveedor).</p>
+
+<h2>5. Plazo de conservación</h2>
+<ul>
+<li>Configuración del servidor, copias de seguridad, casos de seguridad, advertencias de moderación y registros de la red Premium propiedad del servidor: se eliminan automáticamente cuando Discord notifica que Lotus ha sido retirado del servidor;</li>
+<li>Registros de actividad opcionales: Lotus no conserva una copia aparte en su base de datos. Los mensajes ya publicados en el canal de registros de Discord del servidor siguen bajo el control del servidor;</li>
+<li>Si un fallo técnico excepcional impide la eliminación automática, el propietario del servidor puede solicitar la eliminación a través de la dirección indicada en la sección «Contacto».</li>
+</ul>
+
+<h2>6. Sus derechos</h2>
+<p>De conformidad con el RGPD, toda persona interesada tiene derecho de acceso, rectificación, supresión, limitación del tratamiento y oposición al tratamiento de sus datos, así como derecho a la portabilidad de los datos y derecho a presentar una reclamación ante la <a class="inline-link" href="https://www.cnil.fr" target="_blank" rel="noopener">CNIL</a> (la autoridad francesa de protección de datos). Para ejercer estos derechos: <a class="inline-link" href="mailto:lotus.security.bot@gmail.com">lotus.security.bot@gmail.com</a>.</p>
+<p>Dado el volumen y la naturaleza de los datos tratados, Lotus no está obligado a designar un Delegado de Protección de Datos (DPD).</p>
+
+<h2>7. Seguridad</h2>
+<p>Se aplican medidas técnicas razonables para proteger los datos (acceso restringido a la base de datos, secretos de la aplicación no expuestos públicamente). Como ningún sistema es infalible, el Editor no puede garantizar una seguridad absoluta.</p>
+
+<h2>8. Cookies</h2>
+<p>El sitio web de Lotus no utiliza actualmente cookies de seguimiento ni de analítica de terceros. Esta sección se actualizará si alguna herramienta de analítica o de pago en línea llegara a instalar alguna.</p>
+
+<h2>9. Actualizaciones de esta política</h2>
+<p>Esta política puede cambiar, en particular con el lanzamiento del plan Premium (incorporación de un proveedor de pagos). Todo cambio sustancial se anunciará en el servidor de Discord de soporte y/o en el sitio web.</p>
+
+<h2>10. Contacto</h2>
+<p><a class="inline-link" href="mailto:lotus.security.bot@gmail.com">lotus.security.bot@gmail.com</a> — o a través del <a class="inline-link" href="https://discord.gg/vrPCuHBRjM" target="_blank" rel="noopener">servidor de Discord de soporte</a>.</p>
+
+</div>
+</section>
+</div>
+<footer>
+<div class="wrap">
+<div class="foot-row">
+<div class="brand"><svg class="mark" viewBox="105 205 815 480"><g fill="url(#logoBackGrad)" opacity="0.96"><path d="M 0,0 C -144,-131.2 -79.2,-336.2 0,-410 C 79.2,-336.2 144,-131.2 0,0 Z" transform="translate(512,634.88) rotate(-72)"/><path d="M 0,0 C -144,-131.2 -79.2,-336.2 0,-410 C 79.2,-336.2 144,-131.2 0,0 Z" transform="translate(512,634.88) rotate(-38)"/><path d="M 0,0 C -144,-131.2 -79.2,-336.2 0,-410 C 79.2,-336.2 144,-131.2 0,0 Z" transform="translate(512,634.88) rotate(0)"/><path d="M 0,0 C -144,-131.2 -79.2,-336.2 0,-410 C 79.2,-336.2 144,-131.2 0,0 Z" transform="translate(512,634.88) rotate(38)"/><path d="M 0,0 C -144,-131.2 -79.2,-336.2 0,-410 C 79.2,-336.2 144,-131.2 0,0 Z" transform="translate(512,634.88) rotate(72)"/></g><g fill="url(#logoFrontGrad)"><path d="M 0,0 C -116,-101.12 -63.8,-259.12 0,-316 C 63.8,-259.12 116,-101.12 0,0 Z" transform="translate(512,634.88) rotate(-26)"/><path d="M 0,0 C -116,-101.12 -63.8,-259.12 0,-316 C 63.8,-259.12 116,-101.12 0,0 Z" transform="translate(512,634.88) rotate(0)"/><path d="M 0,0 C -116,-101.12 -63.8,-259.12 0,-316 C 63.8,-259.12 116,-101.12 0,0 Z" transform="translate(512,634.88) rotate(26)"/></g><circle cx="512" cy="634.88" r="20" fill="url(#logoCenterGrad)"/></svg>Lotus</div>
+<div class="foot-links">
+<a href="/#features">Funciones</a>
+<a href="/#pricing">Precios</a>
+<a href="/#setup">Comandos</a>
+<a href="https://discord.gg/vrPCuHBRjM" target="_blank" rel="noopener">Ayuda</a>
+</div>
+</div>
+<div class="foot-links" style="margin-top:18px;">
+<a href="/legal-notice">Aviso legal</a>
+<a href="/terms">Condiciones de uso</a>
+<a href="/privacy">Política de privacidad</a>
+</div>
+<div class="foot-bottom">
+<span>Creado para comunidades que se toman la seguridad en serio.</span>
+<span id="year-line"></span>
+</div>
+</div>
+</footer>
+<script>
+document.getElementById('year-line').textContent = '© ' + new Date().getFullYear() + ' Lotus Security';
+var nav = document.getElementById('nav');
+window.addEventListener('scroll', function() { nav.classList.toggle('scrolled', window.scrollY > 8); }, { passive: true });
+</script>
+<script src="/legal-i18n.js" defer></script>
+</body>
+</html>
