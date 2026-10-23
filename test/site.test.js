@@ -127,6 +127,46 @@ test("legal pages disclose the real deletion behavior and keep language fallback
   for (const locale of ["es", "de", "pt"]) assert.match(read("legal-i18n.js"), new RegExp(`\\b${locale}:`));
 });
 
+test("privacy policies disclose the Premium shared-case network guarantees in both languages", () => {
+  const en = read("privacy.html");
+  assert.match(en, /Last updated: October 23, 2026/);
+  for (const re of [
+    /Premium shared-case network/,
+    /Discord IDs are stored only as keyed hashes/,
+    /only the category, the sanction type, whether it was automatic or manual, and the month/,
+    /Reasons, usernames, messages, evidence, roles, moderators, warnings, timeouts and the identity of the source server are never shared/,
+    /server owner separately opts in to contribute and to consult/,
+    /Each case is shared manually/,
+    /information-only<\/strong>: it never applies any sanction automatically/,
+    /at least 3 distinct qualifying Premium servers/,
+    /New contributors wait 7 days/,
+    /expire after 12 months/,
+    /audit logs are kept for 90 days/,
+    /hidden immediately and deleted within 30 days/,
+    /server owner can trigger an immediate purge from the dashboard/,
+    /currently present in it or who are joining it/,
+  ]) assert.match(en, re);
+
+  const fr = read("confidentialite.html");
+  assert.match(fr, /Dernière mise à jour : 23 octobre 2026/);
+  for (const re of [
+    /Réseau Premium de cas partagés/,
+    /ID Discord des membres ne sont stockés que sous forme de hachages à clé/,
+    /uniquement la catégorie, le type de sanction, l'origine automatique ou manuelle et le mois/,
+    /raisons, pseudos, messages, preuves, rôles, modérateurs, avertissements, exclusions temporaires et l'identité du serveur d'origine ne sont jamais partagés/,
+    /propriétaire du serveur choisit séparément de contribuer et de consulter/,
+    /Chaque cas est partagé manuellement/,
+    /purement informatif<\/strong> : il n'applique jamais aucune sanction automatiquement/,
+    /au moins 3 serveurs Premium distincts et éligibles/,
+    /nouveaux contributeurs attendent 7 jours/,
+    /expirent après 12 mois/,
+    /journaux d'audit de consultation et de partage sont conservés 90 jours/,
+    /masqués immédiatement et supprimés sous 30 jours/,
+    /propriétaire du serveur peut déclencher une purge immédiate depuis le tableau de bord/,
+    /actuellement présents ou qui le rejoignent/,
+  ]) assert.match(fr, re);
+});
+
 test("language switch translates content and preserves locale across site and dashboard links", () => {
   const origin = "https://lotus-security-tau.vercel.app";
   const makeLink = (initial) => {
