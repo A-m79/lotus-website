@@ -593,9 +593,10 @@ test("the Lotus guide is local-only, translated and available on every page fami
   assert.match(source, /probleme problème souci bug panne marche fonctionne/);
   assert.match(source, /function closeEnough/);
   assert.match(source, /show\(findTopic\(input\.value\)\)/);
+  assert.match(source, /classList\.add\("is-reacting"\)/);
   for (const animation of ["lotusHelpBreathe", "lotusHelpAwake", "lotusHelpCelebrate", "lotusHelpAura", "lotusHelpSpark"]) assert.match(styles, new RegExp(animation));
   assert.match(styles, /prefers-reduced-motion:reduce/);
-  assert.match(read("assets/style.css"), /lotus-help-gentle[\s\S]*prefers-reduced-motion: reduce/);
+  assert.match(read("assets/style.css"), /lotus-help-gentle[\s\S]*lotus-help-reaction[\s\S]*prefers-reduced-motion: reduce/);
   assert.ok(fs.statSync(path.join(root, "assets", "lotus-guardian.webp")).size < 100_000);
 });
 

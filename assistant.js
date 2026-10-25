@@ -137,7 +137,10 @@
     intro.textContent = topic ? ui[1] : ui[8];
     answer.hidden = !topic;
     root.classList.toggle("has-answer", Boolean(topic));
+    root.classList.remove("is-reacting");
     if (!topic) return;
+    void root.offsetWidth;
+    root.classList.add("is-reacting");
     answer.querySelector("strong").textContent = topic.title[li];
     answer.querySelector("p").textContent = topic.answer[li];
     const link = answer.querySelector("a");
@@ -169,6 +172,7 @@
     if (open) input.focus();
   }
   orb.addEventListener("click", () => toggle());
+  orb.querySelector("img").addEventListener("animationend", (event) => { if (event.animationName === "lotusHelpReaction") root.classList.remove("is-reacting"); });
   root.querySelector("header button").addEventListener("click", () => toggle(false));
   root.querySelector("form").addEventListener("submit", (event) => {
     event.preventDefault();
