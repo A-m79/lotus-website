@@ -88,8 +88,12 @@
   const append = host?.appendChild || host?.append;
   if (typeof append !== "function") return;
   append.call(host, style);
+  const motionStyle = document.createElement("link");
+  motionStyle.rel = "stylesheet";
+  motionStyle.href = "/assets/assistant-motion.css?v=20261025-2";
+  append.call(host, motionStyle);
   const script = document.createElement("script");
-  script.src = "/assistant.js?v=20261025-2";
+  script.src = "/assistant.js?v=20261025-4";
   script.defer = true;
   append.call(host, script);
 })();

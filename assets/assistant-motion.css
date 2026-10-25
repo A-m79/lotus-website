@@ -1,0 +1,151 @@
+/* Natural motion and a calmer visual treatment for Luma. */
+.lotus-help-panel {
+  max-height: min(610px, calc(100vh - 24px));
+  animation: lotusHelpOpenNatural .28s cubic-bezier(.2, .8, .25, 1);
+}
+.lotus-help-panel header {
+  min-height: 64px;
+  padding: 10px 12px 10px 72px;
+}
+.lotus-help-panel header > div { display: flex; align-items: center; gap: 8px; font-size: 13px; }
+.lotus-help-panel header div > i { width: 8px; height: 8px; }
+.lotus-help-panel header > button { width: 31px; height: 31px; }
+.lotus-help-avatar {
+  position: absolute;
+  left: 10px;
+  top: 5px;
+  width: 56px;
+  height: 56px;
+  pointer-events: none;
+  animation: lotusHelpAvatarArrive .48s cubic-bezier(.18, .9, .24, 1.18) both;
+}
+.lotus-help-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  animation: lotusHelpAvatarBreathe 4.8s ease-in-out infinite;
+}
+
+.lotus-help-orb {
+  background: transparent;
+  filter: drop-shadow(0 10px 14px #0007);
+  animation: none;
+  transition: transform .24s ease, filter .24s ease, opacity .2s ease, height .2s ease;
+}
+.lotus-help-orb:hover, .lotus-help-orb:focus-visible {
+  transform: none;
+  filter: drop-shadow(0 13px 18px #0008);
+}
+.lotus-help-orb::before {
+  inset: 24px 18px 15px;
+  background: radial-gradient(circle, #a969e72b, transparent 72%);
+  filter: blur(7px);
+  animation: lotusHelpAuraNatural 5.2s ease-in-out infinite;
+}
+.lotus-help-orb::after {
+  left: 7px;
+  top: 15px;
+  font-size: 10px;
+  text-shadow: 0 0 8px #d399ff;
+  animation: lotusHelpSparkNatural 5.8s ease-in-out infinite;
+}
+.lotus-help-orb > img {
+  animation: lotusHelpBreatheNatural 4.8s ease-in-out infinite;
+  transition: transform .16s ease-out;
+}
+.lotus-help-orb:hover > img {
+  animation: none;
+  transform: translate(var(--look-x, 0), var(--look-y, 0)) rotate(var(--look-r, 0)) scale(1.035);
+}
+.lotus-help-badge {
+  position: absolute;
+  z-index: 4;
+  right: 3px;
+  bottom: 5px;
+  display: grid;
+  place-items: center;
+  width: 27px;
+  height: 27px;
+  border: 1px solid #d6adff;
+  border-radius: 50%;
+  color: #fff;
+  background: #6f3bd3;
+  box-shadow: 0 5px 16px #0008;
+  font-size: 14px;
+  font-weight: 900;
+  animation: lotusHelpBadgeNatural 3.6s ease-in-out infinite;
+}
+.lotus-help-orb .lotus-help-blink,
+.lotus-help-avatar .lotus-help-blink {
+  position: absolute;
+  z-index: 3;
+  inset: 0;
+  display: block;
+  width: auto;
+  height: auto;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+  animation: none;
+  pointer-events: none;
+}
+.lotus-help-orb .lotus-help-blink i,
+.lotus-help-avatar .lotus-help-blink i {
+  position: absolute;
+  top: 39.5%;
+  width: 10.5%;
+  height: 7.5%;
+  border-radius: 60% 60% 48% 48%;
+  background: #160b34;
+  opacity: 0;
+  transform-origin: center;
+  animation: lotusHelpBlinkNatural 5.6s infinite;
+}
+.lotus-help-orb .lotus-help-blink i:first-child,
+.lotus-help-avatar .lotus-help-blink i:first-child { left: 51.5%; rotate: 13deg; }
+.lotus-help-orb .lotus-help-blink i:last-child,
+.lotus-help-avatar .lotus-help-blink i:last-child { left: 62.2%; rotate: -13deg; }
+.lotus-help.is-open .lotus-help-orb {
+  height: 0;
+  opacity: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.lotus-help.has-answer .lotus-help-avatar img {
+  animation: lotusHelpCelebrateNatural .72s ease-out, lotusHelpAvatarBreathe 4.8s .72s ease-in-out infinite;
+}
+.lotus-help.is-reacting .lotus-help-avatar img {
+  animation: lotusHelpReactionNatural .82s cubic-bezier(.2, .85, .3, 1.2);
+}
+
+@keyframes lotusHelpOpenNatural { from { opacity: 0; transform: translateY(14px) scale(.96); } }
+@keyframes lotusHelpAvatarArrive { from { opacity: 0; transform: translate(55px, 18px) scale(.45) rotate(12deg); } }
+@keyframes lotusHelpBreatheNatural { 0%, 100% { transform: translateY(1px) scale(.99); } 50% { transform: translateY(-1px) scale(1.018); } }
+@keyframes lotusHelpAvatarBreathe { 0%, 100% { transform: translateY(1px) scale(.985) rotate(-.7deg); } 50% { transform: translateY(-1px) scale(1.018) rotate(.7deg); } }
+@keyframes lotusHelpReactionNatural { 0% { transform: scale(1); } 38% { transform: translateY(-4px) rotate(-5deg) scale(1.1); } 72% { transform: translateY(1px) rotate(3deg) scale(.98); } 100% { transform: scale(1); } }
+@keyframes lotusHelpCelebrateNatural { 0% { transform: scale(.96) rotate(-4deg); } 45% { transform: scale(1.12) rotate(5deg); } 100% { transform: scale(1); } }
+@keyframes lotusHelpAuraNatural { 0%, 100% { opacity: .24; transform: scale(.92); } 50% { opacity: .48; transform: scale(1.04); } }
+@keyframes lotusHelpSparkNatural { 0%, 72%, 100% { opacity: .2; transform: translate(1px, 3px) scale(.75); } 84% { opacity: .9; transform: translate(4px, -2px) scale(1); } }
+@keyframes lotusHelpBadgeNatural { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-1px); } }
+@keyframes lotusHelpBlinkNatural {
+  0%, 43%, 47%, 82%, 86%, 100% { opacity: 0; transform: scaleY(.05); }
+  44.2%, 45.5%, 83.2%, 84.5% { opacity: .94; transform: scaleY(1); }
+}
+@keyframes lotusHelpReducedBreathe { 0%, 100% { opacity: .96; transform: scale(.995); } 50% { opacity: 1; transform: scale(1.012); } }
+@keyframes lotusHelpReducedAura { 0%, 100% { opacity: .18; } 50% { opacity: .34; } }
+@keyframes lotusHelpReactionReduced { 0%, 100% { opacity: 1; transform: scale(1); } 45% { opacity: .82; transform: scale(1.035); } }
+
+@media (max-width: 600px) {
+  .lotus-help-panel { max-height: calc(100vh - 24px); }
+  .lotus-help.is-open .lotus-help-orb { height: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .lotus-help-panel, .lotus-help-orb::after, .lotus-help-avatar,
+  .lotus-help-badge { animation: none !important; }
+  .lotus-help-orb > img, .lotus-help-avatar img { animation: lotusHelpReducedBreathe 5.4s ease-in-out infinite !important; }
+  .lotus-help.is-reacting .lotus-help-avatar img { animation: lotusHelpReactionReduced .48s ease-out !important; }
+  .lotus-help-orb::before { animation: lotusHelpReducedAura 5.4s ease-in-out infinite !important; }
+  .lotus-help-blink i { animation: lotusHelpBlinkNatural 6.8s infinite !important; }
+  .lotus-help-topics button, .lotus-help-orb { transition: none; }
+}

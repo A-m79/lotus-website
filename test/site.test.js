@@ -79,6 +79,19 @@ test("public pages retain language controls, mobile navigation, and working loca
   }
 });
 
+test("comparison focuses on documented capabilities and Lotus differentiators", () => {
+  const html = read("compare.html");
+  assert.equal((html.match(/<tr(?: class="lotus-difference")?>/g) || []).length - 1, 13);
+  assert.equal((html.match(/class="lotus-difference"/g) || []).length, 4);
+  assert.match(html, /Explicit automatic role-permission rollback/);
+  assert.match(html, /Quarantine restored after leave and rejoin/);
+  assert.match(html, /Obfuscated-word filter with safe preview/);
+  assert.match(html, /Privacy-thresholded cross-server case signals/);
+  assert.match(html, /“Not documented” means we did not find that capability/);
+  for (const host of ["docs.wickbot.com", "docs.beemo.gg", "docs.securitybot.gg"]) assert.match(html, new RegExp(host.replaceAll(".", "\\.")));
+  assert.doesNotMatch(html, /Free plan includes|6\/6 free|only one of the four checked/);
+});
+
 test("legal language options stay readable in light and dark browser menus", () => {
   const source = read("legal-i18n.js");
   assert.match(source, /<select aria-label="Language"[^>]*color-scheme:light dark/);
@@ -581,6 +594,7 @@ test("language switch translates content and preserves locale across site and da
 test("the Lotus guide is local-only, translated and available on every page family", () => {
   const source = read("assistant.js");
   const styles = read("assets/assistant.css");
+  const motionStyles = read("assets/assistant-motion.css");
   assert.doesNotThrow(() => new vm.Script(source));
   assert.doesNotMatch(source, /\bfetch\s*\(|XMLHttpRequest|WebSocket|EventSource|OPENAI|ANTHROPIC/i);
   for (const locale of ["en", "fr", "es", "de", "pt"]) assert.match(source, new RegExp(`\\b${locale}: \\[`));
@@ -596,9 +610,13 @@ test("the Lotus guide is local-only, translated and available on every page fami
   assert.match(source, /function closeEnough/);
   assert.match(source, /show\(findTopic\(input\.value\)\)/);
   assert.match(source, /classList\.add\("is-reacting"\)/);
-  for (const animation of ["lotusHelpBreathe", "lotusHelpAwake", "lotusHelpCelebrate", "lotusHelpAura", "lotusHelpSpark"]) assert.match(styles, new RegExp(animation));
+  for (const animation of ["lotusHelpBreatheNatural", "lotusHelpAvatarBreathe", "lotusHelpBlinkNatural", "lotusHelpReactionNatural", "lotusHelpAuraNatural"]) assert.match(motionStyles, new RegExp(animation));
   assert.match(styles, /prefers-reduced-motion:reduce/);
-  assert.match(read("assets/style.css"), /lotus-help-gentle[\s\S]*lotus-help-reaction[\s\S]*prefers-reduced-motion: reduce/);
+  assert.match(motionStyles, /prefers-reduced-motion: reduce/);
+  assert.match(source, /pointermove[\s\S]*--look-x[\s\S]*pointerleave/);
+  assert.match(source, /lotus-help-avatar/);
+  assert.match(source, /lotus-help-blink/);
+  assert.match(read("i18n.js"), /assistant-motion\.css/);
   assert.ok(fs.statSync(path.join(root, "assets", "lotus-guardian.webp")).size < 100_000);
 });
 

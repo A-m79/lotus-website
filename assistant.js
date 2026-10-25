@@ -95,7 +95,8 @@
   const root = document.createElement("aside");
   root.className = "lotus-help";
   root.setAttribute("data-lotus-locale-managed", "");
-  root.innerHTML = `<section class="lotus-help-panel" role="dialog" aria-label="${ui[10]}" hidden><header><div><i></i><span><strong>${ui[10]}</strong><small class="lotus-help-mode">${ui[9]}</small></span></div><button type="button" aria-label="${ui[6]}">×</button></header><div class="lotus-help-body"><h2>${ui[0]}</h2><p class="lotus-help-intro">${ui[1]}</p><div class="lotus-help-answer" aria-live="polite" hidden><strong></strong><p></p><a></a></div><form><label class="assistive" for="lotus-help-input">${ui[2]}</label><input id="lotus-help-input" maxlength="160" placeholder="${ui[2]}"><button>${ui[3]}</button></form><small>${ui[4]}</small><div class="lotus-help-topics"></div></div><footer>${ui[5]}</footer></section><button class="lotus-help-orb" type="button" aria-label="${ui[7]}" aria-expanded="false"><img src="/assets/lotus-guardian.webp" alt="" draggable="false"><span>?</span></button>`;
+  const lumaFace = `<img src="/assets/lotus-guardian.webp" alt="" draggable="false"><span class="lotus-help-blink" aria-hidden="true"><i></i><i></i></span>`;
+  root.innerHTML = `<section class="lotus-help-panel" role="dialog" aria-label="${ui[10]}" hidden><header><span class="lotus-help-avatar" aria-hidden="true">${lumaFace}</span><div><i></i><span><strong>${ui[10]}</strong><small class="lotus-help-mode">${ui[9]}</small></span></div><button type="button" aria-label="${ui[6]}">×</button></header><div class="lotus-help-body"><h2>${ui[0]}</h2><p class="lotus-help-intro">${ui[1]}</p><div class="lotus-help-answer" aria-live="polite" hidden><strong></strong><p></p><a></a></div><form><label class="assistive" for="lotus-help-input">${ui[2]}</label><input id="lotus-help-input" maxlength="160" placeholder="${ui[2]}"><button>${ui[3]}</button></form><small>${ui[4]}</small><div class="lotus-help-topics"></div></div><footer>${ui[5]}</footer></section><button class="lotus-help-orb" type="button" aria-label="${ui[7]}" aria-expanded="false">${lumaFace}<span class="lotus-help-badge">?</span></button>`;
   const panel = root.querySelector(".lotus-help-panel");
   // Marketing pages give every <section> large vertical spacing. This dialog
   // is also a section, so reset it inline to stay correct even with cached CSS.
@@ -175,7 +176,22 @@
     if (open) input.focus();
   }
   orb.addEventListener("click", () => toggle());
-  orb.querySelector("img").addEventListener("animationend", (event) => { if (event.animationName === "lotusHelpReaction") root.classList.remove("is-reacting"); });
+  orb.addEventListener("pointermove", (event) => {
+    const bounds = orb.getBoundingClientRect();
+    const x = Math.max(-1, Math.min(1, ((event.clientX - bounds.left) / bounds.width - .5) * 2));
+    const y = Math.max(-1, Math.min(1, ((event.clientY - bounds.top) / bounds.height - .5) * 2));
+    orb.style.setProperty("--look-x", `${(x * 3.5).toFixed(2)}px`);
+    orb.style.setProperty("--look-y", `${(y * 2.5).toFixed(2)}px`);
+    orb.style.setProperty("--look-r", `${(x * 2.2).toFixed(2)}deg`);
+  });
+  orb.addEventListener("pointerleave", () => {
+    orb.style.removeProperty("--look-x");
+    orb.style.removeProperty("--look-y");
+    orb.style.removeProperty("--look-r");
+  });
+  root.querySelector(".lotus-help-avatar img").addEventListener("animationend", (event) => {
+    if (["lotusHelpReactionNatural", "lotusHelpReactionReduced"].includes(event.animationName)) root.classList.remove("is-reacting");
+  });
   root.querySelector("header button").addEventListener("click", () => toggle(false));
   root.querySelector("form").addEventListener("submit", (event) => {
     event.preventDefault();
