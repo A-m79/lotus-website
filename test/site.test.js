@@ -610,15 +610,13 @@ test("the Lotus guide is local-only, translated and available on every page fami
   assert.match(source, /function closeEnough/);
   assert.match(source, /show\(findTopic\(input\.value\)\)/);
   assert.match(source, /classList\.add\("is-reacting"\)/);
-  for (const animation of ["lotusHelpBreatheNatural", "lotusHelpAvatarBreathe", "lotusHelpBlinkNatural", "lotusHelpReactionNatural", "lotusHelpAuraNatural"]) assert.match(motionStyles, new RegExp(animation));
+  for (const animation of ["lotusHelpBreatheNatural", "lotusHelpAvatarBreathe", "lotusHelpReactionNatural", "lotusHelpAuraNatural"]) assert.match(motionStyles, new RegExp(animation));
   assert.match(styles, /prefers-reduced-motion:reduce/);
   assert.match(motionStyles, /prefers-reduced-motion: reduce/);
   assert.match(source, /pointermove[\s\S]*--look-x[\s\S]*pointerleave/);
   assert.match(source, /lotus-help-avatar/);
-  assert.match(source, /lotus-help-blink/);
-  assert.match(motionStyles, /width:\s*7\.2%/);
-  assert.match(motionStyles, /height:\s*9\.2%/);
-  assert.match(motionStyles, /border-bottom:\s*1px solid/);
+  assert.doesNotMatch(source, /lotus-help-blink/);
+  assert.doesNotMatch(motionStyles, /lotusHelpBlinkNatural/);
   assert.match(read("i18n.js"), /assistant-motion\.css/);
   assert.ok(fs.statSync(path.join(root, "assets", "lotus-guardian.webp")).size < 100_000);
 });

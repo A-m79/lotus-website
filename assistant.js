@@ -95,7 +95,7 @@
   const root = document.createElement("aside");
   root.className = "lotus-help";
   root.setAttribute("data-lotus-locale-managed", "");
-  const lumaFace = `<img src="/assets/lotus-guardian.webp" alt="" draggable="false"><span class="lotus-help-blink" aria-hidden="true"><i></i><i></i></span>`;
+  const lumaFace = `<img src="/assets/lotus-guardian.webp" alt="" draggable="false">`;
   root.innerHTML = `<section class="lotus-help-panel" role="dialog" aria-label="${ui[10]}" hidden><header><span class="lotus-help-avatar" aria-hidden="true">${lumaFace}</span><div><i></i><span><strong>${ui[10]}</strong><small class="lotus-help-mode">${ui[9]}</small></span></div><button type="button" aria-label="${ui[6]}">×</button></header><div class="lotus-help-body"><h2>${ui[0]}</h2><p class="lotus-help-intro">${ui[1]}</p><div class="lotus-help-answer" aria-live="polite" hidden><strong></strong><p></p><a></a></div><form><label class="assistive" for="lotus-help-input">${ui[2]}</label><input id="lotus-help-input" maxlength="160" placeholder="${ui[2]}"><button>${ui[3]}</button></form><small>${ui[4]}</small><div class="lotus-help-topics"></div></div><footer>${ui[5]}</footer></section><button class="lotus-help-orb" type="button" aria-label="${ui[7]}" aria-expanded="false">${lumaFace}<span class="lotus-help-badge">?</span></button>`;
   const panel = root.querySelector(".lotus-help-panel");
   // Marketing pages give every <section> large vertical spacing. This dialog
