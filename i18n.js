@@ -10,11 +10,6 @@
     de: "Lotus erkennt zerstörerische Aktionen und reagiert in Sekunden. Kostenloser Anti-Nuke-, Anti-Raid- und Anti-Spam-Schutz für deinen Discord-Server.",
     pt: "O Lotus deteta ações destrutivas e reage em segundos. Proteção gratuita anti-nuke, anti-raid e anti-spam para o teu servidor Discord.",
   };
-  const legalFallback = {
-    es: "Los documentos legales están disponibles en inglés y francés; se mostrará la versión inglesa.",
-    de: "Rechtliche Dokumente sind derzeit auf Englisch und Französisch verfügbar; die englische Fassung wird angezeigt.",
-    pt: "Os documentos legais estão disponíveis em inglês e francês; será mostrada a versão inglesa.",
-  };
   const rows = [
     ["Features", "Fonctionnalités", "Funciones", "Funktionen", "Funcionalidades"],
     ["Dashboard", "Dashboard", "Panel", "Dashboard", "Painel"],
@@ -342,19 +337,6 @@
       if (!Object.hasOwn(legalPaths, original)) continue;
       link.dataset.originalLegalPath = original;
       link.setAttribute("href", legalPaths[original]);
-    }
-    const legalFooter = document.querySelector(".foot-legal") || document.querySelector("footer .foot-links:last-of-type");
-    if (legalFooter) {
-      let note = legalFooter.querySelector(".legal-language-note");
-      if (!note) {
-        note = document.createElement("span");
-        note.className = "legal-language-note";
-        note.style.cssText = "display:block;width:100%;font-size:12px;color:var(--text-dim);margin-top:8px";
-        legalFooter.append(note);
-      }
-      const message = legalFallback[current] || "";
-      if (note.textContent !== message) note.textContent = message;
-      note.hidden = !legalFallback[current];
     }
     const page = location.pathname.includes("commands") ? "commands" : location.pathname.includes("compare") ? "compare" : "home";
     const titles = {
