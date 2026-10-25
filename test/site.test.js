@@ -83,10 +83,10 @@ test("comparison focuses on documented capabilities and Lotus differentiators", 
   const html = read("compare.html");
   assert.equal((html.match(/<tr(?: class="lotus-difference")?>/g) || []).length - 1, 13);
   assert.equal((html.match(/class="lotus-difference"/g) || []).length, 4);
-  assert.match(html, /Explicit automatic role-permission rollback/);
-  assert.match(html, /Quarantine restored after leave and rejoin/);
-  assert.match(html, /Obfuscated-word filter with safe preview/);
-  assert.match(html, /Privacy-thresholded cross-server case signals/);
+  assert.match(html, /Automatically removes dangerous role permissions/);
+  assert.match(html, /Keeps a member quarantined after they leave and return/);
+  assert.match(html, /Detects disguised forbidden words/);
+  assert.match(html, /Shares sanctions across a community's servers/);
   assert.match(html, /“Not documented” means we did not find that capability/);
   for (const host of ["docs.wickbot.com", "docs.beemo.gg", "docs.securitybot.gg"]) assert.match(html, new RegExp(host.replaceAll(".", "\\.")));
   assert.doesNotMatch(html, /Free plan includes|6\/6 free|only one of the four checked/);
