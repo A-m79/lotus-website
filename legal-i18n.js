@@ -83,13 +83,13 @@
 (() => {
   const style = document.createElement("link");
   style.rel = "stylesheet";
-  style.href = "/assets/assistant.css";
+  style.href = "/assets/assistant.css?v=20261025-2";
   const host = document.head || document.body;
   const append = host?.appendChild || host?.append;
   if (typeof append !== "function") return;
   append.call(host, style);
   const script = document.createElement("script");
-  script.src = "/assistant.js";
+  script.src = "/assistant.js?v=20261025-2";
   script.defer = true;
   append.call(host, script);
 })();

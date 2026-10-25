@@ -588,6 +588,8 @@ test("the Lotus guide is local-only, translated and available on every page fami
   assert.match(read("legal-i18n.js"), /\/assistant\.js/);
   assert.match(source, /label\[for='lotus-help-input'\][\s\S]*textContent = ui\[2\]/);
   assert.match(source, /function resetAnswer\(\)[\s\S]*answer\.hidden = true/);
+  assert.match(read("assets/style.css"), /\.lotus-help-panel\s*\{\s*padding-block:\s*0/);
+  assert.match(source, /panel\.style\.paddingBlock = "0"/);
   assert.match(source, /GUIDE LOCAL · PAS UNE IA/);
   assert.match(source, /j ai une question/);
   assert.match(source, /probleme problème souci bug panne marche fonctionne/);
