@@ -577,3 +577,24 @@ test("language switch translates content and preserves locale across site and da
   assert.match(brand["aria-label"], /volver arriba/);
   assert.equal(legal.getAttribute("href"), "/privacy?lang=es");
 });
+
+test("the Lotus guide is local-only, translated and available on every page family", () => {
+  const source = read("assistant.js");
+  assert.doesNotThrow(() => new vm.Script(source));
+  assert.doesNotMatch(source, /\bfetch\s*\(|XMLHttpRequest|WebSocket|EventSource|OPENAI|ANTHROPIC/i);
+  for (const locale of ["en", "fr", "es", "de", "pt"]) assert.match(source, new RegExp(`\\b${locale}: \\[`));
+  assert.match(read("i18n.js"), /\/assistant\.js/);
+  assert.match(read("legal-i18n.js"), /\/assistant\.js/);
+  assert.match(source, /label\[for='lotus-help-input'\][\s\S]*textContent = ui\[2\]/);
+  assert.match(source, /function resetAnswer\(\)[\s\S]*answer\.hidden = true/);
+  assert.ok(fs.statSync(path.join(root, "assets", "lotus-guardian.webp")).size < 100_000);
+});
+
+test("the visual identity fonts are self-hosted and do not block on Google", () => {
+  const styles = read("assets/style.css");
+  assert.doesNotMatch(styles, /fonts\.(?:googleapis|gstatic)\.com/);
+  for (const file of ["familjen-grotesk-latin.woff2", "jetbrains-mono-latin.woff2", "unbounded-latin.woff2"]) {
+    assert.ok(fs.statSync(path.join(root, "assets", "fonts", file)).size > 1_000);
+    assert.match(styles, new RegExp(file.replace(".", "\\.")));
+  }
+});

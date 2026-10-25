@@ -401,6 +401,9 @@
     }
     document.getElementById("embed-card")?.removeAttribute("data-lotus-locale-pending");
     document.documentElement.removeAttribute?.("data-lotus-locale-pending");
+    if (typeof window !== "undefined" && typeof CustomEvent === "function") {
+      window.dispatchEvent(new CustomEvent("lotus:locale", { detail: current }));
+    }
   }
 
   function schedule() {
@@ -453,4 +456,20 @@
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", start, { once: true });
   else start();
+})();
+
+// Local Lotus help: static knowledge only, no API call and no question leaves
+// the visitor's browser.
+(() => {
+  const style = document.createElement("link");
+  style.rel = "stylesheet";
+  style.href = "/assets/assistant.css";
+  const host = document.head || document.body;
+  const append = host?.appendChild || host?.append;
+  if (typeof append !== "function") return;
+  append.call(host, style);
+  const script = document.createElement("script");
+  script.src = "/assistant.js";
+  script.defer = true;
+  append.call(host, script);
 })();

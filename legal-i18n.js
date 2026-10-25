@@ -78,3 +78,18 @@
     link.setAttribute("href", url.pathname + url.search + url.hash);
   }
 })();
+
+// The legal pages share the same local, zero-network help companion.
+(() => {
+  const style = document.createElement("link");
+  style.rel = "stylesheet";
+  style.href = "/assets/assistant.css";
+  const host = document.head || document.body;
+  const append = host?.appendChild || host?.append;
+  if (typeof append !== "function") return;
+  append.call(host, style);
+  const script = document.createElement("script");
+  script.src = "/assistant.js";
+  script.defer = true;
+  append.call(host, script);
+})();
