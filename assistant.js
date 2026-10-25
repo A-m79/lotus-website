@@ -88,7 +88,7 @@
       keys: "support contact humain human personne équipe equipe discord assistance contacter contacto humano ajuda pessoa apoio",
       title: ["I still need help", "J’ai encore besoin d’aide", "Todavía necesito ayuda", "Ich brauche weitere Hilfe", "Ainda preciso de ajuda"],
       answer: ["Join the Lotus support server and describe the feature and visible error. Never post a password, token or authentication code.", "Rejoins le serveur de support Lotus et indique la fonction et l’erreur visible. Ne publie jamais de mot de passe, token ou code d’authentification.", "Únete al servidor de soporte y describe la función y el error visible. Nunca publiques contraseñas, tokens ni códigos.", "Tritt dem Supportserver bei und nenne Funktion und Fehler. Teile niemals Passwort, Token oder Authentifizierungscode.", "Entra no servidor de suporte e indica a função e o erro. Nunca publiques palavras-passe, tokens ou códigos."],
-      href: "https://discord.gg/vrPCuHBRjM",
+      href: "https://discord.gg/qPQRCC9mQF",
     },
   ];
   let li = supported.indexOf(locale);

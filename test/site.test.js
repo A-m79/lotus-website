@@ -217,7 +217,7 @@ test("localized privacy pages keep titles, contacts and every Premium shared-cas
   };
   const english = read("privacy.html");
   const facts = [
-    "lotus.security.bot@gmail.com", "https://discord.gg/vrPCuHBRjM", "https://www.cnil.fr", "MongoDB Atlas", "Oracle Cloud Infrastructure",
+    "lotus.security.bot@gmail.com", "https://discord.gg/qPQRCC9mQF", "https://www.cnil.fr", "MongoDB Atlas", "Oracle Cloud Infrastructure",
     "Discord Inc.", "/lotus case", "/lotus config activitylogs", "/lotus backup", "/lotus mod warn", "micro-entreprise",
   ];
   for (const [page, { lang, title, updated, checks }] of Object.entries(expected)) {
@@ -362,7 +362,7 @@ test("localized terms pages keep every section, legal fact, link and liability g
     ] },
   };
   const facts = [
-    "lotus.security.bot@gmail.com", "https://discord.gg/vrPCuHBRjM", "https://discord.com/terms", 'href="/privacy"',
+    "lotus.security.bot@gmail.com", "https://discord.gg/qPQRCC9mQF", "https://discord.com/terms", 'href="/privacy"',
     "/lotus config", "/lotus thresholds", "/lotus whitelist", "Tacos",
   ];
   assert.ok(english.includes("September 16, 2026"));
@@ -482,7 +482,7 @@ test("localized legal notice pages keep every section, legal fact, link and stat
   const hrefs = (html) => [...html.matchAll(/href="([^"]+)"/g)].map((m) => m[1])
     .filter((h) => !h.startsWith("data:") && !h.startsWith("https://lotus-security-tau.vercel.app/legal-notice"));
   const facts = [
-    "lotus.security.bot@gmail.com", "mailto:lotus.security.bot@gmail.com", "https://vercel.com", "https://discord.com/terms", "https://discord.gg/vrPCuHBRjM",
+    "lotus.security.bot@gmail.com", "mailto:lotus.security.bot@gmail.com", "https://vercel.com", "https://discord.com/terms", "https://discord.gg/qPQRCC9mQF",
     "340 S Lemon Ave #4133, Walnut, CA 91789", "Tacos", "Discord Inc.", 'href="/terms"', 'href="/privacy"', 'href="/legal-notice"',
   ];
   for (const page of ["legal-notice.html", "mentions-legales.html", ...Object.keys(expected)]) {
