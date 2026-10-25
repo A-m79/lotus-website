@@ -616,8 +616,21 @@ test("the Lotus guide is local-only, translated and available on every page fami
   assert.match(source, /pointermove[\s\S]*--look-x[\s\S]*pointerleave/);
   assert.match(source, /lotus-help-avatar/);
   assert.match(source, /lotus-help-blink/);
+  assert.match(motionStyles, /width:\s*7\.2%/);
+  assert.match(motionStyles, /height:\s*9\.2%/);
+  assert.match(motionStyles, /border-bottom:\s*1px solid/);
   assert.match(read("i18n.js"), /assistant-motion\.css/);
   assert.ok(fs.statSync(path.join(root, "assets", "lotus-guardian.webp")).size < 100_000);
+});
+
+test("the hero demonstration never blanks or enters a Chromium-unsafe 3D layer", () => {
+  const page = read("index.html");
+  const styles = read("assets/style.css");
+  assert.doesNotMatch(page, /card\.style\.opacity\s*=\s*0/);
+  assert.doesNotMatch(page, /rotateY\(|rotateX\(/);
+  assert.doesNotMatch(styles, /transform-style:\s*preserve-3d/);
+  assert.match(page, /classList\.add\('is-switching'\)/);
+  assert.match(styles, /\.embed-card\.is-switching\s*>\s*\*/);
 });
 
 test("the visual identity fonts are self-hosted and do not block on Google", () => {

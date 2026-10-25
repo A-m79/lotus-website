@@ -93,19 +93,30 @@
 .lotus-help-orb .lotus-help-blink i,
 .lotus-help-avatar .lotus-help-blink i {
   position: absolute;
-  top: 39.5%;
-  width: 10.5%;
-  height: 7.5%;
-  border-radius: 60% 60% 48% 48%;
-  background: #160b34;
+  top: 38.8%;
+  width: 7.2%;
+  height: 9.2%;
+  border: 0;
+  border-bottom: 1px solid #7441a5;
+  background: linear-gradient(155deg, #250b50 12%, #17072f 82%);
+  box-shadow: inset 0 -1px 1px #a45ee044;
   opacity: 0;
-  transform-origin: center;
-  animation: lotusHelpBlinkNatural 5.6s infinite;
+  transform: scaleY(.06);
+  transform-origin: 50% 65%;
+  animation: lotusHelpBlinkNatural 6.8s ease-in-out infinite;
 }
 .lotus-help-orb .lotus-help-blink i:first-child,
-.lotus-help-avatar .lotus-help-blink i:first-child { left: 51.5%; rotate: 13deg; }
+.lotus-help-avatar .lotus-help-blink i:first-child {
+  left: 51.6%;
+  border-radius: 68% 32% 63% 37%;
+  rotate: -25deg;
+}
 .lotus-help-orb .lotus-help-blink i:last-child,
-.lotus-help-avatar .lotus-help-blink i:last-child { left: 62.2%; rotate: -13deg; }
+.lotus-help-avatar .lotus-help-blink i:last-child {
+  left: 61.3%;
+  border-radius: 32% 68% 37% 63%;
+  rotate: 25deg;
+}
 .lotus-help.is-open .lotus-help-orb {
   height: 0;
   opacity: 0;
@@ -129,8 +140,8 @@
 @keyframes lotusHelpSparkNatural { 0%, 72%, 100% { opacity: .2; transform: translate(1px, 3px) scale(.75); } 84% { opacity: .9; transform: translate(4px, -2px) scale(1); } }
 @keyframes lotusHelpBadgeNatural { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-1px); } }
 @keyframes lotusHelpBlinkNatural {
-  0%, 43%, 47%, 82%, 86%, 100% { opacity: 0; transform: scaleY(.05); }
-  44.2%, 45.5%, 83.2%, 84.5% { opacity: .94; transform: scaleY(1); }
+  0%, 45.5%, 48.8%, 76.5%, 79.2%, 100% { opacity: 0; transform: scaleY(.06); }
+  46.5%, 47.7%, 77.35%, 78.35% { opacity: .98; transform: scaleY(1); }
 }
 @keyframes lotusHelpReducedBreathe { 0%, 100% { opacity: .96; transform: scale(.995); } 50% { opacity: 1; transform: scale(1.012); } }
 @keyframes lotusHelpReducedAura { 0%, 100% { opacity: .18; } 50% { opacity: .34; } }

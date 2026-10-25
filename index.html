@@ -574,8 +574,6 @@ dotsWrap.appendChild(d);
 function render(i) {
 const s = slides[i];
 if (document.documentElement.lang !== 'en') card.setAttribute('data-lotus-locale-pending', '');
-card.style.opacity = 0;
-setTimeout(() => {
 card.innerHTML =
 '<div class="embed-author"><span class="sq">🪷</span>LOTUS SECURITY SYSTEM</div>' +
 '<div class="embed-title">' + s.title + '</div>' +
@@ -583,28 +581,15 @@ card.innerHTML =
 '<div><div class="f-label">' + f[0] + '</div><div class="f-val">' + f[1] + '</div></div>'
 ).join('') + '</div>' +
 '<div class="embed-footer"><span>Lotus Security System</span><span>just now</span></div>';
-card.style.transition = 'opacity .35s ease';
-card.style.opacity = 1;
-}, 180);
+card.classList.remove('is-switching');
+void card.offsetWidth;
+card.classList.add('is-switching');
 [...dotsWrap.children].forEach((d, di) => d.classList.toggle('active', di === i));
 }
 
 let idx = 0;
 render(0);
 setInterval(() => { idx = (idx + 1) % slides.length; render(idx); }, 3600);
-
-// Subtle mouse-parallax tilt on the hero embed card
-const shell = document.querySelector('.embed-shell');
-const heroVisual = document.querySelector('.hero-grid > div:last-child');
-if (shell && heroVisual) {
-heroVisual.addEventListener('mousemove', (e) => {
-const r = heroVisual.getBoundingClientRect();
-const px = (e.clientX - r.left) / r.width - 0.5;
-const py = (e.clientY - r.top) / r.height - 0.5;
-shell.style.transform = `rotateY(${px * 8}deg) rotateX(${-py * 8}deg)`;
-});
-heroVisual.addEventListener('mouseleave', () => { shell.style.transform = 'rotateY(0) rotateX(0)'; });
-}
 
 // Cursor spotlight glow on cards
 document.querySelectorAll('.feature-card, .plan').forEach((card) => {
