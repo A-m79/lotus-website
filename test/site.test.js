@@ -580,6 +580,7 @@ test("language switch translates content and preserves locale across site and da
 
 test("the Lotus guide is local-only, translated and available on every page family", () => {
   const source = read("assistant.js");
+  const styles = read("assets/assistant.css");
   assert.doesNotThrow(() => new vm.Script(source));
   assert.doesNotMatch(source, /\bfetch\s*\(|XMLHttpRequest|WebSocket|EventSource|OPENAI|ANTHROPIC/i);
   for (const locale of ["en", "fr", "es", "de", "pt"]) assert.match(source, new RegExp(`\\b${locale}: \\[`));
@@ -587,6 +588,14 @@ test("the Lotus guide is local-only, translated and available on every page fami
   assert.match(read("legal-i18n.js"), /\/assistant\.js/);
   assert.match(source, /label\[for='lotus-help-input'\][\s\S]*textContent = ui\[2\]/);
   assert.match(source, /function resetAnswer\(\)[\s\S]*answer\.hidden = true/);
+  assert.match(source, /GUIDE LOCAL · PAS UNE IA/);
+  assert.match(source, /j ai une question/);
+  assert.match(source, /probleme problème souci bug panne marche fonctionne/);
+  assert.match(source, /function closeEnough/);
+  assert.match(source, /show\(findTopic\(input\.value\)\)/);
+  for (const animation of ["lotusHelpBreathe", "lotusHelpAwake", "lotusHelpCelebrate", "lotusHelpAura", "lotusHelpSpark"]) assert.match(styles, new RegExp(animation));
+  assert.match(styles, /prefers-reduced-motion:reduce/);
+  assert.match(read("assets/style.css"), /lotus-help-gentle[\s\S]*prefers-reduced-motion: reduce/);
   assert.ok(fs.statSync(path.join(root, "assets", "lotus-guardian.webp")).size < 100_000);
 });
 

@@ -149,7 +149,7 @@ nav.scrolled { border-bottom-color: var(--border); box-shadow: var(--shadow); }
 .lotus-language-option { display: flex; align-items: center; gap: 10px; width: 100%; padding: 9px 10px; color: var(--text); background: transparent; border: 0; border-radius: 8px; font: 600 13px 'Familjen Grotesk', sans-serif; text-align: left; cursor: pointer; }
 .lotus-language-option:hover, .lotus-language-option[aria-current="true"] { background: var(--surface-2); color: var(--accent); }
 @keyframes language-menu-in { from { opacity: 0; transform: translateY(-5px) scale(.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
-.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+.sr-only, .assistive { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
 .nav-links a { color: var(--text-dim); font-size: 14.5px; font-weight: 500; transition: color .15s ease; }
 .nav-links a:hover { color: var(--text); }
 .nav-burger { display: none; background: none; border: 1px solid var(--border); border-radius: 10px; width: 38px; height: 38px; align-items: center; justify-content: center; color: var(--text); cursor: pointer; flex: none; }
@@ -599,3 +599,11 @@ a:focus-visible, button:focus-visible, summary:focus-visible, .compare-link:focu
 /* ---------- version badge ---------- */
 .version-badge { display: inline-flex; align-items: center; gap: 7px; font-family: 'JetBrains Mono', monospace; font-size: 11.5px; font-weight: 700; letter-spacing: .04em; color: var(--text-dim); background: var(--surface-2); border: 1px solid var(--border); padding: 6px 12px; border-radius: 100px; margin-bottom: 14px; }
 .version-badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--success); box-shadow: 0 0 0 3px color-mix(in srgb, var(--success) 25%, transparent); }
+
+/* Luma remains gently alive when the operating system requests reduced motion. */
+@keyframes lotus-help-gentle { 0%, 100% { opacity: .92; transform: scale(.99); } 50% { opacity: 1; transform: scale(1.015); } }
+@keyframes lotus-help-gentle-aura { 0%, 100% { opacity: .32; } 50% { opacity: .68; } }
+@media (prefers-reduced-motion: reduce) {
+  .lotus-help-orb img { animation: lotus-help-gentle 3.4s ease-in-out infinite !important; }
+  .lotus-help-orb::before { animation: lotus-help-gentle-aura 3.4s ease-in-out infinite !important; }
+}
