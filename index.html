@@ -163,7 +163,6 @@ html[data-lotus-locale-pending]::before { content: "🪷 Lotus"; position: fixed
 </div>
 
 <div class="feature-card">
-<span class="tag-premium">Premium</span>
 <div class="f-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4m0 4h.01M10.3 3.9 2.5 18a2 2 0 0 0 1.7 3h15.6a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg></div>
 <h3>Dangerous Permission Watch</h3>
 <p>The gap most bots miss: catches a role edit that quietly grants Administrator or ban/kick powers, and reverts it automatically — even from an already-trusted account.</p>
@@ -176,7 +175,6 @@ html[data-lotus-locale-pending]::before { content: "🪷 Lotus"; position: fixed
 </div>
 
 <div class="feature-card">
-<span class="tag-premium">Premium</span>
 <div class="f-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg></div>
 <h3>Activity Logs &amp; Case History</h3>
 <p>Every edit, delete, join and leave, plus a searchable case ID for every sanction Lotus has ever issued on your server.</p>
@@ -216,7 +214,7 @@ html[data-lotus-locale-pending]::before { content: "🪷 Lotus"; position: fixed
 </div>
 <div class="action-card">
 <div class="action-body">
-<span class="action-tag">Premium &middot; Dangerous Permission Watch</span>
+<span class="action-tag">Free &middot; Dangerous Permission Watch</span>
 <h3>Dangerous Permission Watch</h3>
 <ul class="action-flow">
 <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>Administrator permission added to a role</li>
@@ -359,6 +357,11 @@ html[data-lotus-locale-pending]::before { content: "🪷 Lotus"; position: fixed
 <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>Verification gate</li>
 <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>Manual moderation suite</li>
 <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>Logs &amp; alerts channel</li>
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>Custom thresholds, reactions &amp; exceptions</li>
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>Dangerous permission protection</li>
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>Activity logs &amp; case history</li>
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>Persistent quarantine</li>
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>Custom disguised-word lists</li>
 </ul>
 <div class="plan-foot"><a href="#" class="btn btn-ghost" style="width:100%; justify-content:center;">Add for free</a></div>
 </div>
@@ -371,10 +374,8 @@ html[data-lotus-locale-pending]::before { content: "🪷 Lotus"; position: fixed
 <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>Everything in Free</li>
 <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>Alt &amp; new account detection</li>
 <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>Phishing link detection</li>
-<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>Dangerous permission watch</li>
-<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>Activity logs &amp; case history</li>
 <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>Automated backups &amp; 1-click restore</li>
-<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>Custom threshold tuning</li>
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>Cross-server community sanctions</li>
 <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>Priority support</li>
 </ul>
 <div class="plan-foot"><span class="badge-soon">🪷 In development</span></div>
@@ -396,12 +397,15 @@ html[data-lotus-locale-pending]::before { content: "🪷 Lotus"; position: fixed
 <tr><td>Verification gate</td><td class="yes">✓</td><td class="yes">✓</td></tr>
 <tr><td>Manual moderation suite</td><td class="yes">✓</td><td class="yes">✓</td></tr>
 <tr><td>Logs &amp; alerts channel</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+<tr><td>Custom thresholds, reactions &amp; exceptions</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+<tr><td>Dangerous permission protection</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+<tr><td>Activity logs &amp; case history</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+<tr><td>Persistent quarantine</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+<tr><td>Custom disguised-word lists</td><td class="yes">✓</td><td class="yes">✓</td></tr>
 <tr><td>Alt &amp; new account detection</td><td class="no">–</td><td class="yes">✓</td></tr>
 <tr><td>Phishing link detection</td><td class="no">–</td><td class="yes">✓</td></tr>
-<tr><td>Dangerous permission watch</td><td class="no">–</td><td class="yes">✓</td></tr>
-<tr><td>Activity logs &amp; case history</td><td class="no">–</td><td class="yes">✓</td></tr>
 <tr><td>Automated backups &amp; 1-click restore</td><td class="no">–</td><td class="yes">✓</td></tr>
-<tr><td>Custom threshold tuning</td><td class="no">–</td><td class="yes">✓</td></tr>
+<tr><td>Cross-server community sanctions</td><td class="no">–</td><td class="yes">✓</td></tr>
 <tr><td>Priority support</td><td class="no">–</td><td class="yes">✓</td></tr>
 </tbody>
 </table>
@@ -441,7 +445,7 @@ html[data-lotus-locale-pending]::before { content: "🪷 Lotus"; position: fixed
 </details>
 <details class="faq-item">
 <summary>Is the Free plan actually free, or a trial?</summary>
-<p class="faq-a">Free is free forever — no feature timer, no watered-down detection window. Anti-Nuke, Anti-Raid, Anti-Spam, the verification gate and the full manual moderation suite are all included at no cost. Premium adds extra detection layers (alt accounts, phishing links, permission watch) and forensic tools on top, it doesn't gate the core protection.</p>
+<p class="faq-a">Free is free forever — no feature timer and no watered-down protection. It includes Anti-Nuke, Anti-Raid, Anti-Spam, dangerous-permission protection, custom thresholds and reactions, exceptions, activity logs, persistent quarantine, custom disguised-word lists, verification and manual moderation. Premium adds backups, phishing and suspicious-account detection, cross-server community sanctions and priority support.</p>
 </details>
 <details class="faq-item">
 <summary>What data does Lotus store about my server?</summary>
