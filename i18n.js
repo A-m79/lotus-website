@@ -147,14 +147,14 @@
   rows.push(...[
     ["Compare", "Comparer", "Comparar", "Vergleich", "Comparar"],
     ["FAQ", "Questions fréquentes", "Preguntas frecuentes", "FAQ", "Perguntas frequentes"],
-    ["Lotus Security System · Active protection", "Système de sécurité Lotus · Protection active", "Sistema de seguridad Lotus · Protección activa", "Lotus-Sicherheitssystem · Aktiver Schutz", "Sistema de segurança Lotus · Proteção ativa"],
+    ["Lotus is watching over your server", "Lotus veille sur ton serveur", "Lotus vigila tu servidor", "Lotus wacht über deinen Server", "O Lotus protege o teu servidor"],
     ["Lotus watches destructive actions as they happen and automatically responds the moment a threat is detected — so your staff doesn't discover the damage after it's already done.", "Lotus surveille les actions destructrices en temps réel et réagit dès qu'une menace est détectée. Votre équipe n'attend pas de constater les dégâts pour agir.", "Lotus vigila las acciones destructivas en tiempo real y responde en cuanto detecta una amenaza. Tu equipo no tiene que descubrir los daños demasiado tarde.", "Lotus überwacht zerstörerische Aktionen in Echtzeit und reagiert, sobald eine Bedrohung erkannt wird. Dein Team muss den Schaden nicht erst im Nachhinein entdecken.", "O Lotus vigia ações destrutivas em tempo real e reage assim que deteta uma ameaça. A tua equipa não precisa de descobrir os danos tarde demais."],
     ["Already using Lotus?", "Tu utilises déjà Lotus ?", "¿Ya usas Lotus?", "Du nutzt Lotus bereits?", "Já usas o Lotus?"],
     ["Open the dashboard →", "Ouvrir le dashboard →", "Abrir el panel →", "Dashboard öffnen →", "Abrir o painel →"],
-    ["security & moderation systems", "systèmes de sécurité et de modération", "sistemas de seguridad y moderación", "Sicherheits- und Moderationssysteme", "sistemas de segurança e moderação"],
-    ["Real-time", "Temps réel", "Tiempo real", "Echtzeit", "Tempo real"],
-    ["event-driven detection & response", "détection et réaction aux événements", "detección y respuesta basadas en eventos", "ereignisgesteuerte Erkennung und Reaktion", "deteção e resposta a eventos"],
-    ["Lotus continuously watches server events. Protective actions are triggered as soon as a dangerous event is detected, subject to Discord API availability and rate limits.", "Lotus surveille en continu les événements du serveur. Les protections se déclenchent dès qu'un événement dangereux est détecté, sous réserve de la disponibilité et des limites de l'API Discord.", "Lotus vigila continuamente los eventos del servidor. Las medidas de protección se activan al detectar un evento peligroso, según la disponibilidad y los límites de la API de Discord.", "Lotus überwacht Serverereignisse laufend. Schutzmaßnahmen werden bei gefährlichen Ereignissen ausgelöst, abhängig von der Verfügbarkeit und den Limits der Discord-API.", "O Lotus monitoriza continuamente os eventos do servidor. As medidas de proteção são ativadas ao detetar um evento perigoso, sujeitas à disponibilidade e aos limites da API do Discord."],
+    ["servers already protected", "serveurs déjà protégés", "servidores ya protegidos", "bereits geschützte Server", "servidores já protegidos"],
+    ["A few seconds", "Quelques secondes", "Unos segundos", "Wenige Sekunden", "Alguns segundos"],
+    ["to detect a threat and react", "pour détecter une menace et réagir", "para detectar una amenaza y reaccionar", "um eine Bedrohung zu erkennen und zu reagieren", "para detetar uma ameaça e reagir"],
+    ["Lotus reacts as soon as Discord reports a dangerous action. The exact delay depends on Discord's availability and rate limits.", "Lotus réagit dès que Discord lui signale une action dangereuse. Le délai exact dépend de la disponibilité et des limites de Discord.", "Lotus reacciona cuando Discord le comunica una acción peligrosa. El tiempo exacto depende de la disponibilidad y los límites de Discord.", "Lotus reagiert, sobald Discord eine gefährliche Aktion meldet. Die genaue Dauer hängt von der Verfügbarkeit und den Limits von Discord ab.", "O Lotus reage assim que o Discord comunica uma ação perigosa. O tempo exato depende da disponibilidade e dos limites do Discord."],
     ["1 command", "1 commande", "1 comando", "1 Befehl", "1 comando"],
     ["sets up & repairs your protection stack", "installe et répare tes protections", "configura y repara tus protecciones", "richtet deinen Schutz ein und repariert ihn", "configura e repara as tuas proteções"],
     ["New members only see the verification flow until they're verified, keeping the rest of your server out of reach.", "Les nouveaux membres n'accèdent qu'à la vérification tant qu'ils ne l'ont pas terminée ; le reste du serveur leur est inaccessible.", "Los nuevos miembros solo ven la verificación hasta completarla; el resto del servidor permanece inaccesible.", "Neue Mitglieder sehen bis zur erfolgreichen Verifizierung nur den Prüfbereich; der restliche Server bleibt gesperrt.", "Os novos membros só veem a verificação até a concluírem; o resto do servidor fica inacessível."],
@@ -507,7 +507,7 @@
   append.call(host, style);
   const motionStyle = document.createElement("link");
   motionStyle.rel = "stylesheet";
-  motionStyle.href = "/assets/assistant-motion.css?v=20261025-4";
+  motionStyle.href = "/assets/assistant-motion.css?v=20261026-1";
   append.call(host, motionStyle);
   const script = document.createElement("script");
   script.src = "/assistant.js?v=20261025-5";

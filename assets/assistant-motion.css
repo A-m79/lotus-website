@@ -23,7 +23,7 @@
   width: 100%;
   height: 100%;
   object-fit: contain;
-  animation: lotusHelpAvatarBreathe 4.8s ease-in-out infinite;
+  animation: lotusHelpAvatarBreathe 8.6s ease-in-out infinite;
 }
 
 .lotus-help-orb {
@@ -40,7 +40,7 @@
   inset: 24px 18px 15px;
   background: radial-gradient(circle, #a969e72b, transparent 72%);
   filter: blur(7px);
-  animation: lotusHelpAuraNatural 5.2s ease-in-out infinite;
+  animation: lotusHelpAuraNatural 9s ease-in-out infinite;
 }
 .lotus-help-orb::after {
   left: 7px;
@@ -50,7 +50,7 @@
   animation: lotusHelpSparkNatural 5.8s ease-in-out infinite;
 }
 .lotus-help-orb > img {
-  animation: lotusHelpBreatheNatural 4.8s ease-in-out infinite;
+  animation: lotusHelpBreatheNatural 8.6s ease-in-out infinite;
   transition: transform .16s ease-out;
 }
 .lotus-help-orb:hover > img {
@@ -82,7 +82,7 @@
   pointer-events: none;
 }
 .lotus-help.has-answer .lotus-help-avatar img {
-  animation: lotusHelpCelebrateNatural .72s ease-out, lotusHelpAvatarBreathe 4.8s .72s ease-in-out infinite;
+  animation: lotusHelpCelebrateNatural .72s ease-out, lotusHelpAvatarBreathe 8.6s .72s ease-in-out infinite;
 }
 .lotus-help.is-reacting .lotus-help-avatar img {
   animation: lotusHelpReactionNatural .82s cubic-bezier(.2, .85, .3, 1.2);
@@ -119,8 +119,8 @@
 @media (prefers-reduced-motion: reduce) {
   .lotus-help-panel, .lotus-help-orb::after, .lotus-help-avatar,
   .lotus-help-badge { animation: none !important; }
-  .lotus-help-orb > img, .lotus-help-avatar img { animation: lotusHelpReducedBreathe 5.4s ease-in-out infinite !important; }
+  .lotus-help-orb > img, .lotus-help-avatar img { animation: lotusHelpReducedBreathe 9.2s ease-in-out infinite !important; }
   .lotus-help.is-reacting .lotus-help-avatar img { animation: lotusHelpReactionReduced .48s ease-out !important; }
-  .lotus-help-orb::before { animation: lotusHelpReducedAura 5.4s ease-in-out infinite !important; }
+  .lotus-help-orb::before { animation: lotusHelpReducedAura 9.2s ease-in-out infinite !important; }
   .lotus-help-topics button, .lotus-help-orb { transition: none; }
 }

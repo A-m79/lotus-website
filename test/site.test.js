@@ -631,6 +631,18 @@ test("the hero demonstration never blanks or enters a Chromium-unsafe 3D layer",
   assert.match(styles, /\.embed-card\.is-switching\s*>\s*\*/);
 });
 
+test("the hero uses plain language and only makes conservative public claims", () => {
+  const page = read("index.html");
+  const locale = read("i18n.js");
+  assert.match(page, /Lotus is watching over your server/);
+  assert.match(page, /data-count="4" data-suffix="\+"/);
+  assert.match(page, /servers already protected/);
+  assert.match(page, /A few seconds/);
+  assert.match(page, /to detect a threat and react/);
+  assert.doesNotMatch(page, /Lotus Security System &middot; Active protection|event-driven detection &amp; response/);
+  for (const copy of ["Lotus veille sur ton serveur", "serveurs déjà protégés", "Quelques secondes", "pour détecter une menace et réagir"]) assert.match(locale, new RegExp(copy));
+});
+
 test("the visual identity fonts are self-hosted and do not block on Google", () => {
   const styles = read("assets/style.css");
   assert.doesNotMatch(styles, /fonts\.(?:googleapis|gstatic)\.com/);
